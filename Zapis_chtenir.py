@@ -1,4 +1,5 @@
 import random
+import json
 #запись строки в файл, открытый в режиме 'w'
 # file_obj = open('file_to_write_in.txt', 'w')
 # string = 'строка для записи в файл\n'
@@ -63,7 +64,7 @@ else:
 	pre_chislo6 = 99
 
 file_obj = open('100_xodov.txt', 'a')
-for i in range(2000):
+for i in range(10):
  chislo =random.randint(0,36) # генерируем число
  file_obj.write(str(chislo)+'\n')
  # file_obj1 = open('1_xod.txt', 'w')
@@ -84,6 +85,13 @@ for i in range(2000):
  lst_of5.append(vectr5)
  lst_of6.append(vectr6)
  lst_of7.append(vectr7)
+ with open('2sh.txt', 'w') as jsonfile: json.dump(lst_of2, jsonfile)  # сохраняем в файл
+ with open('3sh.txt', 'w') as jsonfile: json.dump(lst_of3, jsonfile)
+ with open('4sh.txt', 'w') as jsonfile: json.dump(lst_of4, jsonfile)  # сохраняем в файл
+ with open('5sh.txt', 'w') as jsonfile: json.dump(lst_of5, jsonfile)
+ with open('6sh.txt', 'w') as jsonfile: json.dump(lst_of6, jsonfile)  # сохраняем в файл
+ with open('7sh.txt', 'w') as jsonfile: json.dump(lst_of7, jsonfile)
+
  file_obj1 = open('1_xoda.txt', 'w')
  file_obj1.write(str(chislo) + '\n')
  file_obj2 = open('2_xoda.txt', 'w')
