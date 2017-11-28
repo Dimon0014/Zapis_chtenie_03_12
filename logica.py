@@ -4,11 +4,11 @@ lst_vct2=[]
 file_obj = open('100_xodov.txt')
 data_list = file_obj.readlines()
 for line in data_list:
-	viborka.append(int(line))
+    viborka.append(int(line))
 for i in range(len(viborka)):
-	
+
     if i>0:
-		vec2 = (viborka[i],viborka[i])
+        vec2 = (viborka[i],viborka[i])
         
 print(data_list)
 print(viborka)
