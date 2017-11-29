@@ -1,93 +1,114 @@
-def last_next_seen_all_steps_1(dict,key):
-    all=0
-    for seen_step in dict[key][1]:
-        all = all+seen_step
-    print('функия all =',all)
-    return all
-def dob_next_seen_1(dict,key,steps): # функция добавления шагов с последнего появления
-  if  len(dict[(key)][1]) != 0: # проверка на наличие значений
-      #times_seen = len(dict[key][1])
-      all_stps_in_key = last_next_seen_all_steps_1(dict, key)
-      lst_tim_sen = steps - all_stps_in_key
-      print('steps-all_stps_in_key =',lst_tim_sen)
-      print('вычисл. добавление к уже существующим данным- разница между последни видимым',lst_tim_sen )
-      dict[key][1].append(lst_tim_sen)
-      dict[key][2] = len(dict[key][1])
-      dict[key][0]=0
-      print('key in function =', key)
-  else:
-    print('печатает dict[key][1][0]',dict[key][1][0])
-    dict[key][1].append(steps)
-    dict[key][2] = len(dict[key][1])
-    dict[key][0] = 0
-def add_step_to_all_1(dict, key):
-  for item in  dict:
-      if item != key:
-          dict[item][0]=dict[item][0]+1
 
-
-# собственно тело программы начинается здесь
-steps = 225 # типа имитатор счетчика ходов
-# значение словаря еденичных символо на текущий момент
-d = {(36):[ 1,[1, 2], 33],(35):[ 11,[101, 102], 31],(34):[ 13,[103, 106], 71]}
-# типа число полученное от распознователя символов
-key = (35)
-# print('печатает dict[37,35][0]',d[(37,35)][0])
-# print('печатает dict[37,34][0]',d[(37,34)][0])
-# print('печатает dict[37,36][0]',d[(37,36)][0])
-add_step_to_all_1(d, key)
-# print('печатает d[37,35][0] после функции',d[(37,35)][0])
-# print('печатает d[37,34][0] после функции',d[(37,34)][0])
-# print('печатает d[37,36][0] после функции',d[(37,36)][0])
-# print(d)
-# Проверить, есть ли такое имя в словаре и вывести результат
-if key in d:
- print(str(d[key]) + ' is the value of ' + str(key))
- dob_next_seen_1(d,key,steps)
- print('if key in d')
-# Если имени нет…
-else:
-# Вывести на экран
-
- d.update({key: [ 13,[], 30]})# непонятная конструкция?
- print('I don\'t have ' + str(key) + '\'s value, what is it?')
- dob_next_seen_1(d,key,steps)
- print("Обновленный словарь",d)
- print('else of if key in d')
-#print(d[(37,36)][1][0])# ура, есть доступ к значениям промежутков между появлениями,
-# надо по умолчанию чтоб значение было 99
-#vct=5
-
-if len(d[key][1]) != 0: # проверка на наличие значений
-    print(d[key][1]) # печатаем список
-   # ---------------------------------------------------------------------------------------------
    # отсюда функции патернов
    # сначала из двух цифр
 key3_step=23
 key2_step=34
 key1 = 36
-listIntervStps_all[]
-dictIntervStps_2{}
-dict[key][0] # доступ к словарю выпавшей цифры и ее количеству шагов последний раз когда выпадала
-d = {(36):[ 0,[1, 2], 33]}
-#key1, key2_step -- паттерн который нужно сравнить \\ dict -- словарь одиночек, откуда нужно
-# взять значение step(dict[key][0])\\ dict2 -- словарь интервалов двоек глобал
-# \\dict2lok -- словарь интервалов двоек локал\\ listAll_inter -- список всех интервалов друг за другом -- сплошняком
-def intervals_of_2(key1,key2_step, dict, dict2,listAll_inter):
-    #  перебор всех значений словаря по ключу
-    if len(dict2[(key)][0]) != 0:  # проверка на наличие значений, проверяется длинна словаря- умно
-        # times_seen = len(dict[key][1])
-        listAll_inter.append(0) # в принципе интервал равный нулю может быть только в начале, как и интервал [1,0], [2,1] в
-                           # общем первые значения интервалов в мусор
-        listAll_inter.append(dict[key1][0])
-        key2_step=key1
-        print('первая запись в списке интервалов', key1)
+#listIntervStps_all[]
+#dictIntervStps_2{}
+#dict_ed[(key)][0] # доступ к словарю выпавшей цифры и ее количеству шагов последний раз когда выпадала
+dictEd = {(36):[ 23,[1, 2], 33]}
+
+# key1 -- значение выпавшего числа\\
+# key1step(key,dictEd) - функция находит значение интервала для выпавшего числа в словаре dictEd  \\
+# key1step - значение интервала у выпавшего сейчас числа\\
+# key2step - значение интервала с предыдущего шага\\
+# key1step, key2step -- паттерн который нужно сравнить \\
+# dictEd -- словарь одиночных символов, откуда нужно взять значение step(dict[key][0])\\
+
+# listAll_inter -- список всех интервалов друг за другом -- сплошняком
+# dict2Glob -- словарь интервалов двоек глобал\\
+# dict2Lok -- словарь интервалов двоек локал\\
+
+#
+
+#
+# def intervals_of_02(key1_step,key2step):
+def key01step(key,dictEd):
+    result = dictEd[(key)][0]
+    return result
+# key01step = key01step(key,dictEd) # вычисляем когда последний раз был виден выпавший номер
+def intervals_of_2(key2step,key1step,dict2Glob,steps_sesia): # функция добавления интервалов как для глобал так и для локал
+        if (key2step,key1step) in dict2Glob: # проверка dict2Glob на наличие ключа, если нет то инициализация
+
+            last_seen = dict2Glob[(key2step, key1step)][0]  # переменную последний раз видели загоняем в буфер
+            dict2Glob[(key2step, key1step)][0] = 0  # переменную последний раз видели обнуляем
+            dict2Glob[(key2step, key1step)][1].append(last_seen)  # добавляем значение к списку последний раз видели
+            count = len(dict2Glob[(key2step, key1step)][1])  # переменную переменную раз видели загоняем в буфер
+            dict2Glob[(key2step, key1step)][2] = count
+            #  dict2Glob[(key2step,key1step)][3] = steps_sesia # количество шагов в сесии- нужно для предсказанияkey1step # первый символ ключа
+            #  dict2Glob[(key2step,key1step)][4] = key2step # первый символ ключа
+            #  dict2Glob[(key2step,key1step)][5] = key1step # второй символ ключа
+        else:
+            dict2Glob.update({(key2step, key1step): [0, [1], 1, key2step, key1step, steps_sesia]})  # инициализация
+
+
+def intervals_of_3(key3step, key2step,key1step , dict3Glob,steps_sesia):  # функция добавления интервалов как для глобал так и для локал
+    if (key3step, key2step,key1step) in dict3Glob:  # проверка dict2Glob на пустоту, если пусто то инициализация
+        last_seen = dict3Glob[(key3step, key2step, key1step)][0]  # переменную последний раз видели загоняем в буфер
+        dict3Glob[(key3step, key2step, key1step)][0] = 0  # переменную последний раз видели обнуляем
+        dict3Glob[(key3step, key2step, key1step)][1].append(
+            last_seen)  # добавляем значение к списку последний раз видели
+        count = len(dict3Glob[(key3step, key2step, key1step)][1])  # переменную переменную раз видели загоняем в буфер
+        dict3Glob[(key3step, key2step, key1step)][2] = count
+        # dict3Glob[(key3step, key2step,key1step)][3] = steps_sesia   #количество шагов в сесии- нужно для предсказания
+        #  dict3Glob[(key3step, key2step,key1step)][4] = key3step  # первый символ ключа
+        #  dict3Glob[(key3step, key2step,key1step)][5] = key2step   # второй символ ключа
+        #  dict3Glob[(key3step, key2step,key1step)][6] = key1step # третий символ ключа
+        print(' обновление словаря')
     else:
-        listAll_inter.append(dict[key1][0])
-        dict[(key)][0]
-        for item in dict:
-            if item == key1:
-                dict2[item][0] = dict[item][0] + 1
+        dict3Glob.update({(key3step, key2step, key1step): [0, [1], 1, key3step, key2step, key1step, steps_sesia]})  # инициализация
+        print(' создание словаря')
+def intervals_of_all(key1step,listAll_inter): # список всех подряд интервалов
+        listAll_inter.append(key1step)
+# функция добавляющая шаги к словарям
+def add_step_to_all_intervals_of_2(dict_interv2,key2step, key1step):  # а вот функция которая добовляет всем шаги
+     #key=(key2step, key1step)
+     for item in dict_interv2:
+         # if item != key:
 
-        print('печатает dict[key][1][0]', dict[key][1][0])
+            dict_interv2[item][0] = dict_interv2[item][0] + 1
+            dict_interv2[item][3] = dict_interv2[item][3] + 1
+            print('dict_interv2[item][0]', dict_interv2[item][0])
+            print('dict_interv2[item][3]',dict_interv2[item][3])
+     # for item in dict_interv2:
+     #     if item == key:
+     #        dict[item][3] = dict[item][0] + 1
+# def intervals_of_2(key1_step,key2step, dictEd, dict2,dict2lok,listAll_inter):
+#     #  перебор всех значений словаря по ключу в другой функции, эта функция сравнивает и добавляет
+#
+#       if len(dict2[(key1)][0]) != 0:  # проверка на наличие значений, проверяется длинна словаря- умное решение
+#         # times_seen = len(dict[key][1])
+#         listAll_inter.append(0) # добавление 0-левого интервала в общий список
+#                             # в принципе интервал равный нулю может быть только в начале, как и интервал [1,0], [2,1] в
+#                            # общем первые значения интервалов в мусор
+#         listAll_inter.append(dict[key1][0]) # добавление первого значимого интервала в общий список
+#         key2step=key1
+#         dict2[(key1)][0]=1
+#         print('первая запись в списке интервалов', key1)
+#       else:
+#         listAll_inter.append(dict[key1][0])
+#         dict[(key)][0]
+#         for item in dict:
+#             if item == key1:
+#                 dict2[item][0] = dict[item][0] + 1
+dict_interv_of2={}
+dict_interv_of3={}
+interval = key01step(key1,dictEd)
+print('печатает последний интервал выпавшего числа:', interval) # проверка функции возращающей последний интервал выпавшего числа
+key3step =12
+key2step =10
+key1step = interval
 
+steps_sesia =34 # нужно для инициализации
+intervals_of_2(key2step,key1step,dict_interv_of2,steps_sesia)
+print('печатает словар интервалов двоек после создания:', dict_interv_of2)
+
+intervals_of_2(key2step,key1step,dict_interv_of2,steps_sesia)
+print('печатает словар интервалов двоек после обновления:', dict_interv_of2)
+add_step_to_all_intervals_of_2(dict_interv_of2,key2step, key1step)
+
+print('печатает словар интервалов двоек после добавления\обнуления шагов:', dict_interv_of2)
+
+intervals_of_3(key3step, key2step,key1step , dict_interv_of3,steps_sesia)
+print('печатает словар интервалов троек после создания:', dict_interv_of3)
