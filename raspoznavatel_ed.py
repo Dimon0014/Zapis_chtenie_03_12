@@ -5,36 +5,40 @@ def last_next_seen_all_steps_1(dict,key):
         all = all+seen_step
     print('функия all =',all)
     return all
-def dob_next_seen_1(dict,key,steps): # функция добавления шагов с последнего появления
-  if  len(dict[(key)][1]) != 0: # проверка на наличие значений
-      #times_seen = len(dict[key][1])
-      all_stps_in_key = last_next_seen_all_steps_1(dict, key)
-      lst_tim_sen = steps - all_stps_in_key
-      print('steps-all_stps_in_key =',lst_tim_sen)
-      print('вычисл. добавление к уже существующим данным- разница между последни видимым',lst_tim_sen )
-      dict[key][1].append(lst_tim_sen)
-      dict[key][2] = len(dict[key][1])
-      dict[key][0]=0
+def last_last_seen_steps_of_simv_01(dict,key): # альтернатива  "last_next_seen_all_steps_1"
+    result = dict[key][0]
+
+    print('функия next_seen_steps =',result)
+    return result
+
+def dob_next_seen_1(dict,key, steps): # функция добавления шагов с последнего появления
+
+  if  (key) in dict: # проверка на наличие значений
+      last_seen = last_last_seen_steps_of_simv_01(dict,key)
+      print('steps-last_time seen_in_key =', last_seen)
+      print('печатает dict[key][1][0]', dict[key][1][0])
+      dict[key][1].append(last_seen)
+      dict[key][2] = len(dict[key][1]) # сколько раз уже выпадала
+      dict[key][0] = 0
+
+  else: # инициализация
+      dict.update({(key): [0, [steps], 1, key, steps]})  # инициализация
       print('key in function =', key)
-  else:
-    print('печатает dict[key][1][0]',dict[key][1][0])
-    dict[key][1].append(steps)
-    dict[key][2] = len(dict[key][1])
-    dict[key][0] = 0
-def add_step_to_all_1(dict, key):
+
+def add_step_to_all_1(dict):
   for item in  dict:
-      if item != key:
           dict[item][0]=dict[item][0]+1
+          dict[item][4] = dict[item][4] + 1
 # собственно тело программы начинается здесь
 steps = 225 # типа имитатор счетчика ходов
 # значение словаря еденичных символо на текущий момент
-d = {(36):[ 1,[1, 2], 33],(35):[ 11,[101, 102], 31],(34):[ 13,[103, 106], 71]}
+d = {(36):[ 1,[1, 2], 33, 22,2],(35):[ 11,[101, 102], 31, 22,2],(34):[ 13,[103, 106], 71, 22,2]}
 # типа число полученное от распознователя символов
 key = (35)
 # print('печатает dict[37,35][0]',d[(37,35)][0])
 # print('печатает dict[37,34][0]',d[(37,34)][0])
 # print('печатает dict[37,36][0]',d[(37,36)][0])
-add_step_to_all_1(d, key)
+add_step_to_all_1(d)
 # print('печатает d[37,35][0] после функции',d[(37,35)][0])
 # print('печатает d[37,34][0] после функции',d[(37,34)][0])
 # print('печатает d[37,36][0] после функции',d[(37,36)][0])
