@@ -1,13 +1,5 @@
 import json
 import random
-file_obj = open('100_xodov.txt', 'w')
-file_obj.close()
-file_obj = open('100_xodov.txt', 'a')
-for i in range(10000):
- chislo =random.randint(0,36) # генерируем число
- file_obj.write(str(chislo)+'\n')
-
-file_obj.close()
  #------------- в начале обработка единичных символов
 
 def last_last_seen_steps_of_simv_01(dict,key): # альтернатива  "last_next_seen_all_steps_1"
@@ -180,65 +172,181 @@ def add_step_to_all_intervals_of_2(dict_interv2, key2step, key1step):  # а во
 # типа число полученное от распознователя символов key = (35)
 
 # востановление всех ходов
-viborka = []
-file_obj = open('100_xodov.txt')
-data_list = file_obj.readlines()
-for line in data_list:
-    viborka.append(int(line))
-# объявление всех переменных-----------------------------------------------------------------------------------
-dic_ed = {} # болванка под словарь едениц
-#-----------------------------------------------------------------------------------
-dict_interv_of2 = {} # болванка под словарь интервалов 2-ек
-dict_interv_of3 = {} # болванка под словарь интервалов 3-ек
-key=0
-steps_sesia = 1
-key1 = key
-steps = 0
-key3step = 0
-key2step = 0
-listAll_inter=[] # болванка под список всех интервалов
-log = True
-spisok_vnesh=[0]
-spisok_vnesh2=[1]
-while (steps <len(viborka)):
-    key = viborka[steps]
+def postrocno(spisok):
+    i=0
+    for item in spisok:
+        i=i+1
+        print('стока',i, item)
+def stepsbig(interval, porog,steps_big ):
+    steps_big
+    if interval< porog:
+        steps_big=steps_big+1
+    return  steps_big
+def podchet_interv_odd(slovar):
+    obshie=0
+    rezult = 0
+    for item in slovar:
+        if (slovar[item][3]%2)!=0:
+          if (slovar[item][0]) > 130:
+            rezult =obshie+ slovar[item][0]
+
+    return rezult
+def podchet_interv_iven(slovar):
+    obshie=0
+    rezult =0
+    for item in slovar:
+        if (slovar[item][3]%2)==0:
+           if (slovar[item][0])> 130:
+               rezult=obshie+ slovar[item][0]
+    return rezult
+rasnica2 =0
+ik = 0
+vig = 0
+prg = 0
+chag = 0
+while (ik < 1):
+    ik = ik + 1
+    # file_obj = open('100_xodov.txt', 'w')
+    # file_obj.close()
+    # file_obj = open('100_xodov.txt', 'a')
+    # for i in range(400):
+    #     chislo = random.randint(0, 36)  # генерируем число
+    #     file_obj.write(str(chislo) + '\n')
+    #
+    # file_obj.close()
+
+
+    viborka = []
+    file_obj = open('100_xodov7.txt')
+    data_list = file_obj.readlines()
+    for line in data_list:
+        viborka.append(int(line))
+    # объявление всех переменных-----------------------------------------------------------------------------------
+    dic_ed = {} # болванка под словарь едениц
+    #-----------------------------------------------------------------------------------
+    dict_interv_of2 = {} # болванка под словарь интервалов 2-ек
+    dict_interv_of3 = {} # болванка под словарь интервалов 3-ек
+    key=0
+    steps_sesia = 1
     key1 = key
-    #print('Выпало число:',key)
-    steps=steps+1
-    dob_next_seen_1(dic_ed,key, steps) # создание\ обновление словаря едениц
-    interval = key01step(key1, dic_ed)  #  последний интервал выпавшего числа
-    add_step_to_all_1(dic_ed) # добавление шагов всем еденицам
-    # проверочный - dictEd = {(36): [23, [1, 2], 33]}
+    steps = 0
+    steps_big =0
+    key3step = 0
+    key2step = 0
+    listAll_inter=[] # болванка под список всех интервалов
+    log = True
+    spisok_vnesh=[0]
+    spisok_vnesh2=[1]
+    win =''
+    win1=True
+    win2 =True
+    win3=True
+    Viigral =0
+    Proigral =0
+    change=True
 
+    while (steps <len(viborka)):
+        key = viborka[steps]
+        key1 = key
+        if key%2 ==0:
+            if win1:
+                Viigral=Viigral+1
+                win2 = True
 
-    key1step = interval
-   # print('последний интервал выпавшего числа:',interval)  # проверка функции возращающей последний интервал выпавшего числа
-    # проверочный -- key3step = 12
-    # проверочный -- key2step = 10
+            else:
+                Proigral=Proigral+1
+                win2 = False
+        if key % 2 != 0:
+            if win1 == False:
+                Viigral = Viigral + 1
 
-    intervals_of_all(key1step, listAll_inter)
-    # нужно для инициализации
-    # intervals_of_2(key2step, key1step, dict_interv_of2, steps_sesia)
-    # print('печатает словар интервалов двоек после создания:', dict_interv_of2)
-    #
-    # intervals_of_2(key2step, key1step, dict_interv_of2, steps_sesia)
-    # print('печатает словар интервалов двоек после обновления:', dict_interv_of2)
-    # add_step_to_all_intervals_of_2(dict_interv_of2, key2step, key1step)
-    #
-    # print('печатает словар интервалов двоек после добавления\обнуления шагов:', dict_interv_of2)
-    #
-    # intervals_of_3(key3step, key2step, key1step, dict_interv_of3, steps_sesia)
-    # print('печатает словар интервалов троек после создания:', dict_interv_of3)
+            else:
+                Proigral = Proigral + 1
+                win2 = False
+        #print('Выпало число:',key)
+        rasnica = Viigral - Proigral
 
-    spisok_vnesh = more_of_1(dic_ed)
-    if len(spisok_vnesh)>0:
-       spisok_vnesh2= spisok_vnesh
+        # if rasnica < -100:
+        #     change = not(change)
+        # if rasnica > 100:
+        #     change = not(change)
+        steps=steps+1
+        dob_next_seen_1(dic_ed,key, steps) # создание\ обновление словаря едениц
+        interval = key01step(key1, dic_ed)  #  последний интервал выпавшего числа
+        add_step_to_all_1(dic_ed) # добавление шагов всем еденицам
+        # проверочный - dictEd = {(36): [23, [1, 2], 33]}
 
-print('список интервалов',listAll_inter)
-print('spisok_vnesh2',spisok_vnesh2)
-with open('intervals_all.txt', 'w') as jsonfile: json.dump(listAll_inter, jsonfile)
-int_count = podchet_simv(listAll_inter)
-int_count = sorted(int_count.items(), key=lambda x: x[1], reverse=True)
-[(4, 74), (2, 47), (3, 32), (0, 17), (1, 12)]
-print('количество рзных символов',int_count )
-#print('словарь едениц',dic_ed)
+        chislo1 = random.randint(0, 36)
+        all_odd= podchet_interv_odd(dic_ed)
+            #podchet_interv_odd(dic_ed)
+        chislo1 = random.randint(0, 36)
+        all_even = podchet_interv_iven(dic_ed)
+            #podchet_interv_iven(dic_ed)
+        if change:
+            if all_even != all_odd:
+                if all_odd < all_even:
+                    win = "выиграет odd"
+                    win1 = False
+                else:
+                    win = "выиграет even"
+                    win1 = True
+        else:
+            if all_even != all_odd:
+                if all_odd > all_even:
+                    win = "выиграет odd"
+                    win1 = False
+                else:
+                    win = "выиграет even"
+                    win1 = True
+        key1step = interval
+       # print('последний интервал выпавшего числа:',interval)  # проверка функции возращающей последний интервал выпавшего числа
+        # проверочный -- key3step = 12
+        # проверочный -- key2step = 10
+        steps_big = stepsbig(interval, 144, steps_big)
+        intervals_of_all(key1step, listAll_inter)
+        # нужно для инициализации
+        # intervals_of_2(key2step, key1step, dict_interv_of2, steps_sesia)
+        # print('печатает словар интервалов двоек после создания:', dict_interv_of2)
+        #
+        # intervals_of_2(key2step, key1step, dict_interv_of2, steps_sesia)
+        # print('печатает словар интервалов двоек после обновления:', dict_interv_of2)
+        # add_step_to_all_intervals_of_2(dict_interv_of2, key2step, key1step)
+        #
+        # print('печатает словар интервалов двоек после добавления\обнуления шагов:', dict_interv_of2)
+        #
+        # intervals_of_3(key3step, key2step, key1step, dict_interv_of3, steps_sesia)
+        # print('печатает словар интервалов троек после создания:', dict_interv_of3)
+
+        spisok_vnesh = more_of_1(dic_ed)
+        if len(spisok_vnesh)>0:
+           spisok_vnesh2= spisok_vnesh
+
+    #print('список интервалов',listAll_inter)
+    # print('spisok_vnesh2',spisok_vnesh2)
+    with open('intervals_all.txt', 'w') as jsonfile: json.dump(listAll_inter, jsonfile)
+    int_count = podchet_simv(listAll_inter)
+    int_count = sorted(int_count.items(), key=lambda x: x[1], reverse=True)
+    [(4, 74), (2, 47), (3, 32), (0, 17), (1, 12)]
+    # print('количество рзных символов',int_count )
+    # print('количество шагов биг',steps_big )
+    print('Выиграл:',Viigral)
+    print('Проиграл:',Proigral)
+    vig=vig+Viigral
+    prg=prg+Proigral
+    rasnica2 = vig - prg
+    # if rasnica2> 100:
+    #     break
+    chag=chag+1
+    rasnica=Viigral-Proigral
+
+    print(rasnica)
+    if rasnica> 100:
+        break
+    #postrocno(int_count)
+    #print('словарь едениц',dic_ed)
+    #print('chag', chag)
+# print('Выиграл:',vig)
+# print('Проиграл:',prg)
+# rasnica=vig-prg
+# print(rasnica)
+# print('chag',ik)
