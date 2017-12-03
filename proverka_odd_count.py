@@ -199,6 +199,26 @@ def podchet_interv_iven(slovar):
            if (slovar[item][0])> 180:
                rezult=obshie+ slovar[item][0]
     return rezult
+def podchet_count_odd(slovar):
+    obshie = []
+    rezult = 0
+    for item in slovar:
+        if (slovar[item][3] % 2) != 0:
+            if (slovar[item][0]) < 110:
+                obshie.append(slovar[item][3])
+                rezult = len(obshie)
+    return rezult
+
+def podchet_count_iven(slovar):
+    obshie=[]
+    rezult =0
+    for item in slovar:
+        if (slovar[item][3]%2)==0:
+           if (slovar[item][0])< 110:
+               obshie.append(slovar[item][3])
+               rezult =len(obshie)
+    return rezult
+
 def nahogd_big_interv(slovar):
     rezult =0
     big=0
@@ -208,6 +228,15 @@ def nahogd_big_interv(slovar):
           rezult=slovar[item][3]
           slovar[item][0] = big
     return rezult
+
+
+
+
+
+
+
+
+
 
 
 rasnica2 =0
@@ -259,12 +288,15 @@ while (ik < 10):
     good_pred=[]
     bad_pred=[]
     iven_or_odd=0
+    all_odd=0
+    all_even=0
     while (steps <len(viborka)):
         key = viborka[steps]
         key1 = key
         steps = steps + 1
-        if index_predscazan ==0:
-            if steps < 400:
+
+        if abs(index_predscazan) >0:
+            if steps < 200:
                 if key % 2 == 0:
                     if win1:
                         Viigral=Viigral+1
@@ -297,9 +329,9 @@ while (ik < 10):
                         bad_pred.append(steps)
                         steps = int(steps)
 
-        #print('Выпало число:',key)
-        rasnica = Viigral - Proigral
-
+        # print('Выпало число:',key)
+        rasnica = all_odd - all_even
+        # print('Должно было пыпасть если - то чет_+ нечет:', rasnica)
         # if rasnica < 0:
         #      change = not(change)
         # if rasnica > 0:
@@ -311,16 +343,16 @@ while (ik < 10):
         # проверочный - dictEd = {(36): [23, [1, 2], 33]}
 
         chislo1 = random.randint(0, 36)
-        all_odd= podchet_interv_odd(dic_ed)
+        all_odd= podchet_count_odd(dic_ed)
             #podchet_interv_odd(dic_ed)
         chislo1 = random.randint(0, 36)
-        all_even = podchet_interv_iven(dic_ed)
+        all_even = podchet_count_iven(dic_ed)
             #podchet_interv_iven(dic_ed)
         index_predscazan = all_odd- all_even
 
         if change:
             if all_even != all_odd:
-                if all_odd < all_even:
+                if all_odd > all_even:
                     win = "выиграет odd"
                     win1 = False
                 else:
@@ -382,10 +414,11 @@ while (ik < 10):
     #print('словарь едениц',dic_ed)
     #print('chag', chag)
 
-# postrocno(bad_pred,'Bad')
-# postrocno(good_pred,'Good')
-print('Выиграл:',vig)
-print('Проиграл:',prg)
+    # postrocno(bad_pred,'Bad')
+    # postrocno(good_pred,'Good')
+# print('Выиграл:',vig)
+# print('Проиграл:',prg)
 rasnica=vig-prg
-print(rasnica2)
-print('chag',ik)
+print('---------------------------------')
+print('общтй итог:',rasnica2)
+# print('chag',ik)
