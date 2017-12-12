@@ -235,8 +235,6 @@ while (ik < 1):
     # объявление всех переменных-----------------------------------------------------------------------------------
     dic_ed = {} # болванка под словарь едениц
     #-----------------------------------------------------------------------------------
-    dict_interv_of2 = {} # болванка под словарь интервалов 2-ек
-    dict_interv_of3 = {} # болванка под словарь интервалов 3-ек
     key=0
     steps_sesia = 1
     key1 = key
@@ -268,35 +266,35 @@ while (ik < 1):
         if steps < len(viborka):
             if key % 2 == 0:
                 if win1:
-                    Viigral=Viigral+1
+                    Viigral=Viigral+0.5
                     win2 = True
-                    steps=steps+0.1
-                    good_pred.append(index_predscazan)
-                    good_pred.append(steps)
-                    steps = int(steps)
+                    # steps2=steps+0.1
+                    #good_pred.append(index_predscazan)
+                    # good_pred.append(steps)
+                    # steps = int(steps)
                 else:
-                    Proigral=Proigral+1
+                    Proigral=Proigral+0.5
                     win2 = False
-                    steps = steps + 0.1
-                    bad_pred.append(index_predscazan)
-                    bad_pred.append(steps)
-                    steps = int(steps)
+                    # steps = steps + 0.1
+                    # bad_pred.append(index_predscazan)
+                    # bad_pred.append(steps)
+                    # steps = int(steps)
 
             if key % 2 != 0:
                 if win1 == False:
-                    Viigral = Viigral + 1
-                    steps = steps + 0.1
-                    good_pred.append(index_predscazan)
-                    good_pred.append(steps)
-                    steps = int(steps)
+                    Viigral = Viigral + 0.5
+                    # steps = steps + 0.1
+                    # good_pred.append(index_predscazan)
+                    # good_pred.append(steps)
+                    # steps = int(steps)
 
                 else:
-                    Proigral = Proigral + 1
+                    Proigral = Proigral + 0.5
                     win2 = False
-                    steps = steps + 0.1
-                    bad_pred.append(index_predscazan)
-                    bad_pred.append(steps)
-                    steps = int(steps)
+                    # steps = steps + 0.1
+                    # bad_pred.append(index_predscazan)
+                    # bad_pred.append(steps)
+                    # steps = int(steps)
 
         #print('Выпало число:',key)
         rasnica = Viigral - Proigral
@@ -311,10 +309,10 @@ while (ik < 1):
         add_step_to_all_1(dic_ed) # добавление шагов всем еденицам
         # проверочный - dictEd = {(36): [23, [1, 2], 33]}
 
-        chislo1 = random.randint(0, 36)
+        # chislo1 = random.randint(0, 36)
         all_odd= podchet_interv_odd(dic_ed)
             #podchet_interv_odd(dic_ed)
-        chislo1 = random.randint(0, 36)
+        # chislo1 = random.randint(0, 36)
         all_even = podchet_interv_iven(dic_ed)
             #podchet_interv_iven(dic_ed)
         index_predscazan = all_odd- all_even
