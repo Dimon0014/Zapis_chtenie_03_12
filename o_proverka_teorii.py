@@ -227,7 +227,7 @@ def sozdan_conteynerov_v_spiske(spisok_conteynerov, steps, winner, spisok_podch_
     spisok[0] = winner
     spisok[1] = steps
     spisok[6] = 10 #spisok_sredn_za_proshl_igru[число][значение среднего за прошлую игру]
-    spisok[7] = round((steps / (dict_ed[(key)][2] + 1)), 1)
+
     spisok[8] = 2 # из переменной подсчета
     spisok[9] = dict_ed[(key)][0]  # опять таки через словарь цифр, просто значение словаря [-1] если до обработки словаря или [1][-2] после обработки словаря
     if winner == spisok_podch_ciklov[0]:
@@ -236,24 +236,30 @@ def sozdan_conteynerov_v_spiske(spisok_conteynerov, steps, winner, spisok_podch_
     spisok_conteynerov.append(spisok)  # инициализация
     return    spisok_conteynerov                                   #print('key in function =', key)
 
-def proverka_conteynerov_na_pedskazanie(spisok_conteynerov,key, steps):
+def proverka_conteynerov_na_pedskazanie(spisok_conteynerov,key, steps,dict_ed):
     for item in   spisok_conteynerov:
        if item[11] ==1:
          if item[0] == key:
             item[2] = steps
-            item[3] = steps - item[2]
-            if item[3]> 49:
+            item[3] = steps - item[1]
+            item[11] = 0
+            item[7] = round((steps / (dict_ed[(item[0])][2] + 1)), 1)
+            if item[3]> 54:
                item[4] = -72
                item[5] = 0
                item[11] = 0
             else:
                if (item[3]< 37):
                    item[4] = 36-item[3]
-
-               if (item[3]> 36)  and (item[3] < 50):
+               item[11] = 0
+               if (item[3]> 36)  and (item[3] < 55):
                    item[4] = ((72 - 36) - (item[3] - 36) * 2)
+
+
                item[5] = 1
-               item[11] = 1
+               item[11] = 0
+            if item[7] > 25:
+                item[4]=0
              # подсчет среднего за эту игру (если добавлять до прибавления шагов еденице добавить +1 делителю)
            # item[8] = dict_ed # как то подсчитать через словарь цифр и значения первого шага когда назначено лучшим числом
 
@@ -286,7 +292,7 @@ k =7
 pribyl = 0
 spisok_podch_ciklov =[0,0]
 spisok_conteynerov=[]
-for i in range(21,22):#while (ik < 1):
+for i in range(14,15):#while (ik < 1):
     ik = ik + 1
 
 
@@ -346,7 +352,7 @@ for i in range(21,22):#while (ik < 1):
         # БЛОК ЕДЕНИЦЫ
         ############################################################################################
         list_of_win_proverki_1 = proverka_predskaza_1(key1, list_of_win_proverki_1,winer_1)
-        proverka_conteynerov_na_pedskazanie(spisok_conteynerov, key, steps)
+        proverka_conteynerov_na_pedskazanie(spisok_conteynerov, key, steps, dic_ed)
 
         if  list_of_win_proverki_1[1] == 1:
             steps_to_win_1 = list_of_win_proverki_1[0]
@@ -389,9 +395,12 @@ for i in range(21,22):#while (ik < 1):
     print(k,'obch_pribyl: ', pribyl)
 
 pribyl_glob = pribyl_glob+pribyl
-
+summa=0
 for item in spisok_conteynerov:
     print(item)
+    summa= summa+item[4]
+
+print('summa', summa)
 # end1 = clock()
 # print(ind, 'glob_pribyl: ', pribyl_glob, 'Время:', (end1 - start1)/60)
 #print('2222222222222222222222222222222222222222222222222222222222222222222222222222222222')
