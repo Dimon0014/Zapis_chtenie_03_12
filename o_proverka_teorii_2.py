@@ -258,7 +258,7 @@ def proverka_conteynerov_na_pedskazanie(spisok_conteynerov,key, steps,dict_ed):
 
                item[5] = 1
                item[11] = 0
-            if item[7] > 30:
+            if item[7] > 60:
                  item[4]=0
              # подсчет среднего за эту игру (если добавлять до прибавления шагов еденице добавить +1 делителю)
            # item[8] = dict_ed # как то подсчитать через словарь цифр и значения первого шага когда назначено лучшим числом
@@ -404,8 +404,10 @@ for i in range(1,29):#while (ik < 1):
     
     print('summa', summa)
     pribyl_arr.append(summa)
+    y =0
 for item in pribyl_arr:
-    print(item)
+    y=y+1
+    print(y,' = ',item)
     summa= summa+item
 print('summa', summa)
 # end1 = clock()
