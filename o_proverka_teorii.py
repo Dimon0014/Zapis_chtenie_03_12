@@ -227,7 +227,7 @@ def sozdan_conteynerov_v_spiske(spisok_conteynerov, steps, winner, spisok_podch_
     spisok[0] = winner
     spisok[1] = steps
     spisok[6] = 10 #spisok_sredn_za_proshl_igru[число][значение среднего за прошлую игру]
-
+    spisok[7] = round((steps / (dict_ed[(spisok[0])][2] + 1)), 1)
     spisok[8] = 2 # из переменной подсчета
     spisok[9] = dict_ed[(key)][0]  # опять таки через словарь цифр, просто значение словаря [-1] если до обработки словаря или [1][-2] после обработки словаря
     if winner == spisok_podch_ciklov[0]:
@@ -243,7 +243,7 @@ def proverka_conteynerov_na_pedskazanie(spisok_conteynerov,key, steps,dict_ed):
             item[2] = steps
             item[3] = steps - item[1]
             item[11] = 0
-            item[7] = round((steps / (dict_ed[(item[0])][2] + 1)), 1)
+            #item[7] = round((steps / (dict_ed[(item[0])][2] + 1)), 1)
             if item[3]> 54:
                item[4] = -72
                item[5] = 0
@@ -258,8 +258,8 @@ def proverka_conteynerov_na_pedskazanie(spisok_conteynerov,key, steps,dict_ed):
 
                item[5] = 1
                item[11] = 0
-            if item[7] > 25:
-                item[4]=0
+            if item[7] > 24:
+                 item[4]=0
              # подсчет среднего за эту игру (если добавлять до прибавления шагов еденице добавить +1 делителю)
            # item[8] = dict_ed # как то подсчитать через словарь цифр и значения первого шага когда назначено лучшим числом
 
@@ -292,7 +292,7 @@ k =7
 pribyl = 0
 spisok_podch_ciklov =[0,0]
 spisok_conteynerov=[]
-for i in range(14,15):#while (ik < 1):
+for i in range(1,29):#while (ik < 1):
     ik = ik + 1
 
 
@@ -391,8 +391,8 @@ for i in range(14,15):#while (ik < 1):
          # print('winer: ',key, dic_ed[(key)])
 
         #print(steps,'winer',spisok_conteynerov)
-    pribyl =podchet_balansa(list_of_steps_toWin_1)
-    print(k,'obch_pribyl: ', pribyl)
+    #pribyl =podchet_balansa(list_of_steps_toWin_1)
+    #print(k,'obch_pribyl: ', pribyl)
 
 pribyl_glob = pribyl_glob+pribyl
 summa=0

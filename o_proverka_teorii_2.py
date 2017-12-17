@@ -258,7 +258,7 @@ def proverka_conteynerov_na_pedskazanie(spisok_conteynerov,key, steps,dict_ed):
 
                item[5] = 1
                item[11] = 0
-            if item[7] > 18:
+            if item[7] > 30:
                  item[4]=0
              # подсчет среднего за эту игру (если добавлять до прибавления шагов еденице добавить +1 делителю)
            # item[8] = dict_ed # как то подсчитать через словарь цифр и значения первого шага когда назначено лучшим числом
@@ -290,12 +290,11 @@ pribyl_glob = 0
 start1 = clock()
 k =7
 pribyl = 0
-spisok_podch_ciklov =[0,0]
-spisok_conteynerov=[]
+pribyl_arr =[]
 for i in range(1,29):#while (ik < 1):
     ik = ik + 1
 
-
+    
     naime_file = str(i)+'cikl_och.txt'
     viborka = []
     file_obj = open(naime_file)
@@ -344,6 +343,8 @@ for i in range(1,29):#while (ik < 1):
     best_chisla_couple = []
     winner_bufer=[]
     spisok_podch_ciklov=[0,0]
+    #spisok_podch_ciklov = [0, 0]
+    spisok_conteynerov = []
     while (steps < len(viborka)):
         key = viborka[steps]
         key1 = key
@@ -391,15 +392,21 @@ for i in range(1,29):#while (ik < 1):
          # print('winer: ',key, dic_ed[(key)])
 
         #print(steps,'winer',spisok_conteynerov)
-    pribyl =podchet_balansa(list_of_steps_toWin_1)
-    print(k,'obch_pribyl: ', pribyl)
+    # pribyl =podchet_balansa(list_of_steps_toWin_1)
+    # print(k,'obch_pribyl: ', pribyl)
 
-pribyl_glob = pribyl_glob+pribyl
-summa=0
-for item in spisok_conteynerov:
+#pribyl_glob = pribyl_glob+pribyl
+    print('--', i, '-----------------------------------------------------------------------------')
+    summa=0
+    for item in spisok_conteynerov:
+        print(item)
+        summa= summa+item[4]
+    
+    print('summa', summa)
+    pribyl_arr.append(summa)
+for item in pribyl_arr:
     print(item)
-    summa= summa+item[4]
-
+    summa= summa+item
 print('summa', summa)
 # end1 = clock()
 # print(ind, 'glob_pribyl: ', pribyl_glob, 'Время:', (end1 - start1)/60)

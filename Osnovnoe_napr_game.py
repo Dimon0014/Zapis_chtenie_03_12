@@ -228,7 +228,7 @@ while (ik < 1):
 
 
     viborka = []
-    file_obj = open('104_xodov.txt')
+    file_obj = open('5cikl_och.txt')
     data_list = file_obj.readlines()
     for line in data_list:
         viborka.append(int(line))
