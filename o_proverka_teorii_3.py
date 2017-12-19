@@ -907,7 +907,7 @@ pribyl_arr = []
 balans_grafik = []
 balans_spisok =[]
 prib_min =0
-for i in range(1, 67):  # while (ik < 1):
+for i in range(13, 14):  # while (ik < 1):
     ik = ik + 1
 
     naime_file = str(i) + 'cikl_och.txt'
@@ -967,9 +967,9 @@ for i in range(1, 67):  # while (ik < 1):
         steps = steps + 1
         buf_play_chisla = play_number_win_36_2_proskoka(key, buf_play_chisla)
         buf_play_chisla = play_number_inicial_all(buf_play_chisla, steps, 400)
-        #balans_grafik.append(function_mgnoven_balans(buf_play_chisla))
+        balans_grafik.append(function_mgnoven_balans(buf_play_chisla))
         prib_min = function_mgnoven_balans(buf_play_chisla)
-        if prib_min > 9:
+        if prib_min > 70:
             buf_play_chisla = funct_obnulenia(buf_play_chisla)
             balans_spisok.append(prib_min)
         # print('3-ka;', buf_play_chisla[3])
@@ -1058,10 +1058,12 @@ print('ubul:', ubul)
 print('itog:', prib - ubul)
 shag = 0
 pribb = 0
+for item in balans_grafik:
+    shag = shag + 1
+    print('shag', shag, ': ', item)
 for item in balans_spisok:
     shag = shag + 1
     pribb = pribb+item
-    print('shag', shag, ': ', item)
 print('pribb: ', pribb)
     # end1 = clock()
     # print(ind, 'glob_pribyl: ', pribyl_glob, 'Время:', (end1 - start1)/60)
