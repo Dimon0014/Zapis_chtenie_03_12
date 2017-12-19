@@ -210,31 +210,36 @@ def podchet_balansa(spisok):
             pribyl = pribyl - 72
     return  pribyl
 def sozdan_conteynerov_v_spiske(spisok_conteynerov, steps, winner, spisok_podch_ciklov, dict_ed): # функция добавления/инициализация шагов с последнего появления
-    spisok =[0,0,0,0,0,0,0,0,0,0,0,0]
-                       # 0 - число
-                       # 1 - шаг начала предсказания,
-                       # 2 - шаг когда предсказание сбылось
-                       # 3 - количество шагов потребовашихся чтоб сбылось предсказание
-                       # 4 - баланс предсказания
-                       # 5 - хороше или плохое предсказание
-                       # 6 - показатель среднего за прошлую игру
-                       # 7 - показатель среднего за эту игру
-                       # 8 - значение винера, 2- 3- 4 числа попали
-                       # 9 - количество промежутков между двумя  числами винер
-                       # 10 - количество шаго которое число висело как виннер, перед назначением
+      dlina=0
+      spisok =[0,0,0,0,0,0,0,0,0,0,0,0]
+                           # 0 - число
+                           # 1 - шаг начала предсказания,
+                           # 2 - шаг когда предсказание сбылось
+                           # 3 - количество шагов потребовашихся чтоб сбылось предсказание
+                           # 4 - баланс предсказания
+                           # 5 - хороше или плохое предсказание
+                           # 6 - показатель среднего за прошлую игру
+                           # 7 - показатель среднего за эту игру
+                           # 8 - значение винера, 2- 3- 4 числа попали
+                           # 9 - количество промежутков между двумя  числами винер
+                           # 10 - количество шаго которое число висело как виннер, перед назначением
 
-                       # 11 - логическая переменная отыграл -0, в игре -1
-    spisok[0] = winner
-    spisok[1] = steps
-    spisok[6] = 10 #spisok_sredn_za_proshl_igru[число][значение среднего за прошлую игру]
-    spisok[7] = round((steps / (dict_ed[(spisok[0])][2] + 1)), 1)
-    spisok[8] = 2 # из переменной подсчета
-    spisok[9] = dict_ed[(key)][0]  # опять таки через словарь цифр, просто значение словаря [-1] если до обработки словаря или [1][-2] после обработки словаря
-    if winner == spisok_podch_ciklov[0]:
-        spisok[10] = spisok_podch_ciklov[1]
-    spisok[11] = 1 # запускаем в игру
-    spisok_conteynerov.append(spisok)  # инициализация
-    return    spisok_conteynerov                                   #print('key in function =', key)
+                           # 11 - логическая переменная отыграл -0, в игре -1
+      if steps < 370:
+        spisok[0] = winner
+        spisok[1] = steps
+        spisok[6] = 10 #spisok_sredn_za_proshl_igru[число][значение среднего за прошлую игру]
+        spisok[7] = round((steps / (dict_ed[(spisok[0])][2] + 1)), 1)
+        spisok[8] = 2 # из переменной подсчета
+        dlina = len(dict_ed[(winner)][1])
+
+        spisok[9] = dict_ed[(winner)][1]#[-2]  # опять таки через словарь цифр, просто значение словаря [-1] если до обработки словаря или [1][-2] после обработки словаря
+
+        if winner == spisok_podch_ciklov[0]:
+            spisok[10] = spisok_podch_ciklov[1]
+        spisok[11] = 1 # запускаем в игру
+        spisok_conteynerov.append(spisok)  # инициализация
+      return    spisok_conteynerov                                   #print('key in function =', key)
 
 def proverka_conteynerov_na_pedskazanie(spisok_conteynerov,key, steps,dict_ed):
     for item in   spisok_conteynerov:
@@ -258,14 +263,24 @@ def proverka_conteynerov_na_pedskazanie(spisok_conteynerov,key, steps,dict_ed):
 
                item[5] = 1
                item[11] = 0
-            if item[7] > 60:
-                 item[4]=0
+            #if item[7] > 16:
+            #         item[4]=0
              # подсчет среднего за эту игру (если добавлять до прибавления шагов еденице добавить +1 делителю)
            # item[8] = dict_ed # как то подсчитать через словарь цифр и значения первого шага когда назначено лучшим числом
            #  if steps  < 10:
            #       item[4] = 0
         #else:
     return   spisok_conteynerov
+def zakrytie_minus_stavok(spisok_conteynerov, steps):
+    steps_in =0
+    for item in   spisok_conteynerov:
+       if item[11] ==1:
+           steps_in = steps-item[1]
+           if  steps_in > 54:
+               item[4] = -72
+               item[11] = 0
+               item[5] = 0
+    return spisok_conteynerov
 # подсчет винера должен стоять ранше инициализации и добавления в список винера
 def  spisok_podcheta_serii_winnera(winer_1,spisok_podch_ciklov):  #spisok_podch_ciklov[proshliy winer, kolichestvo ciklov]
           if winer_1 == spisok_podch_ciklov[0]:
@@ -275,8 +290,589 @@ def  spisok_podcheta_serii_winnera(winer_1,spisok_podch_ciklov):  #spisok_podch_
               spisok_podch_ciklov[1] =1
               spisok_podch_ciklov[0] = winer_1
           return spisok_podch_ciklov
+buf_play_chisla = []
+i=0
+for i in range(37):
+    buf_play_chisla.append([i,0,0,0,0,0,0,0,0])
+# chislo = [0,0,0,0,0,0,0,0] # 0 - играющее число
+#                                # 1 - количество итераций уже
+#                                # 2 - текущая итерация
+#                                # 3 - пауза
+#                                # 4 - коэфицент ставки
+#                                # 5 - прибыль
+#                                # 6 - убыль
+#                                # 7 - активное число
+#                                # 8 - шаги итерации
+def play_number_inicial(number,buf_play_chisla):
+
+    for item in buf_play_chisla:
+        if number == item[0]:
+         if item[7] == 0:
+            item[2] = 1
+            item[4] = 1
+            #item[6] = 1
+            item[7] = 1
+            item[8] = 1
+    return  buf_play_chisla
+
+def play_number_inicial_all(buf_play_chisla,steps,porog):
+   if steps < porog:
+        for item in buf_play_chisla:
+           # if number == item[0]:
+             if item[7] == 0:
+                item[2] = 1
+                item[4] = 1
+                #item[6] = 1
+                item[7] = 1
+                item[8] = 1
+   return  buf_play_chisla
+def play_number_win_36_0_proskoka(key,buf_play_chisla):
+    for item in buf_play_chisla:
+        if item[7] == 1:
+                                                               #
+
+                                                        #
 
 
+          if item[8] < 37:
+              if item[0] ==key:
+                  item[5] = item[5]+(35*1)
+                  item[7] = 0
+                  item[8] = 0
+              else:
+                  item[6] = item[6] + 1
+                  item[8] = item[8] + 1
+              if item[8] == 37: # Ставим на паузу игровой процесс
+                  item[7] = 0
+
+    return buf_play_chisla
+def play_number_win_36_1_proskoka(key,buf_play_chisla):
+    for item in buf_play_chisla:
+        if item[7] == 1:
+                                                               #
+
+
+          if (item[8] > 37) and (item[8] < 74):
+               if item[0] == key:
+                   item[5] +=  35
+                   item[7] = 0
+                   item[8] = 0
+               else:
+                   item[6] = item[6] + 2
+                   item[8] = item[8] + 1
+
+               if item[8] == 74:  # Ставим на паузу игровой процесс
+                   item[7] = 0
+               # if item[8] == 75:
+               #     item[7] = 0
+
+          if (item[8] == 37):    #  функция паузы -1 ждет пока выпадет число и закончится большой интервал
+               if item[0] == key:    # снимаем с паузы игровой процесс если наконец выпало число   #
+                 if item[3] == 1:                                                                  #
+                   item[3] =0                                                                      #
+                   item[8] = item[8] + 1                                                           #
+                   item[6] = item[6] + 2                                                           #
+
+
+          if item[8] < 37:
+              if item[0] ==key:
+                  item[5] = item[5]+(35*1)
+                  item[7] = 0
+                  item[8] = 0
+              else:
+                  item[6] = item[6] + 1
+                  item[8] = item[8] + 1
+              if item[8] == 37: # Ставим на паузу игровой процесс
+                  item[3] = 1
+                  item[1] = 1
+
+    return buf_play_chisla
+def play_number_win_36_2_proskoka(key,buf_play_chisla):
+    for item in buf_play_chisla:
+        if item[7] == 1:
+          if (item[8] > 74) and (item[8] < 113):
+               if item[0] == key:
+                   print('это число дошло до 3-го: ',item[0], steps)
+                   item[5] = item[5] + (35 * 3)
+                   item[7] = 0
+                   item[8] = 0
+               else:
+                   item[6] = item[6] + 4
+                   item[8] = item[8] + 1
+
+               if item[8] == 113:
+                   item[7] = 0 # Ставим на паузу игровой процесс
+
+
+
+
+          if (item[8] == 74):    #  функция паузы -2 ждет пока выпадет число и закончится большой интервал
+               if item[0] == key:    # снимаем с паузы игровой процесс если наконец выпало число   #
+                 if item[3] == 1:                                                                  #
+                   item[3] =0                                                                      #
+                   item[8] = item[8] + 1                                                           #
+                   item[6] = item[6] + 4                                                           #
+
+
+          if (item[8] > 37) and (item[8] < 74):
+               if item[0] == key:
+                   item[5] = item[5] + (35 * 1)
+                   item[7] = 0
+                   item[8] = 0
+               else:
+                   item[6] = item[6] + 2
+                   item[8] = item[8] + 1
+
+               if item[8] == 74:  # Ставим на паузу игровой процесс
+                   item[3] = 1
+                   item[1] = 2
+               # if item[8] == 75:
+               #     item[7] = 0
+
+          if (item[8] == 37):    #  функция паузы -1 ждет пока выпадет число и закончится большой интервал
+               if item[0] == key:    # снимаем с паузы игровой процесс если наконец выпало число   #
+                 if item[3] == 1:                                                                  #
+                   item[3] =0                                                                      #
+                   item[8] = item[8] + 1                                                           #
+                   item[6] = item[6] + 2                                                           #
+
+
+          if item[8] < 37:
+              if item[0] ==key:
+                  item[5] = item[5]+(35*1)
+                  item[7] = 0
+                  item[8] = 0
+              else:
+                  item[6] = item[6] + 1
+                  item[8] = item[8] + 1
+              if item[8] == 37: # Ставим на паузу игровой процесс
+                  item[3] = 1
+                  item[1] = 1
+
+    return buf_play_chisla
+##########################################################################################################################################
+def play_number_win_36_2_2_proskoka(key,buf_play_chisla):
+    for item in buf_play_chisla:
+        if item[7] == 1:
+          if (item[8] > 74) and (item[8] < 113):
+            if (item[8] > 112) and (item[8] < 113):
+               if item[0] == key:
+                   print('это число дошло до 3-го: ',item[0], steps)
+                   item[5] = item[5] + (35 * 15)
+                   item[7] = 0
+                   item[8] = 0
+               else:
+                   item[6] = item[6] + 16
+                   item[8] = item[8] + 1
+
+               if item[8] == 113:
+                   item[7] = 0 # Ст
+            if (item[8] > 74) and (item[8] < 93):
+               if item[0] == key:
+                  # print('это число дошло до 3-го: ',item[0], steps)
+                   item[5] = item[5] + (35 * 7)
+                   item[7] = 0
+                   item[8] = 0
+               else:
+                   item[6] = item[6] + 8
+                   item[8] = item[8] + 1
+
+               if item[8] == 113:
+                   item[7] = 0 # Ставим на паузу игровой процесс
+
+
+
+
+          if (item[8] == 74):    #  функция паузы -2 ждет пока выпадет число и закончится большой интервал
+               if item[0] == key:    # снимаем с паузы игровой процесс если наконец выпало число   #
+                 if item[3] == 1:                                                                  #
+                   item[3] =0                                                                      #
+                   item[8] = item[8] + 1                                                           #
+                   item[6] = item[6] + 8                                                           #
+
+
+          if (item[8] > 37) and (item[8] < 74):
+
+              if (item[8] > 54) and (item[8] < 74):
+               if item[0] == key:
+                   item[5] = item[5] + (35 * 3)
+                   item[7] = 0
+                   item[8] = 0
+               else:
+                   item[6] = item[6] + 4
+                   item[8] = item[8] + 1
+
+               if item[8] == 74:  # Ставим на паузу игровой процесс
+                   item[3] = 1
+                   item[1] = 2
+
+              if (item[8] > 37) and (item[8] < 55):
+               if item[0] == key:
+                   item[5] = item[5] + (35 * 1)
+                   item[7] = 0
+                   item[8] = 0
+               else:
+                   item[6] = item[6] + 2
+                   item[8] = item[8] + 1
+
+
+               # if item[8] == 75:
+               #     item[7] = 0
+
+          if (item[8] == 37):    #  функция паузы -1 ждет пока выпадет число и закончится большой интервал
+               if item[0] == key:    # снимаем с паузы игровой процесс если наконец выпало число   #
+                 if item[3] == 1:                                                                  #
+                   item[3] =0                                                                      #
+                   item[8] = item[8] + 1                                                           #
+                   item[6] = item[6] + 2                                                           #
+
+
+          if item[8] < 37:
+              if item[0] ==key:
+                  item[5] = item[5]+(35*1)
+                  item[7] = 0
+                  item[8] = 0
+              else:
+                  item[6] = item[6] + 1
+                  item[8] = item[8] + 1
+              if item[8] == 37: # Ставим на паузу игровой процесс
+                  item[3] = 1
+                  item[1] = 1
+
+    return buf_play_chisla
+##########################################################################################################################################
+def play_number_win_36_3_proskoka(key,buf_play_chisla):
+    for item in buf_play_chisla:
+        if item[7] == 1:
+
+          if (item[8] > 113) and (item[8] < 150):
+               if item[0] == key:
+                   print('это число дошло до 4-го: ', item[0], steps)
+                   item[5] = item[5] + (35 * 7)
+                   item[7] = 0
+                   item[8] = 0
+               else:
+                   item[6] = item[6] + 8
+                   item[8] = item[8] + 1
+
+               if item[8] == 150:  # прекращаем игровой процесс # прекращаем игровой процесс
+                   item[7] = 0
+
+
+
+          if (item[8] == 113):    #  функция паузы -3 ждет пока выпадет число и закончится большой интервал
+               if item[0] == key:    # снимаем с паузы игровой процесс если наконец выпало число   #
+                 if item[3] == 1:                                                                  #
+                   item[3] =0                                                                      #
+                   item[8] = item[8] + 1                                                           #
+                   item[6] = item[6] + 8
+
+          if (item[8] > 74) and (item[8] < 113):
+               if item[0] == key:
+                   item[5] = item[5] + (35 * 3)
+                   item[7] = 0
+                   item[8] = 0
+               else:
+                   item[6] = item[6] + 4
+                   item[8] = item[8] + 1
+
+               if item[8] == 113:
+                       item[3] = 1 # Ставим на паузу игровой процесс
+                       item[1] = 3
+
+
+
+          if (item[8] == 74):    #  функция паузы -2 ждет пока выпадет число и закончится большой интервал
+               if item[0] == key:    # снимаем с паузы игровой процесс если наконец выпало число   #
+                 if item[3] == 1:                                                                  #
+                   item[3] =0                                                                      #
+                   item[8] = item[8] + 1                                                           #
+                   item[6] = item[6] + 4                                                           #
+
+
+          if (item[8] > 37) and (item[8] < 74):
+               if item[0] == key:
+                   item[5] = item[5] + (35 * 1)
+                   item[7] = 0
+                   item[8] = 0
+               else:
+                   item[6] = item[6] + 2
+                   item[8] = item[8] + 1
+
+               if item[8] == 74:  # Ставим на паузу игровой процесс
+                   item[3] = 1
+                   item[1] = 2
+               # if item[8] == 75:
+               #     item[7] = 0
+
+          if (item[8] == 37):    #  функция паузы -1 ждет пока выпадет число и закончится большой интервал
+               if item[0] == key:    # снимаем с паузы игровой процесс если наконец выпало число   #
+                 if item[3] == 1:                                                                  #
+                   item[3] =0                                                                      #
+                   item[8] = item[8] + 1                                                           #
+                   item[6] = item[6] + 2                                                           #
+
+
+          if item[8] < 37:
+              if item[0] ==key:
+                  item[5] = item[5]+(35*1)
+                  item[7] = 0
+                  item[8] = 0
+              else:
+                  item[6] = item[6] + 1
+                  item[8] = item[8] + 1
+              if item[8] == 37: # Ставим на паузу игровой процесс
+                  item[3] = 1
+                  item[1] = 1
+
+    return buf_play_chisla
+def play_number_win_36_4_proskoka(key,buf_play_chisla):
+    for item in buf_play_chisla:
+        if item[7] == 1:
+
+
+
+
+          if (item[8] > 150) and (item[8] < 187):
+               if item[0] == key:
+                   print('это число дошло до 5-го: ', item[0], steps)
+                   item[5] = item[5] + (35 * 15)
+                   item[7] = 0
+                   item[8] = 0
+               else:
+                   item[6] = item[6] + 16
+                   item[8] = item[8] + 1
+
+               if item[8] == 187:
+                   item[7] = 0
+
+
+
+          if (item[8] == 150):    #  функция паузы -4 ждет пока выпадет число и закончится большой интервал
+               if item[0] == key:    # снимаем с паузы игровой процесс если наконец выпало число   ## прекращаем игровой процесс # прекращаем игровой процесс
+                 if item[3] == 1:                                                                  #
+                   item[3] =0                                                                      #
+                   item[8] = item[8] + 1                                                           #
+                   item[6] = item[6] + 16
+
+
+          if (item[8] > 113) and (item[8] < 150):
+               if item[0] == key:
+                   item[5] = item[5] + (35 * 7)
+                   item[7] = 0
+                   item[8] = 0
+               else:
+                   item[6] = item[6] + 8
+                   item[8] = item[8] + 1
+
+               if item[8] == 150:
+                   item[3] = 1  # Ставим на паузу игровой процесс
+                   item[1] = 3
+
+
+
+          if (item[8] == 113):    #  функция паузы -3 ждет пока выпадет число и закончится большой интервал
+               if item[0] == key:    # снимаем с паузы игровой процесс если наконец выпало число   #
+                 if item[3] == 1:                                                                  #
+                   item[3] =0                                                                      #
+                   item[8] = item[8] + 1                                                           #
+                   item[6] = item[6] + 8
+
+          if (item[8] > 74) and (item[8] < 113):
+               if item[0] == key:
+                   item[5] = item[5] + (35 * 3)
+                   item[7] = 0
+                   item[8] = 0
+               else:
+                   item[6] = item[6] + 4
+                   item[8] = item[8] + 1
+
+               if item[8] == 113:
+                       item[3] = 1 # Ставим на паузу игровой процесс
+                       item[1] = 3
+
+
+
+          if (item[8] == 74):    #  функция паузы -2 ждет пока выпадет число и закончится большой интервал
+               if item[0] == key:    # снимаем с паузы игровой процесс если наконец выпало число   #
+                 if item[3] == 1:                                                                  #
+                   item[3] =0                                                                      #
+                   item[8] = item[8] + 1                                                           #
+                   item[6] = item[6] + 4                                                           #
+
+
+          if (item[8] > 37) and (item[8] < 74):
+               if item[0] == key:
+                   item[5] = item[5] + (35 * 1)
+                   item[7] = 0
+                   item[8] = 0
+               else:
+                   item[6] = item[6] + 2
+                   item[8] = item[8] + 1
+
+               if item[8] == 74:  # Ставим на паузу игровой процесс
+                   item[3] = 1
+                   item[1] = 2
+               # if item[8] == 75:
+               #     item[7] = 0
+
+          if (item[8] == 37):    #  функция паузы -1 ждет пока выпадет число и закончится большой интервал
+               if item[0] == key:    # снимаем с паузы игровой процесс если наконец выпало число   #
+                 if item[3] == 1:                                                                  #
+                   item[3] =0                                                                      #
+                   item[8] = item[8] + 1                                                           #
+                   item[6] = item[6] + 2                                                           #
+
+
+          if item[8] < 37:
+              if item[0] ==key:
+                  item[5] = item[5]+(35*1)
+                  item[7] = 0
+                  item[8] = 0
+              else:
+                  item[6] = item[6] + 1
+                  item[8] = item[8] + 1
+              if item[8] == 37: # Ставим на паузу игровой процесс
+                  item[3] = 1
+                  item[1] = 1
+
+    return buf_play_chisla
+def play_number_win_36_5_proskoka(key,buf_play_chisla):
+    for item in buf_play_chisla:
+        if item[7] == 1:
+
+          if (item[8] > 187) and (item[8] < 224):
+                if item[0] == key:
+                    print('это число дошло до 6-го: ', item[0], steps)
+                    item[5] = item[5] + (35 * 31)
+                    item[7] = 0
+                    item[8] = 0
+                else:
+                    item[6] = item[6] + 32
+                    item[8] = item[8] + 1
+
+                if item[8] == 224:
+                    item[7] = 0  # ## прекращаем игровой процесс # прекращаем игровой процесс
+
+
+          if (item[8] == 187):  # функция паузы -5 ждет пока выпадет число и закончится большой интервал
+                if item[
+                    0] == key:  # снимаем с паузы игровой процесс если наконец выпало число
+                    if item[3] == 1:  #
+                        item[3] = 0  #
+                        item[8] = item[8] + 1  #
+                        item[6] = item[6] + 32
+
+
+          if (item[8] > 150) and (item[8] < 187):
+               if item[0] == key:
+                   item[5] = item[5] + (35 * 15)
+                   item[7] = 0
+                   item[8] = 0
+               else:
+                   item[6] = item[6] + 16
+                   item[8] = item[8] + 1
+
+               if item[8] == 187:
+                   item[3] = 1  # Ставим на паузу игровой процесс
+                   item[1] = 3
+
+
+
+          if (item[8] == 150):    #  функция паузы -4 ждет пока выпадет число и закончится большой интервал
+               if item[0] == key:    # снимаем с паузы игровой процесс если наконец выпало число   ## прекращаем игровой процесс # прекращаем игровой процесс
+                 if item[3] == 1:                                                                  #
+                   item[3] =0                                                                      #
+                   item[8] = item[8] + 1                                                           #
+                   item[6] = item[6] + 16
+
+
+          if (item[8] > 113) and (item[8] < 150):
+               if item[0] == key:
+                   item[5] = item[5] + (35 * 7)
+                   item[7] = 0
+                   item[8] = 0
+               else:
+                   item[6] = item[6] + 8
+                   item[8] = item[8] + 1
+
+               if item[8] == 150:
+                   item[3] = 1  # Ставим на паузу игровой процесс
+                   item[1] = 3
+
+
+
+          if (item[8] == 113):    #  функция паузы -3 ждет пока выпадет число и закончится большой интервал
+               if item[0] == key:    # снимаем с паузы игровой процесс если наконец выпало число   #
+                 if item[3] == 1:                                                                  #
+                   item[3] =0                                                                      #
+                   item[8] = item[8] + 1                                                           #
+                   item[6] = item[6] + 8
+
+          if (item[8] > 74) and (item[8] < 113):
+               if item[0] == key:
+                   item[5] = item[5] + (35 * 3)
+                   item[7] = 0
+                   item[8] = 0
+               else:
+                   item[6] = item[6] + 4
+                   item[8] = item[8] + 1
+
+               if item[8] == 113:
+                       item[3] = 1 # Ставим на паузу игровой процесс
+                       item[1] = 3
+
+
+
+          if (item[8] == 74):    #  функция паузы -2 ждет пока выпадет число и закончится большой интервал
+               if item[0] == key:    # снимаем с паузы игровой процесс если наконец выпало число   #
+                 if item[3] == 1:                                                                  #
+                   item[3] =0                                                                      #
+                   item[8] = item[8] + 1                                                           #
+                   item[6] = item[6] + 4                                                           #
+
+
+          if (item[8] > 37) and (item[8] < 74):
+               if item[0] == key:
+                   item[5] = item[5] + (35 * 1)
+                   item[7] = 0
+                   item[8] = 0
+               else:
+                   item[6] = item[6] + 2
+                   item[8] = item[8] + 1
+
+               if item[8] == 74:  # Ставим на паузу игровой процесс
+                   item[3] = 1
+                   item[1] = 2
+               # if item[8] == 75:
+               #     item[7] = 0
+
+          if (item[8] == 37):    #  функция паузы -1 ждет пока выпадет число и закончится большой интервал
+               if item[0] == key:    # снимаем с паузы игровой процесс если наконец выпало число   #
+                 if item[3] == 1:                                                                  #
+                   item[3] =0                                                                      #
+                   item[8] = item[8] + 1                                                           #
+                   item[6] = item[6] + 2                                                           #
+
+
+          if item[8] < 37:
+              if item[0] ==key:
+                  item[5] = item[5]+(35*1)
+                  item[7] = 0
+                  item[8] = 0
+              else:
+                  item[6] = item[6] + 1
+                  item[8] = item[8] + 1
+              if item[8] == 37: # Ставим на паузу игровой процесс
+                  item[3] = 1
+                  item[1] = 1
+
+    return buf_play_chisla
+def function_mgnoven_balans(buf_play_chisla):
+    balans=0
+    for item in buf_play_chisla:
+        balans = balans+item[5]-item[6]
+    return   balans
 rasnica2 =0
 ik = 0
 vig = 0
@@ -291,7 +887,8 @@ start1 = clock()
 k =7
 pribyl = 0
 pribyl_arr =[]
-for i in range(1,29):#while (ik < 1):
+balans_grafik =[]
+for i in range(12,13):#while (ik < 1):
     ik = ik + 1
 
     
@@ -345,10 +942,15 @@ for i in range(1,29):#while (ik < 1):
     spisok_podch_ciklov=[0,0]
     #spisok_podch_ciklov = [0, 0]
     spisok_conteynerov = []
+    summa2 =0
     while (steps < len(viborka)):
         key = viborka[steps]
         key1 = key
         steps = steps + 1
+        buf_play_chisla = play_number_win_36_2_proskoka(key, buf_play_chisla)
+        buf_play_chisla = play_number_inicial_all(buf_play_chisla,steps,400)
+        balans_grafik.append(function_mgnoven_balans(buf_play_chisla))
+        #print('3-ka;', buf_play_chisla[3])
         ############################################################################################
         # БЛОК ЕДЕНИЦЫ
         ############################################################################################
@@ -383,34 +985,58 @@ for i in range(1,29):#while (ik < 1):
             spisok_podch_ciklov = spisok_podcheta_serii_winnera(winer_1, spisok_podch_ciklov)
             spisok_conteynerov = sozdan_conteynerov_v_spiske(spisok_conteynerov, steps, winer_1, spisok_podch_ciklov, dic_ed)
 
+        spisok_conteynerov = zakrytie_minus_stavok(spisok_conteynerov, steps)
         interval = key01step(key1, dic_ed)  #  последний интервал выпавшего числа
         add_step_to_all_1(dic_ed) # добавление шагов всем еденицам
         #if winer_1 != 99:
         #print(steps,'winer', winer_1, key)
         key1step = interval
+        # prib = 0
+        # for item in buf_play_chisla:
+        #     prib = prib + item[5]
+        # ubul = 0
+        # for item in buf_play_chisla:
+        #     ubul = ubul + item[6]
+        # print('ubul:', ubul)
+        # print('prib:', prib)
+        # print('itog:', prib - ubul)
         #if key == supwiner:
          # print('winer: ',key, dic_ed[(key)])
-
+        #print('buf_play_chisla', buf_play_chisla)
         #print(steps,'winer',spisok_conteynerov)
     # pribyl =podchet_balansa(list_of_steps_toWin_1)
     # print(k,'obch_pribyl: ', pribyl)
-
+    #print('intervaly chisla 14:', dic_ed[(14)][1])
 #pribyl_glob = pribyl_glob+pribyl
-    print('--', i, '-----------------------------------------------------------------------------')
-    summa=0
-    for item in spisok_conteynerov:
-        print(item)
-        summa= summa+item[4]
-    
-    print('summa', summa)
-    pribyl_arr.append(summa)
-    y =0
-for item in pribyl_arr:
-    y=y+1
-    print(y,' = ',item)
-    summa= summa+item
-print('summa', summa)
-# end1 = clock()
+#     print('--', i, '-----------------------------------------------------------------------------')
+#     summa=0
+#     for item in spisok_conteynerov:
+#          #if item[5] != 0:
+#          print(item)
+#          summa= summa+item[4]
+#
+#     print('summa', summa)
+#     pribyl_arr.append(summa)
+#     y =0
+# for item in pribyl_arr:
+#     y=y+1
+#     print(y,' = ',item)
+#     summa2= summa2+item
+# print('summa', summa2)
+print('buf_play_chisla',buf_play_chisla )
+prib=0
+for item in buf_play_chisla:
+    prib = prib+item[5]
+ubul = 0
+for item in buf_play_chisla:
+    ubul = ubul + item[6]
+print('ubul:',ubul)
+print('itog:',prib - ubul)
+shag =0
+for item in balans_grafik:
+    shag = shag+1
+    print('shag',shag,': ',item )
+        # end1 = clock()
 # print(ind, 'glob_pribyl: ', pribyl_glob, 'Время:', (end1 - start1)/60)
 #print('2222222222222222222222222222222222222222222222222222222222222222222222222222222222')
 # print(list_of_all_Win_2)
