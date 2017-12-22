@@ -381,9 +381,9 @@ ind =0
 pribyl_glob = 0
 for ind in range(0,1) :
  start1 = clock()
- for k in range(8,9):
+ for k in range(4,5):
   pribyl = 0
-  for i in range(1,29):#while (ik < 1):
+  for i in range(94,95):#while (ik < 1):
     ik = ik + 1
     # file_obj = open('100_xodov.txt', 'w')
     # file_obj.close()

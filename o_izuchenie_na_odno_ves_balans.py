@@ -383,7 +383,7 @@ for ind in range(0,1) :
  start1 = clock()
  for k in range(8,9):
   pribyl = 0
-  for i in range(59,67):#while (ik < 1):
+  for i in range(59,99):#while (ik < 1):
     ik = ik + 1
     # file_obj = open('100_xodov.txt', 'w')
     # file_obj.close()

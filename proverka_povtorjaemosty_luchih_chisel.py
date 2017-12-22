@@ -893,9 +893,20 @@ def function_mgnoven_balans(buf_play_chisla):
 # from collections import OrderedDict
 d = {(37,36):[ 1,[1, 2], 33],(37,35):[ 11,[101, 102], 31]}
 x = {1: 2, 3: 4, 4: 3, 2: 1, 0: 0}
-sorted_x = (sorted(d.items(), key=lambda t: t[1][2])) # работает по второму элементу
+def sort_ed(dic_ed):
+    sorted_x = (sorted(dic_ed.items(),reverse=True, key=lambda t: t[1][2])) # работает по второму элементу
 # OrderedDict([(0, 0), (2, 1), (1, 2), (4, 3), (3, 4)])
-print(sorted_x)
+    #print(sorted_x[0][1][3],':',sorted_x[0][1][2],' ; ', sorted_x[1][1][3],':',sorted_x[1][1][2],' ; ', sorted_x[2][1][3],':',sorted_x[2][1][2],' ; ', sorted_x[3][1][3],':',sorted_x[3][1][2],' ; ', sorted_x[4][1][3],':',sorted_x[4][1][2])
+    print('l',sorted_x[0][1][3],  ' ; ', sorted_x[1][1][3], ' ; ',
+          sorted_x[2][1][3], ' ; ', sorted_x[3][1][3],  ' ; ',
+          sorted_x[4][1][3])
+def sort_ed_hud(dic_ed):
+    sorted_x = (sorted(dic_ed.items(), key=lambda t: t[1][2])) # работает по второму элементу
+# OrderedDict([(0, 0), (2, 1), (1, 2), (4, 3), (3, 4)])
+    #print(sorted_x[0][1][3],':',sorted_x[0][1][2],' ; ', sorted_x[1][1][3],':',sorted_x[1][1][2],' ; ', sorted_x[2][1][3],':',sorted_x[2][1][2],' ; ', sorted_x[3][1][3],':',sorted_x[3][1][2],' ; ', sorted_x[4][1][3],':',sorted_x[4][1][2])
+    print('h',sorted_x[0][1][3],  ' ; ', sorted_x[1][1][3], ' ; ',
+          sorted_x[2][1][3], ' ; ', sorted_x[3][1][3],  ' ; ',
+          sorted_x[4][1][3])
 
 rasnica2 = 0
 ik = 0
@@ -916,7 +927,7 @@ balans_spisok =[]
 prib_min =0
 
 
-for i in range(1, 2):  # while (ik < 1):
+for i in range(1, 99):  # while (ik < 1):
     ik = ik + 1
 
     naime_file = str(i) + 'cikl_och.txt'
@@ -988,7 +999,7 @@ for i in range(1, 2):  # while (ik < 1):
         ############################################################################################
         list_of_win_proverki_1 = proverka_predskaza_1(key1, list_of_win_proverki_1, winer_1)
         proverka_conteynerov_na_pedskazanie(spisok_conteynerov, key, steps, dic_ed)
-        print('steps -', steps,' buf_play_chisla ', buf_play_chisla)
+        #print('steps -', steps,' buf_play_chisla ', buf_play_chisla)
         if list_of_win_proverki_1[1] == 1:
             steps_to_win_1 = list_of_win_proverki_1[0]
             list_of_all_Win_1.append(list_of_win_proverki_1[2])
@@ -1042,6 +1053,9 @@ for i in range(1, 2):  # while (ik < 1):
         # pribyl =podchet_balansa(list_of_steps_toWin_1)
         # print(k,'obch_pribyl: ', pribyl)
         # print('intervaly chisla 14:', dic_ed[(14)][1])
+
+    sort_ed(dic_ed)
+    sort_ed_hud(dic_ed)
 # pribyl_glob = pribyl_glob+pribyl
 #     print('--', i, '-----------------------------------------------------------------------------')
 #     summa=0
@@ -1058,27 +1072,26 @@ for i in range(1, 2):  # while (ik < 1):
 #     print(y,' = ',item)
 #     summa2= summa2+item
 # print('summa', summa2)
-print('buf_play_chisla', buf_play_chisla)
-prib = 0
-for item in buf_play_chisla:
-    prib = prib + item[5]
-ubul = 0
-for item in buf_play_chisla:
-    ubul = ubul + item[6]
-print('ubul:', ubul)
-print('itog:', prib - ubul)
-shag = 0
-pribb = 0
-for item in balans_grafik:
-    shag = shag + 1
-    print('shag', shag, ': ', item)
+# print('buf_play_chisla', buf_play_chisla)
+# prib = 0
+# for item in buf_play_chisla:
+#     prib = prib + item[5]
+# ubul = 0
+# for item in buf_play_chisla:
+#     ubul = ubul + item[6]
+# print('ubul:', ubul)
+# print('itog:', prib - ubul)
+# shag = 0
+# pribb = 0
+# for item in balans_grafik:
+#     shag = shag + 1
+#     print('shag', shag, ': ', item)
 # for item in balans_spisok:
 #     shag = shag + 1
 #     pribb = pribb+item
-print('pribb: ', pribb)
+#print('pribb: ', pribb)
     # end1 = clock()
     # print(ind, 'glob_pribyl: ', pribyl_glob, 'Время:', (end1 - start1)/60)
     # print('2222222222222222222222222222222222222222222222222222222222222222222222222222222222')
     # print(list_of_all_Win_2)
     # print(list_of_steps_toWin_2)
-    # print('pribyl: ',podchet_balansa(list_of_steps_toWin_2))

@@ -884,11 +884,11 @@ ind =0
 pribyl_glob = 0
 
 start1 = clock()
-k =7
+k =8
 pribyl = 0
 pribyl_arr =[]
 balans_grafik =[]
-for i in range(12,13):#while (ik < 1):
+for i in range(1,99):#while (ik < 1):
     ik = ik + 1
 
     
