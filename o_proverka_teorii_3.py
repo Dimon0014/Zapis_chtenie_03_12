@@ -988,7 +988,7 @@ for i in range(1, 2):  # while (ik < 1):
         ############################################################################################
         list_of_win_proverki_1 = proverka_predskaza_1(key1, list_of_win_proverki_1, winer_1)
         proverka_conteynerov_na_pedskazanie(spisok_conteynerov, key, steps, dic_ed)
-        print('steps -', steps,' buf_play_chisla ', buf_play_chisla)
+        #print('steps -', steps,' buf_play_chisla ', buf_play_chisla)
         if list_of_win_proverki_1[1] == 1:
             steps_to_win_1 = list_of_win_proverki_1[0]
             list_of_all_Win_1.append(list_of_win_proverki_1[2])
@@ -1069,9 +1069,9 @@ print('ubul:', ubul)
 print('itog:', prib - ubul)
 shag = 0
 pribb = 0
-for item in balans_grafik:
-    shag = shag + 1
-    print('shag', shag, ': ', item)
+# for item in balans_grafik:
+#     shag = shag + 1
+#     print('shag', shag, ': ', item)
 # for item in balans_spisok:
 #     shag = shag + 1
 #     pribb = pribb+item
