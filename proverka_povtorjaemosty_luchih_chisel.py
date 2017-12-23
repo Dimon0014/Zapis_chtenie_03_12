@@ -886,12 +886,16 @@ def play_number_win_36_5_proskoka(key, buf_play_chisla):
                     item[1] = 1
 
     return buf_play_chisla
-def funct_obnulenia(buf_play_chisla):
+
+def funct_obnulenia(buf_play_chisla,steps,chislo ):
+   if steps ==chislo:
     for item in buf_play_chisla:
+        item[10]=item[5]-item[6]
         item[7] = 0
         item[5] = 0
         item[6] = 0
-        item[9] = 1
+        if item[10]<10:
+         item[9] = 1
     return buf_play_chisla
 def function_mgnoven_balans(buf_play_chisla):
     balans = 0
@@ -936,7 +940,7 @@ balans_spisok =[]
 prib_min =0
 balans_balansov =[]
 
-for i in range(1, 30):  # while (ik < 1):
+for i in range(1, 99):  # while (ik < 1):
     ik = ik + 1
     for ia in range(37):
         buf_play_chisla.append([ia, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
@@ -1047,15 +1051,15 @@ for i in range(1, 30):  # while (ik < 1):
         # if winer_1 != 99:
         # print(steps,'winer', winer_1, key)
         key1step = interval
-        prib = 0
-        for item in buf_play_chisla:
-            prib = prib + item[5]
-        ubul = 0
-        for item in buf_play_chisla:
-            ubul = ubul + item[6]
-        balans =prib - ubul
-        if balans < -400:
-            funct_obnulenia(buf_play_chisla)
+        # prib = 0
+        # for item in buf_play_chisla:
+        #     prib = prib + item[5]
+        # ubul = 0
+        # for item in buf_play_chisla:
+        #     ubul = ubul + item[6]
+        # balans =prib - ubul
+        # if balans < -400:
+        #     funct_obnulenia(buf_play_chisla)
         # print('ubul:', ubul)
         # print('prib:', prib)
         # print('itog:', prib - ubul)
@@ -1066,6 +1070,17 @@ for i in range(1, 30):  # while (ik < 1):
         # pribyl =podchet_balansa(list_of_steps_toWin_1)
         # print(k,'obch_pribyl: ', pribyl)
         # print('intervaly chisla 14:', dic_ed[(14)][1])
+        #funct_obnulenia(buf_play_chisla, steps, 60)
+        funct_obnulenia(buf_play_chisla, steps, 190)
+        
+        # spisok_balansov = []
+        # spisok_balansov2 = []
+        # for item in buf_play_chisla:
+        #     item[10] = item[5] - item[6]
+        #     # spisok_balansov2.append(item[10])
+        #     spisok_balansov.append(str(item[0]) + ':' + str(item[10]))
+		#
+        # print(spisok_balansov)
     spisok_balansov = []
     spisok_balansov2= []
     for item in buf_play_chisla:
@@ -1073,7 +1088,7 @@ for i in range(1, 30):  # while (ik < 1):
         spisok_balansov2.append(item[10])
         spisok_balansov.append(str(item[0])+':'+str(item[10]))
         
-    #print (spisok_balansov)
+    print (spisok_balansov)
     for item in spisok_balansov2:
         balans_balansov.append(item)
     for item in buf_play_chisla:
@@ -1089,8 +1104,8 @@ for i in range(1, 30):  # while (ik < 1):
         item[9] = 0
         item[10] = 0
     #print('buf_play_chisla', buf_play_chisla)
-    # sort_ed(dic_ed)
-    # sort_ed_hud(dic_ed)
+    sort_ed(dic_ed)
+    sort_ed_hud(dic_ed)
 # pribyl_glob = pribyl_glob+pribyl
 #     print('--', i, '-----------------------------------------------------------------------------')
 #     summa=0
@@ -1112,13 +1127,13 @@ prib = 0
 for item in balans_balansov:
     prib = prib+item
 print('prib', prib)
-# for item in buf_play_chisla:
-#     prib = prib + item[5]
-# ubul = 0
-# for item in buf_play_chisla:
-#     ubul = ubul + item[6]
-# print('ubul:', ubul)
-# print('itog:', prib - ubul)
+for item in buf_play_chisla:
+    prib = prib + item[5]
+ubul = 0
+for item in buf_play_chisla:
+    ubul = ubul + item[6]
+print('ubul:', ubul)
+print('itog:', prib - ubul)
 shag = 0
 pribb = 0
 # for item in balans_grafik:
