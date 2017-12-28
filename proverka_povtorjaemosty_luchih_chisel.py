@@ -323,8 +323,8 @@ def spisok_podcheta_serii_winnera(winer_1,
 
 buf_play_chisla = []
 i = 0
-for i in range(37):
-    buf_play_chisla.append([i, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ])
+# for i in range(37):
+#     buf_play_chisla.append([i, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ])
 
 
 # chislo = [0,0,0,0,0,0,0,0,0] # 0 - играющее число
@@ -433,6 +433,7 @@ def play_number_win_36_2_proskoka(key, buf_play_chisla):
     for item in buf_play_chisla:
      if item[9] == 0:
         if item[7] == 1:
+
             if (item[8] > 74) and (item[8] < 113):
                 if item[0] == key:
                    # print('это число дошло до 3-го: ', item[0], steps)
@@ -486,6 +487,7 @@ def play_number_win_36_2_proskoka(key, buf_play_chisla):
                 if item[8] == 37:  # Ставим на паузу игровой процесс
                     item[3] = 1
                     item[1] = 1
+
 
     return buf_play_chisla
 
@@ -888,14 +890,25 @@ def play_number_win_36_5_proskoka(key, buf_play_chisla):
     return buf_play_chisla
 
 def funct_obnulenia(buf_play_chisla,steps,chislo ):
+
    if steps ==chislo:
-    for item in buf_play_chisla:
+     for item in buf_play_chisla:
         item[10]=item[5]-item[6]
         item[7] = 0
         item[5] = 0
         item[6] = 0
         if item[10]<10:
          item[9] = 1
+   if steps > chislo:
+     for item in buf_play_chisla:
+            item[10] = item[5] - item[6]
+            #print('item[10]:', item[10])
+            if item[10] < -150:
+              item[9] = 1
+   return buf_play_chisla
+def funct_obnuleniaja_chisla(buf_play_chisla, best_chislo):
+    if best_chislo > -1:
+     buf_play_chisla[best_chislo][9]=1
     return buf_play_chisla
 def function_mgnoven_balans(buf_play_chisla):
     balans = 0
@@ -913,6 +926,7 @@ def sort_ed(dic_ed):
     print('l',sorted_x[0][1][3],  ' ; ', sorted_x[1][1][3], ' ; ',
           sorted_x[2][1][3], ' ; ', sorted_x[3][1][3],  ' ; ',
           sorted_x[4][1][3])
+    return sorted_x[0][1][3]
 def sort_ed_hud(dic_ed):
     sorted_x = (sorted(dic_ed.items(), key=lambda t: t[1][2])) # работает по второму элементу
 # OrderedDict([(0, 0), (2, 1), (1, 2), (4, 3), (3, 4)])
@@ -939,11 +953,13 @@ balans_grafik = []
 balans_spisok =[]
 prib_min =0
 balans_balansov =[]
-
-for i in range(1, 99):  # while (ik < 1):
+for ia in range(37):
+    buf_play_chisla.append([ia, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+best_chislo= -1
+for i in range(139,140):  # while (ik < 1):
     ik = ik + 1
-    for ia in range(37):
-        buf_play_chisla.append([ia, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+    #buf_play_chisla = funct_obnuleniaja_chisla(buf_play_chisla, best_chislo)
+    print('buf_play_chisla -dlinna', len(buf_play_chisla))
     naime_file = str(i) + 'cikl_och.txt'
     viborka = []
     file_obj = open(naime_file)
@@ -995,11 +1011,13 @@ for i in range(1, 99):  # while (ik < 1):
     # spisok_podch_ciklov = [0, 0]
     spisok_conteynerov = []
     summa2 = 0
+
     while (steps < len(viborka)):
         key = viborka[steps]
         key1 = key
+
         steps = steps + 1
-        buf_play_chisla = play_number_win_36_2_proskoka(key, buf_play_chisla)
+        buf_play_chisla = play_number_win_36_2_proskoka(key, buf_play_chisla )
         buf_play_chisla = play_number_inicial_all(buf_play_chisla, steps, 400)
         balans_grafik.append(function_mgnoven_balans(buf_play_chisla))
         #prib_min = function_mgnoven_balans(buf_play_chisla)
@@ -1071,8 +1089,8 @@ for i in range(1, 99):  # while (ik < 1):
         # print(k,'obch_pribyl: ', pribyl)
         # print('intervaly chisla 14:', dic_ed[(14)][1])
         #funct_obnulenia(buf_play_chisla, steps, 60)
-        funct_obnulenia(buf_play_chisla, steps, 190)
-        
+        funct_obnulenia(buf_play_chisla, steps, 300)
+        #print(steps,'-buf_play_chisla[18]',buf_play_chisla[18])
         # spisok_balansov = []
         # spisok_balansov2 = []
         # for item in buf_play_chisla:
@@ -1081,6 +1099,7 @@ for i in range(1, 99):  # while (ik < 1):
         #     spisok_balansov.append(str(item[0]) + ':' + str(item[10]))
 		#
         # print(spisok_balansov)
+
     spisok_balansov = []
     spisok_balansov2= []
     for item in buf_play_chisla:
@@ -1104,7 +1123,8 @@ for i in range(1, 99):  # while (ik < 1):
         item[9] = 0
         item[10] = 0
     #print('buf_play_chisla', buf_play_chisla)
-    sort_ed(dic_ed)
+    print('dlina - 22-', len(balans_balansov))
+    best_chislo  = sort_ed(dic_ed)
     sort_ed_hud(dic_ed)
 # pribyl_glob = pribyl_glob+pribyl
 #     print('--', i, '-----------------------------------------------------------------------------')
@@ -1124,7 +1144,9 @@ for i in range(1, 99):  # while (ik < 1):
 #print('summa', summa2)
 #print('buf_play_chisla', buf_play_chisla)
 prib = 0
+print('dlina-',len(balans_balansov))
 for item in balans_balansov:
+    #print('balans_balansov-item',balans_balansov)
     prib = prib+item
 print('prib', prib)
 for item in buf_play_chisla:
@@ -1143,6 +1165,7 @@ for item in balans_spisok:
     shag = shag + 1
     pribb = pribb+item
 print('pribb: ', pribb)
+print(balans_balansov)
     # end1 = clock()
     # print(ind, 'glob_pribyl: ', pribyl_glob, 'Время:', (end1 - start1)/60)
     # print('2222222222222222222222222222222222222222222222222222222222222222222222222222222222')

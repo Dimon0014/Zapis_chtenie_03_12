@@ -888,7 +888,7 @@ k =8
 pribyl = 0
 pribyl_arr =[]
 balans_grafik =[]
-for i in range(1,2):#while (ik < 1):
+for i in range(138,140):#while (ik < 1):
     ik = ik + 1
 
     

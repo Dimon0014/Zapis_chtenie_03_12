@@ -916,7 +916,7 @@ balans_spisok =[]
 prib_min =0
 
 
-for i in range(1, 2):  # while (ik < 1):
+for i in range(138, 140):  # while (ik < 1):
     ik = ik + 1
 
     naime_file = str(i) + 'cikl_och.txt'
@@ -974,7 +974,7 @@ for i in range(1, 2):  # while (ik < 1):
         key = viborka[steps]
         key1 = key
         steps = steps + 1
-        buf_play_chisla = play_number_win_36_2_proskoka(key, buf_play_chisla)
+        buf_play_chisla = play_number_win_36_3_proskoka(key, buf_play_chisla)
         buf_play_chisla = play_number_inicial_all(buf_play_chisla, steps, 400)
         balans_grafik.append(function_mgnoven_balans(buf_play_chisla))
         #prib_min = function_mgnoven_balans(buf_play_chisla)
