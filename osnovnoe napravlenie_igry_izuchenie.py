@@ -377,7 +377,7 @@ while (ik < 1):
 
 
     viborka = []
-    file_obj = open('26cikl_och.txt')
+    file_obj = open('140cikl_och.txt')
     data_list = file_obj.readlines()
     for line in data_list:
         viborka.append(int(line))

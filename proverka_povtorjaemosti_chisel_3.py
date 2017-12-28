@@ -1126,7 +1126,7 @@ dubl_6_chislo_propuska = -1
 dubl_7_chislo_propuska = -1
 
 
-for i in range(139,140):  # while (ik < 1):
+for i in range(138,143):  # while (ik < 1):
     ik = ik + 1
     #buf_play_chisla = funct_obnuleniaja_chisla(buf_play_chisla, best_chislo1)
     #buf_play_chisla = funct_obnuleniaja_chisla(buf_play_chisla, best_chislo2)

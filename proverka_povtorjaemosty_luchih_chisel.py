@@ -897,13 +897,13 @@ def funct_obnulenia(buf_play_chisla,steps,chislo ):
         item[7] = 0
         item[5] = 0
         item[6] = 0
-        if item[10]<10:
+        if item[10]<20: # устаовка порога срабатывания при обнулении через заданное количество шагов
          item[9] = 1
    if steps > chislo:
      for item in buf_play_chisla:
             item[10] = item[5] - item[6]
             #print('item[10]:', item[10])
-            if item[10] < -150:
+            if item[10] < -50:  # регулировка докуда может опуститься минус
               item[9] = 1
    return buf_play_chisla
 def funct_obnuleniaja_chisla(buf_play_chisla, best_chislo):
@@ -956,7 +956,7 @@ balans_balansov =[]
 for ia in range(37):
     buf_play_chisla.append([ia, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 best_chislo= -1
-for i in range(139,140):  # while (ik < 1):
+for i in range(138,143):  # while (ik < 1):
     ik = ik + 1
     #buf_play_chisla = funct_obnuleniaja_chisla(buf_play_chisla, best_chislo)
     print('buf_play_chisla -dlinna', len(buf_play_chisla))
