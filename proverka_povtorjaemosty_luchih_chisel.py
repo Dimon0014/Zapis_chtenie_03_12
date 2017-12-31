@@ -897,7 +897,7 @@ def funct_obnulenia(buf_play_chisla,steps,chislo ):
         item[7] = 0
         item[5] = 0
         item[6] = 0
-        if item[10]<20: # устаовка порога срабатывания при обнулении через заданное количество шагов
+        if item[10]<0: # устаовка порога срабатывания при обнулении через заданное количество шагов
          item[9] = 1
    if steps > chislo:
      for item in buf_play_chisla:
@@ -946,7 +946,7 @@ ind = 0
 pribyl_glob = 0
 
 start1 = clock()
-k = 8
+k = 8 # промежуток нахождения винера
 pribyl = 0
 pribyl_arr = []
 balans_grafik = []
@@ -956,7 +956,7 @@ balans_balansov =[]
 for ia in range(37):
     buf_play_chisla.append([ia, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 best_chislo= -1
-for i in range(138,143):  # while (ik < 1):
+for i in range(138,149):  # while (ik < 1):
     ik = ik + 1
     #buf_play_chisla = funct_obnuleniaja_chisla(buf_play_chisla, best_chislo)
     print('buf_play_chisla -dlinna', len(buf_play_chisla))
@@ -1089,7 +1089,7 @@ for i in range(138,143):  # while (ik < 1):
         # print(k,'obch_pribyl: ', pribyl)
         # print('intervaly chisla 14:', dic_ed[(14)][1])
         #funct_obnulenia(buf_play_chisla, steps, 60)
-        funct_obnulenia(buf_play_chisla, steps, 300)
+        funct_obnulenia(buf_play_chisla, steps, 200)
         #print(steps,'-buf_play_chisla[18]',buf_play_chisla[18])
         # spisok_balansov = []
         # spisok_balansov2 = []

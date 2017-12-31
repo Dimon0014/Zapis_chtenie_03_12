@@ -244,20 +244,20 @@ ik = 0
 vig = 0
 prg = 0
 chag = 0
-while (ik < 1000):
+while (ik < 1):
     ik = ik + 1
-    file_obj = open('100_xodov.txt', 'w')
-    file_obj.close()
-    file_obj = open('100_xodov.txt', 'a')
-    for i in range(400):
-        chislo = random.randint(0, 36)  # генерируем число
-        file_obj.write(str(chislo) + '\n')
-
-    file_obj.close()
+    # file_obj = open('148cikl_och.txt', 'w')
+    # file_obj.close()
+    # file_obj = open('148cikl_och.txt', 'a')
+    # for i in range(400):
+    #     chislo = random.randint(0, 36)  # генерируем число
+    #     file_obj.write(str(chislo) + '\n')
+    #
+    # file_obj.close()
 
 
     viborka = []
-    file_obj = open('100_xodov.txt')
+    file_obj = open('148cikl_och.txt')
     data_list = file_obj.readlines()
     for line in data_list:
         viborka.append(int(line))

@@ -365,7 +365,7 @@ chag = 0
 nol =0
 
 i=0
-for i in range(139,143): #while (ik < 1):
+for i in range(152,161): #while (ik < 1):
     ik = ik + 1
     # file_obj = open('100_xodov.txt', 'w')
     # file_obj.close()
@@ -446,7 +446,7 @@ for i in range(139,143): #while (ik < 1):
         list_par_of200_1 = pre2_predskazatel_1(list_of200_1)
         winer_1 =  pre3_predskazatel_1(list_par_of200_1)
         best_chisla = pre3_predskazatel_1_all(list_par_of200_1)
-
+        #print('winer_1 ',winer_1 )
 ##################################### --- УЧЕТ ЕДЕНИЦ БЛОК НЕ ТРОГАЕМ --- ######################
 ################################################################################################
         dob_next_seen_1(dic_ed,key, steps) # создание\ обновление словаря едениц ###############

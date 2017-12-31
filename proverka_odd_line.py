@@ -255,19 +255,19 @@ ik = 0
 vig = 0
 prg = 0
 chag = 0
-while (ik < 10):
+while (ik < 1):
     ik = ik + 1
-    file_obj = open('100_xodov.txt', 'w')
-    file_obj.close()
-    file_obj = open('100_xodov.txt', 'a')
-    for i in range(400):
-        chislo = random.randint(0, 36)  # генерируем число
-        file_obj.write(str(chislo) + '\n')
-    
-    file_obj.close()
+    # file_obj = open('100_xodov.txt', 'w')
+    # file_obj.close()
+    # file_obj = open('100_xodov.txt', 'a')
+    # for i in range(400):
+    #     chislo = random.randint(0, 36)  # генерируем число
+    #     file_obj.write(str(chislo) + '\n')
+    #
+    # file_obj.close()
     
     viborka = []
-    file_obj = open('100_xodov.txt')
+    file_obj = open('156cikl_och.txt')
     data_list = file_obj.readlines()
     for line in data_list:
         viborka.append(int(line))
@@ -308,8 +308,8 @@ while (ik < 10):
         key1 = key
         steps = steps + 1
         print('lokal_plus',lokal_plus)
-        if steps<200:
-            if (index_predscazan < -3) and (index_predscazan > -6):
+        if steps<300:
+            if (index_predscazan < 0) and (index_predscazan > -18):
                 lokal_step += 1
                 if key % 2 == 0:
                   lokal_plus=lokal_plus+1
@@ -324,7 +324,7 @@ while (ik < 10):
                   lokal_plus = lokal_plus - 1
                   Proigral = Proigral + 1
                   lokal_pause = True
-            if (index_predscazan > 3) and (index_predscazan < 6):
+            if (index_predscazan > 0) and (index_predscazan < 18):
                 lokal_step += 1
                 if key % 2 != 0:
                   lokal_plus=lokal_plus+1

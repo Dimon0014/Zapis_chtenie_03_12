@@ -946,17 +946,24 @@ def sort_ed_hud(dic_ed):
           sorted_x[2][1][3], ' ; ', sorted_x[3][1][3], ' ; ',
           sorted_x[4][1][3])
     return sorted_x
+
+
 def dubl_finder(key,dubl_list):
     if key == dubl_list[0]:
         dubl_list[1]=dubl_list[1] +35
         dubl_list[3]=dubl_list[3]+1
         dubl_list[0] = key
         dubl_list[2] = dubl_list[2] + 1
+        dubl_list[5].append(dubl_list[4])
+        dubl_list[4] = 1
         #dubl_list[0] = -1
     else:
         dubl_list[0] = key
         dubl_list[2] = dubl_list[2] + 1
+        dubl_list[4] = dubl_list[4] + 1
     return  dubl_list
+
+
 def dubl_finder2(key,dubl_list2):
 
 
@@ -1064,6 +1071,30 @@ def dubl_finder7(key,dubl_list7):
         dubl_list7[9] = dubl_list7[10]
         dubl_list7[10] = key
     return  dubl_list7
+def dubl_finder8(key,dubl_list8):
+    if key == dubl_list8[0]:
+        dubl_list8[1]=dubl_list8[1] +35
+        dubl_list8[3]=dubl_list8[3]+1
+        dubl_list8[2] = dubl_list8[2] + 1
+        dubl_list8[0] = dubl_list8[5]
+        dubl_list8[5] = dubl_list8[6]
+        dubl_list8[6] = dubl_list8[7]
+        dubl_list8[7] = dubl_list8[8]
+        dubl_list8[8] = dubl_list8[9]
+        dubl_list8[9] = dubl_list8[10]
+        dubl_list8[10] = dubl_list8[11]
+        dubl_list8[11] = key
+    else:
+        dubl_list8[0] = dubl_list8[5]
+        dubl_list8[2] = dubl_list8[2] + 1
+        dubl_list8[5] = dubl_list8[6]
+        dubl_list8[6] = dubl_list8[7]
+        dubl_list8[7] = dubl_list8[8]
+        dubl_list8[8] = dubl_list8[9]
+        dubl_list8[9] = dubl_list8[10]
+        dubl_list8[10] = dubl_list8[11]
+        dubl_list8[11] = key
+    return  dubl_list8
 rasnica2 = 0
 ik = 0
 vig = 0
@@ -1111,22 +1142,24 @@ bad_chislo19 = -1
 bad_chislo20 = -1
 bad_chislo21 = -1
 bad_chislo22 = -1
-dubl_list = [0,0,0,0,-1] # 1-е число то которое играет ; 2-е число подсчет прибыли ; 3 - число подсчет убытков ; 4-е число подсчет совпадений
+dubl_list = [0,0,0,0,0,[0]] # 1-е число то которое играет ; 2-е число подсчет прибыли ; 3 - число подсчет убытков ; 4-е число подсчет совпадений;
+                             #  5-е число размер промежутков между совпадениями #  6 список пропусков
 dubl_list2 = [0,0,0,0,0,0]
 dubl_list3 = [0,0,0,0,0,0,0]
 dubl_list4 = [0,0,0,0,0,0,0,0]
 dubl_list5 = [0,0,0,0,0,0,0,0,0]
 dubl_list6 = [0,0,0,0,0,0,0,0,0,0]
 dubl_list7 = [0,0,0,0,0,0,0,0,0,0,0]
+dubl_list8 = [0,0,0,0,0,0,0,0,0,0,0,0]
 dubl_2_chislo_propuska = -1
 dubl_3_chislo_propuska = -1
 dubl_4_chislo_propuska = -1
 dubl_5_chislo_propuska = -1
 dubl_6_chislo_propuska = -1
 dubl_7_chislo_propuska = -1
+dubl_8_chislo_propuska = -1
 
-
-for i in range(138,143):  # while (ik < 1):
+for i in range(148,157):  # while (ik < 1):
     ik = ik + 1
     #buf_play_chisla = funct_obnuleniaja_chisla(buf_play_chisla, best_chislo1)
     #buf_play_chisla = funct_obnuleniaja_chisla(buf_play_chisla, best_chislo2)
@@ -1218,6 +1251,7 @@ for i in range(138,143):  # while (ik < 1):
         dubl_list5 = dubl_finder5(key, dubl_list5)
         dubl_list6 = dubl_finder6(key, dubl_list6)
         dubl_list7 = dubl_finder7(key, dubl_list7)
+        dubl_list8 = dubl_finder8(key, dubl_list8)
         steps = steps + 1
         buf_play_chisla = play_number_win_36_2_proskoka(key, buf_play_chisla)
         buf_play_chisla = play_number_inicial_all(buf_play_chisla, steps, 400)
@@ -1404,6 +1438,7 @@ passiv_of_duble = dubl_list[2]
 print('passiv_of_duble:',passiv_of_duble )
 print('amount of duble:',dubl_list[3] )
 print('result of_duble :',summa_of_duble-passiv_of_duble )
+print('spisok_intervalov :',dubl_list[5] )
 
 summa_of_duble_2 = dubl_list2[1]
 
@@ -1446,6 +1481,14 @@ passiv_of_duble_7 = dubl_list7[2]
 print('passiv_of_duble_7:',passiv_of_duble_7 )
 print('amount of duble_7:',dubl_list7[3] )
 print('result of_duble_7 :',summa_of_duble_7-passiv_of_duble_7 )
+
+summa_of_duble_8 = dubl_list8[1]
+
+passiv_of_duble_8 = dubl_list8[2]
+print('passiv_of_duble_8:',passiv_of_duble_8 )
+print('amount of duble_8:',dubl_list8[3] )
+print('result of_duble_8 :',summa_of_duble_8-passiv_of_duble_8 )
+
 # end1 = clock()
 # print(ind, 'glob_pribyl: ', pribyl_glob, 'Время:', (end1 - start1)/60)
 # print('2222222222222222222222222222222222222222222222222222222222222222222222222222222222')
