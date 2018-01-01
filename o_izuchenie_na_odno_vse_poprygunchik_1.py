@@ -502,6 +502,7 @@ for i in range(151,161): #while (ik < 1):
         list_of_win_proverki_1 = proverka_predskaza_1(key1, list_of_win_proverki_1, winer_1)
 
         if winer_1 != 99:
+            
             if  list_of_win_proverki_1[1] == 1:
                 if list_of_win_proverki_1[3] ==0:
                         steps_to_win_1 = list_of_win_proverki_1[0]
@@ -532,7 +533,7 @@ for i in range(151,161): #while (ik < 1):
                 list_of_win_proverki_1[2] = winer_1
                 list_of_win_proverki_1[3] = 1
         
-        list_of200_1 =   pre1_predskazatel_1(key1,list_of200_1,8) # шаг нахождения винера##############################################################
+        list_of200_1 =   pre1_predskazatel_1(key1,list_of200_1,14) # шаг нахождения винера##############################################################
         #if steps > 400:
         list_par_of200_1 = pre2_predskazatel_1(list_of200_1)
         winer_1 =  pre3_predskazatel_1(list_par_of200_1)

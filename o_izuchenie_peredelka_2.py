@@ -266,19 +266,53 @@ def pre3_predskazatel_1_all(list_sort):
 
     return result
 
-def proverka_predskaza_1(key, list_of_win_proverki,winer_1 ):
+
+def proverka_predskaza_1_0(key, list_of_win_proverki, winer_1, steps):
+    result = list_of_win_proverki
     if key == list_of_win_proverki[2]:
+        if list_of_win_proverki[0] < 37:
+            #print('steps', steps, ' vyigral key ', key, list_of_win_proverki[2])
+            list_of_win_proverki[1] = 1
+            list_of_win_proverki[4] = list_of_win_proverki[4] + 35
+            list_of_win_proverki[5] = list_of_win_proverki[5] + 1
+            
+            result = list_of_win_proverki  # первое значение - количество шагов
+        # второе значени флаг сброса продолжения проверки перестать - еденица 1, продолжить ноль 0
+        # третье значение предсказаное число
+    else:
+        if list_of_win_proverki[0] < 37:
+            list_of_win_proverki[1] = 0
+            list_of_win_proverki[5] = list_of_win_proverki[5] + 1
+            list_of_win_proverki[0] = list_of_win_proverki[0] + 1
+            #print('steps', steps, 'stavki', list_of_win_proverki_1[5])
+            result = list_of_win_proverki
+        if (list_of_win_proverki[0] > 36) and (list_of_win_proverki[0] < 55):
+            list_of_win_proverki[0] = list_of_win_proverki[0] + 1
+            result = list_of_win_proverki
+            if list_of_win_proverki[0] == 55:
+                list_of_win_proverki[0] = 0
+                result = list_of_win_proverki
+                # if winer_1 == 99:
+    #     #list_of_win_proverki[0] = list_of_win_proverki[0] - 1 # зачем уменьшать количество шагов, все правильно мы же подрят все шаги считаем
+    #     result = list_of_win_proverki
+    return result
+def proverka_predskaza_1(key, list_of_win_proverki,winer_1, steps ):
+    if key == list_of_win_proverki[2]:
+        #print('steps',steps,' vyigral key ', key, list_of_win_proverki[2])
         list_of_win_proverki[1] = 1
-        result = list_of_win_proverki  # первое значение - количество шагоd
-                # второе значени флаг сброса продолжения проверки
+        result = list_of_win_proverki  # первое значение - количество шагов
+                # второе значени флаг сброса продолжения проверки перестать - еденица 1, продолжить ноль 0
               # третье значение предсказаное число
     else:
         list_of_win_proverki[1] = 0
+    
         list_of_win_proverki[0] = list_of_win_proverki[0] +1
+     
         result = list_of_win_proverki
-    if winer_1 == 99:
-        list_of_win_proverki[0] = list_of_win_proverki[0] - 1
-        result = list_of_win_proverki
+   
+    # if winer_1 == 99:
+    #     #list_of_win_proverki[0] = list_of_win_proverki[0] - 1 # зачем уменьшать количество шагов, все правильно мы же подрят все шаги считаем
+    #     result = list_of_win_proverki
     return result
 
 
@@ -365,7 +399,7 @@ chag = 0
 nol =0
 pribyl2 =0
 i=0
-for i in range(161,171): #while (ik < 1):
+for i in range(171,183): #while (ik < 1):
     ik = ik + 1
     # file_obj = open('100_xodov.txt', 'w')
     # file_obj.close()
@@ -412,6 +446,7 @@ for i in range(161,171): #while (ik < 1):
     list_of_win_proverki_1 = [0, 0, 0, 0, 0, 0, 0]  # первая цифра- подсчет шагов до выигрыша,
     # вторая - активное ли предсказание, третья предсказанное число, четвертое перескок,
     # пятое прибыль, шестое убыль
+    list_of_win_proverki_1_0 = [0, 0, 0, 0, 0, 0, 0]
     steps_to_win_1 = 0
 
     list_of_steps_toWin_1 = []
@@ -426,10 +461,12 @@ for i in range(161,171): #while (ik < 1):
         ############################################################################################
         # БЛОК ЕДЕНИЦЫ
         ############################################################################################
-        list_of_win_proverki_1 = proverka_predskaza_1(key1, list_of_win_proverki_1, winer_1)
-
-        if winer_1 != 99: # если предсказание не на паузе
-            if  list_of_win_proverki_1[1] == 1: # если предсказание активно то
+        
+        #print('winer_1', winer_1)
+        if winer_1 != 99: # если предсказания нет то и проверять нечего
+            list_of_win_proverki_1 = proverka_predskaza_1(key1, list_of_win_proverki_1, winer_1,steps )
+            list_of_win_proverki_1_0 = proverka_predskaza_1_0(key, list_of_win_proverki_1_0, winer_1, steps)
+            if  list_of_win_proverki_1[1] == 1: # если предсказание сбросило активность то назначаем новую цифру выиграша
                 steps_to_win_1 = list_of_win_proverki_1[0] # забираем в буферную переменную количество шагов до выигрыша
                 list_of_all_Win_1.append(list_of_win_proverki_1[2])
                 supwiner = list_of_win_proverki_1[2]
@@ -437,17 +474,26 @@ for i in range(161,171): #while (ik < 1):
                 list_of_win_proverki_1[2] = winer_1 # назначение нового числа предсказания _ назначение с опаздыванием на один шаг
                 list_of_steps_toWin_1.append(steps_to_win_1)
                 list_of_win_proverki_1[0]=1 # обнуляем количество шагов до выигрыша
+                #list_of_win_proverki_1[4] = list_of_win_proverki_1[4]+ 35
+                #list_of_win_proverki_1[5] = 1
                # print(dic_ed[(key)] )
             if list_of_win_proverki_1[0] > 54:
                 list_of_steps_toWin_1.append(60)
                 list_of_win_proverki_1[0] = 1
                 list_of_win_proverki_1[1] = 0
+                #list_of_win_proverki_1[0] = list_of_win_proverki_1[0] + 1
+                
                # list_of_win_proverki_1[2] = winer_1 # назначение нового числа предсказания _ назначение с опаздыванием на один шаг
 
-        list_of200_1 =   pre1_predskazatel_1(key1,list_of200_1,12) # шаг нахождения винера##############################################################
+        list_of200_1 =   pre1_predskazatel_1(key1,list_of200_1,8) # шаг нахождения винера##############################################################
         #if steps > 400:
         list_par_of200_1 = pre2_predskazatel_1(list_of200_1)
         winer_1 =  pre3_predskazatel_1(list_par_of200_1)
+        list_of_win_proverki_1_0[2] = winer_1
+        list_of_win_proverki_1_0[1] = 0
+        # if winer_1 !=99:
+        #     list_of_win_proverki_1[2] = winer_1
+        
         best_chisla = pre3_predskazatel_1_all(list_par_of200_1)
         #print('winer_1 ',winer_1 )
         # if winer_1 == 99:
@@ -474,7 +520,10 @@ for i in range(161,171): #while (ik < 1):
     print(list_of_steps_toWin_1)
     pribyl = podchet_balansa(list_of_steps_toWin_1)
     print('pribyl: ',podchet_balansa(list_of_steps_toWin_1))
+    print('pribyl_povtor: ',list_of_win_proverki_1_0[4]  - list_of_win_proverki_1_0[5])
+    print('ubil_povtor: ',list_of_win_proverki_1_0[5])
     print('best: ',best_chisla )
+    
     pribyl2 = pribyl2+ pribyl
     # print('2222222222222222222222222222222222222222222222222222222222222222222222222222222222')
     # keyer = len(list_of200_2)

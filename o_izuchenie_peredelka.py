@@ -365,7 +365,7 @@ chag = 0
 nol =0
 pribyl2 =0
 i=0
-for i in range(161,171): #while (ik < 1):
+for i in range(161,172): #while (ik < 1):
     ik = ik + 1
     # file_obj = open('100_xodov.txt', 'w')
     # file_obj.close()
@@ -444,7 +444,7 @@ for i in range(161,171): #while (ik < 1):
                 list_of_win_proverki_1[1] = 0
                # list_of_win_proverki_1[2] = winer_1 # назначение нового числа предсказания _ назначение с опаздыванием на один шаг
 
-        list_of200_1 =   pre1_predskazatel_1(key1,list_of200_1,12) # шаг нахождения винера##############################################################
+        list_of200_1 =   pre1_predskazatel_1(key1,list_of200_1,8) # шаг нахождения винера##############################################################
         #if steps > 400:
         list_par_of200_1 = pre2_predskazatel_1(list_of200_1)
         winer_1 =  pre3_predskazatel_1(list_par_of200_1)
