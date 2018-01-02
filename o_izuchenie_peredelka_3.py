@@ -426,9 +426,10 @@ for i in range(180,181): #while (ik < 1):
         ############################################################################################
         # БЛОК ЕДЕНИЦЫ
         ############################################################################################
-        list_of_win_proverki_1 = proverka_predskaza_1(key1, list_of_win_proverki_1, winer_1)
+
 
         if winer_1 != 99: # если предсказание не на паузе
+            list_of_win_proverki_1 = proverka_predskaza_1(key1, list_of_win_proverki_1, winer_1)
             if  list_of_win_proverki_1[1] == 1: # если предсказание активно то
                 steps_to_win_1 = list_of_win_proverki_1[0] # забираем в буферную переменную количество шагов до выигрыша
                 list_of_all_Win_1.append(list_of_win_proverki_1[2])

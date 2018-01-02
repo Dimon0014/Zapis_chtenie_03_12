@@ -273,6 +273,8 @@ def proverka_predskaza_1_0(key, list_of_win_proverki_1_0, winer_1, steps):
         if list_of_win_proverki_1_0[0] < 37:
             print('winer_1: ', winer_1)
             print('steps', steps, ' vyigral key ', key, list_of_win_proverki_1_0[2])
+            list_of_steps_toWin_1_0.append(list_of_win_proverki_1_0[0])
+            list_of_win_proverki_1_0[0] = 1
             list_of_win_proverki_1_0[1] = 1
             list_of_win_proverki_1_0[4] = list_of_win_proverki_1_0[4] + 35
             list_of_win_proverki_1_0[5] = list_of_win_proverki_1_0[5] + 1
@@ -288,6 +290,7 @@ def proverka_predskaza_1_0(key, list_of_win_proverki_1_0, winer_1, steps):
             list_of_win_proverki_1_0[1] = 0
             list_of_win_proverki_1_0[5] = list_of_win_proverki_1_0[5] + 1
             list_of_win_proverki_1_0[0] = list_of_win_proverki_1_0[0] + 1
+
             #print('steps', steps, 'stavki', list_of_win_proverki_1_0[5])
             result = list_of_win_proverki_1_0
         if (list_of_win_proverki_1_0[0] > 36) and (list_of_win_proverki_1_0[0] < 38):
@@ -389,7 +392,7 @@ def podchet_balansa(spisok):
     pribyl=0
     for item in spisok:
         if item <37:
-          pribyl = pribyl + 36 - item
+          pribyl = pribyl + 35 - item
         # if (item < 55) and (item >36):
         #    pribyl = pribyl + ((72-36) - (item-36)*2)
         if (item > 36):
@@ -458,7 +461,7 @@ for i in range(180,181): #while (ik < 1):
     steps_to_win_1 = 0
 
     list_of_steps_toWin_1 = []
-
+    list_of_steps_toWin_1_0 = []
     list_of_all_Win_1 = []
 
     best_chisla =[]
@@ -478,15 +481,19 @@ for i in range(180,181): #while (ik < 1):
         print('list_of_win_proverki_1[2]',list_of_win_proverki_1[2])
         print('key                       ', key)
         print('steps:', steps, '-      winer_1', winer_1)
-       
-        if winer_1 != 99: # если предсказания нет то и проверять нечего
+        if  winer_1 != 99:
+                list_of_win_proverki_1_0[2] = winer_1
+                list_of_win_proverki_1_0[1] = 0
+        if winer_1 != 99: # если предсказания нет то и играть не будем
             sttepers = sttepers +1
             print('steps:', steps,'v igre')
             print('sttepers:', sttepers)
+
             list_of_win_proverki_1 = proverka_predskaza_1(key1, list_of_win_proverki_1, winer_1,steps )
             list_of_win_proverki_1_0 = proverka_predskaza_1_0(key, list_of_win_proverki_1_0, winer_1, steps)
-            if list_of_win_proverki_1_0[1] == 1:
-                list_of_win_1_0_all.append(list_of_win_proverki_1_0[2])
+
+            # if list_of_win_proverki_1_0[1] == 1:
+            #     list_of_win_1_0_all.append(list_of_win_proverki_1_0[2])
             if  list_of_win_proverki_1[1] == 1: # если предсказание сбросило активность то назначаем новую цифру выиграша
                 
                 
@@ -498,6 +505,7 @@ for i in range(180,181): #while (ik < 1):
                 #list_of_all_Win_1.append(list_of_win_proverki_1[2])
                 #supwiner = list_of_win_proverki_1[2]
                 #if  steps_to_win_1<34:
+
                 list_of_win_proverki_1[2] = winer_1 # назначение нового числа предсказания _ назначение с опаздыванием на один шаг
                 list_of_steps_toWin_1.append(steps_to_win_1)
                 list_of_win_proverki_1[0]=1 # обнуляем количество шагов до выигрыша
@@ -523,9 +531,9 @@ for i in range(180,181): #while (ik < 1):
         #     list_of_win_proverki_1[2] = 0
         if list_of_win_proverki_1_0[2] == - 1:
             list_of_win_proverki_1[2] = 0
-        if  winer_1 != 99:
-                list_of_win_proverki_1_0[2] = winer_1
-                list_of_win_proverki_1_0[1] = 0
+        # if  winer_1 != 99:
+        #         list_of_win_proverki_1_0[2] = winer_1
+        #         list_of_win_proverki_1_0[1] = 0
         # if winer_1 !=99:
         #     list_of_win_proverki_1[2] = winer_1
         
@@ -555,6 +563,7 @@ for i in range(180,181): #while (ik < 1):
     print('list_of_all_Win_1_0:', list_of_win_1_0_all)
     print('list_of_all_Win_1_0:', list_of_win_proverki_1_0[7])
     print('list_of_steps_toWin_1:',list_of_steps_toWin_1)
+    print('list_of_steps_toWin_1_0:', list_of_steps_toWin_1_0)
     pribyl = podchet_balansa(list_of_steps_toWin_1)
     pribyl_povtor = list_of_win_proverki_1_0[4]  - list_of_win_proverki_1_0[5]
     print('pribyl: ',podchet_balansa(list_of_steps_toWin_1))
