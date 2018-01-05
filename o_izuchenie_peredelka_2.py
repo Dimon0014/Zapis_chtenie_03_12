@@ -410,7 +410,7 @@ pribyl2 =0
 pribyl_povtor2 = 0
 i=0
 list_of_win_1_0_all =[]
-for i in range(180,181): #while (ik < 1):
+for i in range(201,212): #while (ik < 1):
     ik = ik + 1
     # file_obj = open('100_xodov.txt', 'w')
     # file_obj.close()
@@ -495,7 +495,7 @@ for i in range(180,181): #while (ik < 1):
             # if list_of_win_proverki_1_0[1] == 1:
             #     list_of_win_1_0_all.append(list_of_win_proverki_1_0[2])
             if  list_of_win_proverki_1[1] == 1: # если предсказание сбросило активность то назначаем новую цифру выиграша
-                
+                sttepers = 1
                 
                 list_of_win_proverki_1_0[7].append(list_of_win_proverki_1_0[2])
                 steps_to_win_1 = list_of_win_proverki_1[0] # забираем в буферную переменную количество шагов до выигрыша
@@ -513,13 +513,127 @@ for i in range(180,181): #while (ik < 1):
                 #list_of_win_proverki_1[5] = 1
                # print(dic_ed[(key)] )
             if list_of_win_proverki_1[0] > 54:
+                sttepers = 1
                 list_of_steps_toWin_1.append(60)
                 list_of_win_proverki_1[0] = 1
                 list_of_win_proverki_1[1] = 0
+                #list_of_win_proverki_1_0[2] = winer_1
                 #list_of_win_proverki_1[0] = list_of_win_proverki_1[0] + 1
                 
                # list_of_win_proverki_1[2] = winer_1 # назначение нового числа предсказания _ назначение с опаздыванием на один шаг
+            if list_of_win_proverki_1[0] < 37:  # шагов меньше 36 ставим ставку
 
+                if list_of_win_proverki_1[2] == 0:
+                      # ставка на число 0
+                    print('                           stavka na chislo: 0')
+                if list_of_win_proverki_1[2] == 1:
+                      # ставка на число 1
+                    print('                           stavka na chislo: 1')
+                if list_of_win_proverki_1[2] == 2:
+                     # ставка на число 2
+                    print('                           stavka na chislo: 2')
+                if list_of_win_proverki_1[2] == 3:
+                      # ставка на число 3
+                    print('                          stavka na chislo: 3')
+                if list_of_win_proverki_1[2] == 4:
+                      # ставка на число 4
+                    print('                          stavka na chislo: 4')
+                if list_of_win_proverki_1[2] == 5:
+                      # ставка на число 5
+                    print('                          stavka na chislo: 5')
+                if list_of_win_proverki_1[2] == 6:
+                     # ставка на число 6
+                    print('                          stavka na chislo: 6')
+                if list_of_win_proverki_1[2] == 7:
+                      # ставка на число 7
+                    print('                           stavka na chislo: 7')
+                if list_of_win_proverki_1[2] == 8:
+                      # ставка на число 8
+                    print('                           stavka na chislo: 8')
+                if list_of_win_proverki_1[2] == 9:
+                      # ставка на число 9
+                    print('                           stavka na chislo: 9')
+                if list_of_win_proverki_1[2] == 10:
+                      # ставка на число 10
+                    print('                          stavka na chislo: 10')
+                if list_of_win_proverki_1[2] == 11:
+                      # ставка на число 11
+                    print('                          stavka na chislo: 11')
+                if list_of_win_proverki_1[2] == 12:
+                      # ставка на число 12
+                    print('                          stavka na chislo: 12')
+                if list_of_win_proverki_1[2] == 13:
+                      # ставка на число 13
+                    print('                          stavka na chislo: 13')
+                if list_of_win_proverki_1[2] == 14:
+                      # ставка на число 14
+                    print('                          stavka na chislo: 14')
+                if list_of_win_proverki_1[2] == 15:
+                     # ставка на число 15
+                    print('                          stavka na chislo: 15')
+                if list_of_win_proverki_1[2] == 16:
+                      # ставка на число 16
+                    print('                          stavka na chislo: 16')
+                if list_of_win_proverki_1[2] == 17:
+                      # ставка на число 17
+                    print('                          stavka na chislo: 17')
+                if list_of_win_proverki_1[2] == 18:
+                      # ставка на число 18
+                    print('                          stavka na chislo: 18')
+                if list_of_win_proverki_1[2] == 19:
+                      # ставка на число 19
+                    print('                          stavka na chislo: 19')
+                if list_of_win_proverki_1[2] == 20:
+                     # ставка на число 20
+                    print('                          stavka na chislo: 20')
+                if list_of_win_proverki_1[2] == 21:
+                      # ставка на число 21
+                    print('                          stavka na chislo: 21')
+                if list_of_win_proverki_1[2] == 22:
+                     # ставка на число 22
+                    print('                          stavka na chislo: 22')
+                if list_of_win_proverki_1[2] == 23:
+                      # ставка на число 23
+                    print('                          stavka na chislo: 23')
+                if list_of_win_proverki_1[2] == 24:
+                      # ставка на число 24
+                    print('                          stavka na chislo: 24')
+                if list_of_win_proverki_1[2] == 25:
+                      # ставка на число 25
+                    print('                          stavka na chislo: 25')
+                if list_of_win_proverki_1[2] == 26:
+                      # ставка на число 26
+                    print('                          stavka na chislo: 26')
+                if list_of_win_proverki_1[2] == 27:
+                      # ставка на число 27
+                    print('                          stavka na chislo: 27')
+                if list_of_win_proverki_1[2] == 28:
+                      # ставка на число 28
+                    print('                         stavka na chislo: 28')
+                if list_of_win_proverki_1[2] == 29:
+                      # ставка на число 29
+                    print('                         stavka na chislo: 29')
+                if list_of_win_proverki_1[2] == 30:
+                      # ставка на число 30
+                    print('                         stavka na chislo: 30')
+                if list_of_win_proverki_1[2] == 31:
+                      # ставка на число 31
+                    print('                         stavka na chislo: 31')
+                if list_of_win_proverki_1[2] == 32:
+                      # ставка на число 32
+                    print('                         stavka na chislo: 32')
+                if list_of_win_proverki_1[2] == 33:
+                      # ставка на число 33
+                    print('                         stavka na chislo: 33')
+                if list_of_win_proverki_1[2] == 34:
+                      # ставка на число 34
+                    print('                         stavka na chislo: 34')
+                if list_of_win_proverki_1[2] == 35:
+                      # ставка на число 35
+                    print('                         stavka na chislo: 35')
+                if list_of_win_proverki_1[2] == 36:
+                      # ставка на число 36
+                    print('                          stavka na chislo: 36')
         list_of200_1 =   pre1_predskazatel_1(key1,list_of200_1,8) # шаг нахождения винера##############################################################
         #if steps > 400:
         list_par_of200_1 = pre2_predskazatel_1(list_of200_1)

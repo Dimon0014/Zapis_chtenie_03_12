@@ -916,7 +916,7 @@ balans_spisok =[]
 prib_min =0
 
 
-for i in range(143, 147):  # while (ik < 1):
+for i in range(210, 212):  # while (ik < 1):
     ik = ik + 1
 
     naime_file = str(i) + 'cikl_och.txt'

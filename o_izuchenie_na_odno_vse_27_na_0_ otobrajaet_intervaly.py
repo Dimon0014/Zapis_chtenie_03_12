@@ -365,7 +365,7 @@ chag = 0
 nol =0
 
 i=0
-for i in range(161,171): #while (ik < 1):
+for i in range(138,201): #while (ik < 1):
     ik = ik + 1
     # file_obj = open('100_xodov.txt', 'w')
     # file_obj.close()
