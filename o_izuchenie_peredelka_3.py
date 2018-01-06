@@ -365,19 +365,19 @@ chag = 0
 nol =0
 pribyl2 =0
 i=0
-for i in range(203,210): #while (ik < 1):
+for i in range(1,800): #while (ik < 1):
     ik = ik + 1
-    # file_obj = open('100_xodov.txt', 'w')
-    # file_obj.close()
-    # file_obj = open('100_xodov.txt', 'a')
-    # for i in range(400):
-    #     chislo = random.randint(0, 36)  # генерируем число
-    #     file_obj.write(str(chislo) + '\n')
-    #
-    # file_obj.close()
+    file_obj = open('100_xodov.txt', 'w')
+    file_obj.close()
+    file_obj = open('100_xodov.txt', 'a')
+    for i in range(150):
+        chislo = random.randint(0, 36)  # генерируем число
+        file_obj.write(str(chislo) + '\n')
 
+    file_obj.close()
 
-    naime_file = str(i) + 'cikl_och.txt'
+    naime_file = '100_xodov.txt'
+    #naime_file = str(i) + 'cikl_och.txt'
     viborka = []
     file_obj = open(naime_file)
     data_list = file_obj.readlines()
@@ -447,7 +447,7 @@ for i in range(203,210): #while (ik < 1):
                 #list_of_win_proverki_1[2] = winer_1
                # list_of_win_proverki_1[2] = winer_1 # назначение нового числа предсказания _ назначение с опаздыванием на один шаг
 
-        list_of200_1 =   pre1_predskazatel_1(key1,list_of200_1,8) # шаг нахождения винера##############################################################
+        list_of200_1 =   pre1_predskazatel_1(key1,list_of200_1,4) # шаг нахождения винера##############################################################
         #if steps > 400:
         list_par_of200_1 = pre2_predskazatel_1(list_of200_1)
         winer_1 =  pre3_predskazatel_1(list_par_of200_1)
