@@ -365,7 +365,8 @@ chag = 0
 nol =0
 pribyl2 =0
 i=0
-for i in range(203,210): #while (ik < 1):
+next_nol = 0
+for i in range(597,609): #while (ik < 1):
     ik = ik + 1
     # file_obj = open('100_xodov.txt', 'w')
     # file_obj.close()
@@ -412,6 +413,14 @@ for i in range(203,210): #while (ik < 1):
     list_of_win_proverki_1 = [0, 0, 0, 0, 0, 0, 0]  # первая цифра- подсчет шагов до выигрыша,
     # вторая - активное ли предсказание, третья предсказанное число, четвертое перескок,
     # пятое прибыль, шестое убыль
+
+    # next_nol = viborka[-1]
+    # list_of_win_proverki_1[2] = next_nol
+    # if list_of_win_proverki_1[2]<36:
+    #  list_of_win_proverki_1[2] = next_nol+1
+    # print('nachalo cikla--------------------------------------------------------------------------------')
+    # print('viborka[-1]',viborka[-1])
+    # print('list_of_win_proverki_1[3]', list_of_win_proverki_1[3])
     steps_to_win_1 = 0
 
     list_of_steps_toWin_1 = []
@@ -421,6 +430,8 @@ for i in range(203,210): #while (ik < 1):
     best_chisla =[]
     while (steps < len(viborka)):
         key = viborka[steps]
+
+
         key1 = key
         steps = steps + 1
         ############################################################################################
@@ -444,14 +455,16 @@ for i in range(203,210): #while (ik < 1):
                 list_of_steps_toWin_1.append(60)
                 list_of_win_proverki_1[0] = 1
                 list_of_win_proverki_1[1] = 0
+                winer_1 = 99
                 #list_of_win_proverki_1[2] = winer_1
                # list_of_win_proverki_1[2] = winer_1 # назначение нового числа предсказания _ назначение с опаздыванием на один шаг
 
-        list_of200_1 =   pre1_predskazatel_1(key1,list_of200_1,8) # шаг нахождения винера##############################################################
+        list_of200_1 =   pre1_predskazatel_1(key1,list_of200_1,5) # шаг нахождения винера##############################################################
         #if steps > 400:
         list_par_of200_1 = pre2_predskazatel_1(list_of200_1)
         winer_1 =  pre3_predskazatel_1(list_par_of200_1)
         best_chisla = pre3_predskazatel_1_all(list_par_of200_1)
+
         #print('winer_1 ',winer_1 )
         # if winer_1 == 99:
         #     list_of200_1 = pre1_predskazatel_1(key1, list_of200_1,12)  # шаг нахождения винера##############################################################
@@ -473,8 +486,8 @@ for i in range(203,210): #while (ik < 1):
     print('111111111111111111111111111111111111111111111111111111111111111111111111111111111')
     keyer = len(list_of200_1)
     print(naime_file)
-    print(list_of_all_Win_1)
-    print(list_of_steps_toWin_1)
+    print(list_of_all_Win_1, 'list_of_all_Win_1')
+    print(list_of_steps_toWin_1,'list_of_steps_toWin_1')
     pribyl = podchet_balansa(list_of_steps_toWin_1)
     print('pribyl: ',podchet_balansa(list_of_steps_toWin_1))
     print('best: ',best_chisla )
