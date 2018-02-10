@@ -373,7 +373,7 @@ real_pribyl =0
 pribyl2 =0
 i=0
 next_nol = 0
-for i in range(600,745): #while (ik < 1):
+for i in range(742,743): #while (ik < 1):
     ik = ik + 1
     # file_obj = open('100_xodov.txt', 'w')
     # file_obj.close()
@@ -444,6 +444,10 @@ for i in range(600,745): #while (ik < 1):
     tme_name = now_name.strftime("%d,%m,%y %H.%M.%S")
     name_of_log_stavok = 'stavki_' + '_data ' + tme_name + '.txt'
     file_obj_log = open(name_of_log_stavok, 'a')
+    buffer_shagov =0
+    otdel_podchet_stavok = 0
+    tecuchajaStavka =99
+    kolichestvoVyigrashey=0
     while (steps < len(viborka)):
         key = viborka[steps]
 
@@ -457,12 +461,26 @@ for i in range(600,745): #while (ik < 1):
         # print(steps, 'предсказано: ', list_of_win_proverki_1[2], 'выпало:', key1)
         # print('шаги до выигрыша: ', list_of_win_proverki_1[0])
         # print(' ''предсказ-Winner:',winer_1)
-
+        print(steps,'list_of_win_proverki_1[0]', list_of_win_proverki_1[0])
+        # if list_of_win_proverki_1[0] > buffer_shagov:
+        #     otdel_podchet_stavok = otdel_podchet_stavok+1
+        #     #print('list_of_win_proverki_1[0]',list_of_win_proverki_1[0])
+        #     buffer_shagov = list_of_win_proverki_1[0]
+        if key1 == tecuchajaStavka:
+            kolichestvoVyigrashey = kolichestvoVyigrashey + 1
+            print(steps,'      vyigrysh n:', kolichestvoVyigrashey,'#',    'vyigrysh vypal na: ',key1,'#  shag:', steps)
+            sum_of_win = sum_of_win + 35
         if winer_1 != 99: # если предсказание не на паузе
+            
+            # if steps ==137:
+            #     print('key1 ', key1, 'list_of_win_proverki_1[2] ', list_of_win_proverki_1[2])
+            # if steps == 155:
+            #         print('key1 ', key1, 'list_of_win_proverki_1[2] ', list_of_win_proverki_1[2])
             if list_of_win_proverki_1[2] == key1:
                 # if list_of_win_proverki_1[0]>0 and list_of_win_proverki_1[0]< 37:
-                sum_of_win = sum_of_win+35
+  ######        #sum_of_win = sum_of_win + 35
                 file_obj_log.write('      step: ' + str(steps) + ' vyigrush na: ' + str(list_of_win_proverki_1[2])+ ' na shage: ' + str(list_of_win_proverki_1[0])+'\n')
+                buffer_shagov = 0
             list_of_win_proverki_1 = proverka_predskaza_1(key1, list_of_win_proverki_1, winer_1)
 
             #print('активность предсказа', list_of_win_proverki_1[1])
@@ -477,6 +495,8 @@ for i in range(600,745): #while (ik < 1):
                 supwiner = list_of_win_proverki_1[2]
                 #if  steps_to_win_1<34:
                 list_of_win_proverki_1[2] = winer_1 # назначение нового числа предсказания _ назначение с опаздыванием на один шаг
+                # if steps_to_win_1 == 19:
+                #     print('19-ka na shage: ', steps)
                 list_of_steps_toWin_1.append(steps_to_win_1)
                 list_of_winSteps_and_steps.append(steps_to_win_1)
                 list_of_winSteps_and_steps.append(steps)
@@ -496,8 +516,22 @@ for i in range(600,745): #while (ik < 1):
         #if steps > 400:
         list_par_of200_1 = pre2_predskazatel_1(list_of200_1)
         winer_1 =  pre3_predskazatel_1(list_par_of200_1)
+######################### start BLOK Stavki
+        if (list_of_win_proverki_1[0] > buffer_shagov) and (list_of_win_proverki_1[0] < 37):
+            otdel_podchet_stavok = otdel_podchet_stavok + 1
+            chislo_stavok = chislo_stavok + 1
+            print('   ',list_of_win_proverki_1[0],'predskazanie STAVKA na shag: ',steps+1,'vypadet n: ',list_of_win_proverki_1[2])
+            buffer_shagov = list_of_win_proverki_1[0]
+            tecuchajaStavka = list_of_win_proverki_1[2]
+        if list_of_win_proverki_1[0] == 54:
+            buffer_shagov = 0
+######################### end BLOK Stavki
         if winer_1 !=99:
-            if (list_of_win_proverki_1[0] > 0) and (list_of_win_proverki_1[0] < 55):
+            # if list_of_win_proverki_1[0] > buffer_shagov:
+            #     otdel_podchet_stavok = otdel_podchet_stavok + 1
+            #     # print('list_of_win_proverki_1[0]',list_of_win_proverki_1[0])
+            #     buffer_shagov = list_of_win_proverki_1[0]
+                if (list_of_win_proverki_1[0] > 0) and (list_of_win_proverki_1[0] < 37): # ошибка повторы тоже считаются
                 # if (list_of_win_proverki_1[0] > 0) and (list_of_win_proverki_1[0] < 37):
                     if (list_of_win_proverki_1[0] == 36):
                         chislo_stavok = 0
@@ -506,7 +540,8 @@ for i in range(600,745): #while (ik < 1):
                     if list_of_win_proverki_1[2] == key1:
                         #sum_of_win = sum_of_win+35
                         chislo_stavok = 0
-                    chislo_stavok = chislo_stavok + 1
+                    
+                    #chislo_stavok = chislo_stavok + 1
                     #print('   ', chislo_stavok, 'stavka na:', list_of_win_proverki_1[2])
                     sum_of_stavok = sum_of_stavok+1
                     file_obj_log.write(
@@ -522,7 +557,9 @@ for i in range(600,745): #while (ik < 1):
 
 
         best_chisla = pre3_predskazatel_1_all(list_par_of200_1)
-
+        # if steps == 136:
+        #     print('предсказание на 137:','list_of_win_proverki_1[2] :',list_of_win_proverki_1[2] ,'winer_1:', winer_1)
+        #     print('количество шагов до выигрыша',list_of_win_proverki_1[0])
         #print('winer_1 ',winer_1 )
         # if winer_1 == 99:
         #     list_of200_1 = pre1_predskazatel_1(key1, list_of200_1,12)  # шаг нахождения винера##############################################################
@@ -549,10 +586,12 @@ for i in range(600,745): #while (ik < 1):
     print(list_of_steps_toWin_1,'list_of_steps_toWin_1')
     print( list_of_winSteps_and_steps,'list_of_winSteps_and_steps')
     print('summa stavok', sum_of_stavok)
+    print('otdel_podchet_stavok', otdel_podchet_stavok)
+    bonus = sum_of_stavok - otdel_podchet_stavok
    # print('summa pribuli', sum_of_win)
-
-    print('real pribul',sum_of_win - sum_of_stavok)
-    prybyl_rel = sum_of_win - sum_of_stavok
+    print('kollichestvo vyigrushey',sum_of_win/35)
+    print('real pribul',sum_of_win - sum_of_stavok+bonus)
+    prybyl_rel = sum_of_win - sum_of_stavok+bonus
 
     pribyl = podchet_balansa(list_of_steps_toWin_1)
     print('pribyl: ',podchet_balansa(list_of_steps_toWin_1))
@@ -565,6 +604,7 @@ for i in range(600,745): #while (ik < 1):
          print('raznica mejdu real_prib i prib -', prybyl_rel  - pribyl )
     if (prybyl_rel<0) and (pribyl>0):
          print('raznica mejdu real_prib i prib -',pribyl - prybyl_rel  )
+    print('kolichestvoVyigrashey: ',kolichestvoVyigrashey)
     pribyl2 = pribyl2+ pribyl
     real_pribyl = real_pribyl + prybyl_rel
     file_obj_log.close()
