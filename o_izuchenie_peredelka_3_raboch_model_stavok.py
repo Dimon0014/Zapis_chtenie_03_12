@@ -1,5 +1,7 @@
 import json
 import random
+from datetime import datetime, timedelta
+from time import clock
  #------------- в начале обработка единичных символов
 
 def last_last_seen_steps_of_simv_01(dict,key): # альтернатива  "last_next_seen_all_steps_1"
@@ -350,7 +352,7 @@ def podchet_simv(slist): # подсчет сколько раз встречаю
 def podchet_balansa(spisok):
     pribyl=0
     for item in spisok:
-        if item <37:
+        if (item >0) and (item < 37):
           pribyl = pribyl + 35 - item
         # if (item < 55) and (item >36):
         #    pribyl = pribyl + ((72-36) - (item-36)*2)
@@ -365,10 +367,11 @@ vig = 0
 prg = 0
 chag = 0
 nol =0
+real_pribyl =0
 pribyl2 =0
 i=0
 next_nol = 0
-for i in range(728,746): #while (ik < 1):
+for i in range(700,745): #while (ik < 1):
     ik = ik + 1
     # file_obj = open('100_xodov.txt', 'w')
     # file_obj.close()
@@ -433,6 +436,12 @@ for i in range(728,746): #while (ik < 1):
     list_of_winSteps_and_steps = []
     best_chisla =[]
     chislo_stavok =0
+    sum_of_stavok =0
+    sum_of_win =0
+    now_name = datetime.now()
+    tme_name = now_name.strftime("%d,%m,%y %H.%M.%S")
+    name_of_log_stavok = 'stavki_' + '_data ' + tme_name + '.txt'
+    file_obj_log = open(name_of_log_stavok, 'a')
     while (steps < len(viborka)):
         key = viborka[steps]
 
@@ -442,11 +451,16 @@ for i in range(728,746): #while (ik < 1):
         ############################################################################################
         # БЛОК ЕДЕНИЦЫ
         ############################################################################################
+
         # print(steps, 'предсказано: ', list_of_win_proverki_1[2], 'выпало:', key1)
         # print('шаги до выигрыша: ', list_of_win_proverki_1[0])
         # print(' ''предсказ-Winner:',winer_1)
 
         if winer_1 != 99: # если предсказание не на паузе
+            if list_of_win_proverki_1[2] == key1:
+                # if list_of_win_proverki_1[0]>0 and list_of_win_proverki_1[0]< 37:
+                sum_of_win = sum_of_win+35
+                file_obj_log.write('      step: ' + str(steps) + ' vyigrush na: ' + str(list_of_win_proverki_1[2])+ ' na shage: ' + str(list_of_win_proverki_1[0])+'\n')
             list_of_win_proverki_1 = proverka_predskaza_1(key1, list_of_win_proverki_1, winer_1)
 
             #print('активность предсказа', list_of_win_proverki_1[1])
@@ -476,22 +490,36 @@ for i in range(728,746): #while (ik < 1):
                 #list_of_win_proverki_1[2] = winer_1
                # list_of_win_proverki_1[2] = winer_1 # назначение нового числа предсказания _ назначение с опаздыванием на один шаг
 
-        list_of200_1 =   pre1_predskazatel_1(key1,list_of200_1,8) # шаг нахождения винера##############################################################
+        list_of200_1 =   pre1_predskazatel_1(key1,list_of200_1,13) # шаг нахождения винера##############################################################
         #if steps > 400:
         list_par_of200_1 = pre2_predskazatel_1(list_of200_1)
         winer_1 =  pre3_predskazatel_1(list_par_of200_1)
-        # if winer_1 !=99:
-        #     if (list_of_win_proverki_1[0] > 0) and (list_of_win_proverki_1[0] < 37):
-        #
-        #         if (list_of_win_proverki_1[0] == 36):
-        #             chislo_stavok = 0
-        #         if (list_of_win_proverki_1[0] == 1):
-        #             chislo_stavok = 0
-        #         if list_of_win_proverki_1[2] == key1:
-        #             chislo_stavok = 0
-        #         chislo_stavok = chislo_stavok + 1
-        #         print('   ', chislo_stavok, 'stavka na:', list_of_win_proverki_1[2])
-        # best_chisla = pre3_predskazatel_1_all(list_par_of200_1)
+        if winer_1 !=99:
+            if (list_of_win_proverki_1[0] > 0) and (list_of_win_proverki_1[0] < 55):
+                # if (list_of_win_proverki_1[0] > 0) and (list_of_win_proverki_1[0] < 37):
+                    if (list_of_win_proverki_1[0] == 36):
+                        chislo_stavok = 0
+                    if (list_of_win_proverki_1[0] == 1):
+                        chislo_stavok = 0
+                    if list_of_win_proverki_1[2] == key1:
+                        #sum_of_win = sum_of_win+35
+                        chislo_stavok = 0
+                    chislo_stavok = chislo_stavok + 1
+                    #print('   ', chislo_stavok, 'stavka na:', list_of_win_proverki_1[2])
+                    sum_of_stavok = sum_of_stavok+1
+                    file_obj_log.write(
+                        'chislo stavok ' + str(sum_of_stavok) + '\n' + 'step: ' + str(steps) + ' stavka na: ' + str(
+                            list_of_win_proverki_1[2])+ '\n')
+                # else:
+                #      file_obj_log.write('     propusk iz za prevyshenie porog 54'+ '\n')
+                # else:
+                #     print('')
+                # print('   ', chislo_stavok, 'net stavka na:', list_of_win_proverki_1[2])
+        else:
+            file_obj_log.write('       propusk iz za winer_1 !=99'+ '\n' )
+
+
+        best_chisla = pre3_predskazatel_1_all(list_par_of200_1)
 
         #print('winer_1 ',winer_1 )
         # if winer_1 == 99:
@@ -515,14 +543,20 @@ for i in range(728,746): #while (ik < 1):
     keyer = len(list_of200_1)
     print(naime_file)
     print(list_of_all_Win_1, 'list_of_all_Win_1')
-    # print(list_of_win_and_steps,'list_of_win_and_steps')
+    print(list_of_win_and_steps,'list_of_win_and_steps')
     print(list_of_steps_toWin_1,'list_of_steps_toWin_1')
-    # print( list_of_winSteps_and_steps,'list_of_winSteps_and_steps')
-    print('последние шаги', list_of_win_proverki_1[0])
+    print( list_of_winSteps_and_steps,'list_of_winSteps_and_steps')
+    print('summa stavok', sum_of_stavok)
+   # print('summa pribuli', sum_of_win)
+
+    print('real pribul',sum_of_win - sum_of_stavok)
+    prybyl_rel = sum_of_win - sum_of_stavok
     pribyl = podchet_balansa(list_of_steps_toWin_1)
-    print('pribyl: ',podchet_balansa(list_of_steps_toWin_1))
-    print('best: ',best_chisla )
+    #print('pribyl: ',podchet_balansa(list_of_steps_toWin_1))
+    #print('best: ',best_chisla )
     pribyl2 = pribyl2+ pribyl
+    real_pribyl = real_pribyl + prybyl_rel
+    file_obj_log.close()
     # print('2222222222222222222222222222222222222222222222222222222222222222222222222222222222')
     # keyer = len(list_of200_2)
     # print(list_par_of200_2[key])
@@ -538,4 +572,6 @@ for i in range(728,746): #while (ik < 1):
     #  print(i,': ',dic_ed[(i)])
     #rasnica=vig-prg
     #print("разница:",rasnica)
+print('---------------------------------------')
 print('pribyl2: ', pribyl2)
+print('real_pribyl_all: ', real_pribyl)
