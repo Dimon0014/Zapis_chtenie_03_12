@@ -3,6 +3,8 @@ import random
 from datetime import datetime, timedelta
 from time import clock
  #------------- в начале обработка единичных символов
+import math
+
 
 def last_last_seen_steps_of_simv_01(dict,key): # альтернатива  "last_next_seen_all_steps_1"
     result = dict[key][0]
@@ -371,7 +373,7 @@ real_pribyl =0
 pribyl2 =0
 i=0
 next_nol = 0
-for i in range(700,745): #while (ik < 1):
+for i in range(600,745): #while (ik < 1):
     ik = ik + 1
     # file_obj = open('100_xodov.txt', 'w')
     # file_obj.close()
@@ -490,7 +492,7 @@ for i in range(700,745): #while (ik < 1):
                 #list_of_win_proverki_1[2] = winer_1
                # list_of_win_proverki_1[2] = winer_1 # назначение нового числа предсказания _ назначение с опаздыванием на один шаг
 
-        list_of200_1 =   pre1_predskazatel_1(key1,list_of200_1,13) # шаг нахождения винера##############################################################
+        list_of200_1 =   pre1_predskazatel_1(key1,list_of200_1,15) # шаг нахождения винера##############################################################
         #if steps > 400:
         list_par_of200_1 = pre2_predskazatel_1(list_of200_1)
         winer_1 =  pre3_predskazatel_1(list_par_of200_1)
@@ -551,9 +553,18 @@ for i in range(700,745): #while (ik < 1):
 
     print('real pribul',sum_of_win - sum_of_stavok)
     prybyl_rel = sum_of_win - sum_of_stavok
+
     pribyl = podchet_balansa(list_of_steps_toWin_1)
-    #print('pribyl: ',podchet_balansa(list_of_steps_toWin_1))
+    print('pribyl: ',podchet_balansa(list_of_steps_toWin_1))
     #print('best: ',best_chisla )
+    if (prybyl_rel<0) and (pribyl<0):
+         print('raznica mejdu real_prib i prib',math.fabs(prybyl_rel)-math.fabs(pribyl) )
+    if (prybyl_rel>0) and (pribyl>0):
+         print('raznica mejdu real_prib i prib',prybyl_rel - pribyl )
+    if (prybyl_rel>0) and (pribyl<0):
+         print('raznica mejdu real_prib i prib -', prybyl_rel  - pribyl )
+    if (prybyl_rel<0) and (pribyl>0):
+         print('raznica mejdu real_prib i prib -',pribyl - prybyl_rel  )
     pribyl2 = pribyl2+ pribyl
     real_pribyl = real_pribyl + prybyl_rel
     file_obj_log.close()
