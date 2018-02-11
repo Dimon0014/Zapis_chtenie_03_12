@@ -371,17 +371,20 @@ chag = 0
 nol =0
 real_pribyl =0
 pribyl2 =0
+neuch = ''
+neuch2 = 0
 i=0
 next_nol = 0
-for i in range(742,743): #while (ik < 1):
-    ik = ik + 1
-    # file_obj = open('100_xodov.txt', 'w')
+uchet_intervala =0
+for i in range(690,721): #while (ik < 1): # количество файлов
+    # ik = ik + 1
+    # file_obj = open('200cikl_ochh.txt', 'w')
     # file_obj.close()
-    # file_obj = open('100_xodov.txt', 'a')
-    # for i in range(400):
+    # file_obj = open('200cikl_ochh.txt', 'a')
+    # for i in range(200+1):               # количество ходов в файле
     #     chislo = random.randint(0, 36)  # генерируем число
     #     file_obj.write(str(chislo) + '\n')
-    #
+	#
     # file_obj.close()
 
 
@@ -417,9 +420,9 @@ for i in range(742,743): #while (ik < 1):
     steps_of_win_1 = 0
 
    # list_of_win_proverki_1 = [0,0,0]
-    list_of_win_proverki_1 = [0, 0, 0, 0, 0, 0, 0]  # первая цифра- подсчет шагов до выигрыша,
+    list_of_win_proverki_1 = [0, 0, 0, 0, 0, 0, 0,1]  # первая цифра- подсчет шагов до выигрыша,
     # вторая - активное ли предсказание, третья предсказанное число, четвертое перескок,
-    # пятое прибыль, шестое убыль
+    # пятое прибыль, шестое убыль, седьмое номер игрового цикла.
 
     # next_nol = viborka[-1]
     # list_of_win_proverki_1[2] = next_nol
@@ -436,8 +439,12 @@ for i in range(742,743): #while (ik < 1):
     list_of_all_Win_1_and_steps = []
     list_of_win_and_steps =[]
     list_of_winSteps_and_steps = []
+    urezanuy_spisok=[]
     best_chisla =[]
     chislo_stavok =0
+    
+    chislo_levyh_stavok =0
+    razreshenie_na_stavku=False
     sum_of_stavok =0
     sum_of_win =0
     now_name = datetime.now()
@@ -448,6 +455,8 @@ for i in range(742,743): #while (ik < 1):
     otdel_podchet_stavok = 0
     tecuchajaStavka =99
     kolichestvoVyigrashey=0
+    razreshenie_na_stavku_2 = True
+    
     while (steps < len(viborka)):
         key = viborka[steps]
 
@@ -461,15 +470,21 @@ for i in range(742,743): #while (ik < 1):
         # print(steps, 'предсказано: ', list_of_win_proverki_1[2], 'выпало:', key1)
         # print('шаги до выигрыша: ', list_of_win_proverki_1[0])
         # print(' ''предсказ-Winner:',winer_1)
-        print(steps,'list_of_win_proverki_1[0]', list_of_win_proverki_1[0])
+        #print(steps,'list_of_win_proverki_1[0]', list_of_win_proverki_1[0])
         # if list_of_win_proverki_1[0] > buffer_shagov:
         #     otdel_podchet_stavok = otdel_podchet_stavok+1
         #     #print('list_of_win_proverki_1[0]',list_of_win_proverki_1[0])
         #     buffer_shagov = list_of_win_proverki_1[0]
-        if key1 == tecuchajaStavka:
+        if (key1 == tecuchajaStavka) and list_of_win_proverki_1[7] == 1:
+            list_of_win_proverki_1[7] = list_of_win_proverki_1[7] + 1
+            razreshenie_na_stavku = False
+        if (key1 == tecuchajaStavka) and razreshenie_na_stavku:
             kolichestvoVyigrashey = kolichestvoVyigrashey + 1
-            print(steps,'      vyigrysh n:', kolichestvoVyigrashey,'#',    'vyigrysh vypal na: ',key1,'#  shag:', steps)
+            print(steps,'      vyigrysh n:', kolichestvoVyigrashey,'#',    'vyigrysh vypal na: ',key1,'#  shag stavok:', list_of_win_proverki_1[0])
             sum_of_win = sum_of_win + 35
+            list_of_win_proverki_1[7]=list_of_win_proverki_1[7]+1
+            razreshenie_na_stavku = False
+        
         if winer_1 != 99: # если предсказание не на паузе
             
             # if steps ==137:
@@ -501,6 +516,10 @@ for i in range(742,743): #while (ik < 1):
                 list_of_winSteps_and_steps.append(steps_to_win_1)
                 list_of_winSteps_and_steps.append(steps)
                 list_of_win_proverki_1[0]=1 # обнуляем количество шагов до выигрыша
+                if list_of_win_proverki_1[0] == 1:
+                    buffer_shagov = 0
+                # if (steps > 750)and (list_of_win_proverki_1[0] == 1): ####################################
+                #     break
                # print(dic_ed[(key)] )
             if list_of_win_proverki_1[0] > 54:
                 #print('list_of_win_proverki_1[2]',list_of_win_proverki_1[2] )
@@ -512,41 +531,141 @@ for i in range(742,743): #while (ik < 1):
                 #list_of_win_proverki_1[2] = winer_1
                # list_of_win_proverki_1[2] = winer_1 # назначение нового числа предсказания _ назначение с опаздыванием на один шаг
 
-        list_of200_1 =   pre1_predskazatel_1(key1,list_of200_1,15) # шаг нахождения винера##############################################################
+        list_of200_1 =   pre1_predskazatel_1(key1,list_of200_1,8) # шаг нахождения винера##############################################################
         #if steps > 400:
         list_par_of200_1 = pre2_predskazatel_1(list_of200_1)
+        
+        #print('urezanuy_spisok',urezanuy_spisok)
+        
         winer_1 =  pre3_predskazatel_1(list_par_of200_1)
 ######################### start BLOK Stavki
-        if (list_of_win_proverki_1[0] > buffer_shagov) and (list_of_win_proverki_1[0] < 37):
-            otdel_podchet_stavok = otdel_podchet_stavok + 1
-            chislo_stavok = chislo_stavok + 1
-            print('   ',list_of_win_proverki_1[0],'predskazanie STAVKA na shag: ',steps+1,'vypadet n: ',list_of_win_proverki_1[2])
-            buffer_shagov = list_of_win_proverki_1[0]
-            tecuchajaStavka = list_of_win_proverki_1[2]
+        #print('list_of_win_proverki_1[0]',list_of_win_proverki_1[0],'buffer_shagov',buffer_shagov)
+        razreshenie_na_stavku = False
+        # if ((list_of_win_proverki_1[0]) == 1) and (steps>90):
+        #     break
+        if (list_of_win_proverki_1[0] > buffer_shagov) and (list_of_win_proverki_1[0] < 37)  :
+                #otdel_podchet_stavok = otdel_podchet_stavok + 1
+                # if list_of_win_proverki_1[0] == 0:
+                #     stavka = 32
+                # elif list_of_win_proverki_1[0] == 1:
+                #     stavka = 20
+                # elif list_of_win_proverki_1[0] == 2:
+                #     stavka = 25
+                # elif list_of_win_proverki_1[0] == 3:
+                #     stavka = 26
+                # elif list_of_win_proverki_1[0] == 4:
+                #     stavka = 21
+                # elif list_of_win_proverki_1[0] == 5:
+                #     stavka = 24
+                # elif list_of_win_proverki_1[0] == 6:
+                #     stavka = 27
+                # elif list_of_win_proverki_1[0] == 7:
+                #     stavka = 28
+                # elif list_of_win_proverki_1[0] == 8:
+                #     stavka = 23
+                # elif list_of_win_proverki_1[0] == 9:
+                #     stavka = 22
+                # elif list_of_win_proverki_1[0] == 10:
+                #     stavka = 5
+                # elif list_of_win_proverki_1[0] == 11:
+                #     stavka = 30
+                # elif list_of_win_proverki_1[0] == 12:
+                #     stavka = 35
+                # elif list_of_win_proverki_1[0] == 13:
+                #     stavka = 36
+                # elif list_of_win_proverki_1[0] == 14:
+                #     stavka = 31
+                # elif list_of_win_proverki_1[0] == 15:
+                #     stavka = 19
+                # elif list_of_win_proverki_1[0] == 16:
+                #     stavka = 33
+                # elif list_of_win_proverki_1[0] == 17:
+                #     stavka = 34
+                # elif list_of_win_proverki_1[0] == 18:
+                #     stavka = 29
+                # elif list_of_win_proverki_1[0] == 19:
+                #     stavka = 4
+                # elif list_of_win_proverki_1[0] == 20:
+                #     stavka = 14
+                # elif list_of_win_proverki_1[0] == 21:
+                #     stavka = 2
+                # elif list_of_win_proverki_1[0] == 22:
+                #     stavka = 18
+                # elif list_of_win_proverki_1[0] == 23:
+                #     stavka = 10
+                # elif list_of_win_proverki_1[0] == 24:
+                #     stavka = 16
+                # elif list_of_win_proverki_1[0] == 25:
+                #     stavka = 17
+                # elif list_of_win_proverki_1[0] == 26:
+                #     stavka = 0
+                # elif list_of_win_proverki_1[0] == 27:
+                #     stavka = 13
+                # elif list_of_win_proverki_1[0] == 28:
+                #     stavka = 12
+                # elif list_of_win_proverki_1[0] == 29:
+                #     stavka = 7
+                # elif list_of_win_proverki_1[0] == 30:
+                #     stavka = 8
+                # elif list_of_win_proverki_1[0] == 31:
+                #     stavka = 9
+                # elif list_of_win_proverki_1[0] == 32:
+                #     stavka = 15
+                # elif list_of_win_proverki_1[0] == 33:
+                #     stavka = 1
+                # elif list_of_win_proverki_1[0] == 34:
+                #     stavka = 6
+                # elif list_of_win_proverki_1[0] == 35:
+                #     stavka = 3
+                # elif list_of_win_proverki_1[0] == 36:
+                #     stavka = 11
+              
+                #print('   ',list_of_win_proverki_1[0],'predskazanie STAVKA na shag: ',steps+1,'vypadet n: ',list_of_win_proverki_1[2])
+                buffer_shagov = list_of_win_proverki_1[0]
+                
+                razreshenie_na_stavku = True
+                if razreshenie_na_stavku:
+                    
+                    # tecuchajaStavka = stavka
+                  tecuchajaStavka = list_of_win_proverki_1[2]
+                  if   list_of_win_proverki_1[7] !=1:
+                    chislo_stavok = chislo_stavok + 1
+                    sum_of_stavok = sum_of_stavok + 1
+                  else:
+                      razreshenie_na_stavku = False
+        else:
+            chislo_levyh_stavok=chislo_levyh_stavok+1
+            tecuchajaStavka = tecuchajaStavka
+            razreshenie_na_stavku = False
+        
         if list_of_win_proverki_1[0] == 54:
             buffer_shagov = 0
+            razreshenie_na_stavku_2 =False
+            if steps>750:
+               break
+            #list_of_win_proverki_1[2] =winer_1
 ######################### end BLOK Stavki
-        if winer_1 !=99:
-            # if list_of_win_proverki_1[0] > buffer_shagov:
-            #     otdel_podchet_stavok = otdel_podchet_stavok + 1
-            #     # print('list_of_win_proverki_1[0]',list_of_win_proverki_1[0])
-            #     buffer_shagov = list_of_win_proverki_1[0]
-                if (list_of_win_proverki_1[0] > 0) and (list_of_win_proverki_1[0] < 37): # ошибка повторы тоже считаются
-                # if (list_of_win_proverki_1[0] > 0) and (list_of_win_proverki_1[0] < 37):
-                    if (list_of_win_proverki_1[0] == 36):
-                        chislo_stavok = 0
-                    if (list_of_win_proverki_1[0] == 1):
-                        chislo_stavok = 0
-                    if list_of_win_proverki_1[2] == key1:
-                        #sum_of_win = sum_of_win+35
-                        chislo_stavok = 0
-                    
-                    #chislo_stavok = chislo_stavok + 1
-                    #print('   ', chislo_stavok, 'stavka na:', list_of_win_proverki_1[2])
-                    sum_of_stavok = sum_of_stavok+1
-                    file_obj_log.write(
-                        'chislo stavok ' + str(sum_of_stavok) + '\n' + 'step: ' + str(steps) + ' stavka na: ' + str(
-                            list_of_win_proverki_1[2])+ '\n')
+        # if winer_1 !=99:
+        #     # if list_of_win_proverki_1[0] > buffer_shagov:
+        #     #     otdel_podchet_stavok = otdel_podchet_stavok + 1
+        #     #     # print('list_of_win_proverki_1[0]',list_of_win_proverki_1[0])
+        #     #     buffer_shagov = list_of_win_proverki_1[0]
+        #         if (list_of_win_proverki_1[0] > 0) and (list_of_win_proverki_1[0] < 55): # ошибка повторы тоже считаются
+        #         # if (list_of_win_proverki_1[0] > 0) and (list_of_win_proverki_1[0] < 37):
+        #             if (list_of_win_proverki_1[0] == 54):
+        #                 chislo_stavok = 0
+        #             if (list_of_win_proverki_1[0] == 1):
+        #                 chislo_stavok = 0
+        #             if list_of_win_proverki_1[2] == key1:
+        #                 #sum_of_win = sum_of_win+35
+        #                 chislo_stavok = 0
+        #
+        #             #chislo_stavok = chislo_stavok + 1
+        #             #print('   ', chislo_stavok, 'stavka na:', list_of_win_proverki_1[2])
+        #             sum_of_stavok = sum_of_stavok+1
+        #             file_obj_log.write(
+        #                 'chislo stavok ' + str(sum_of_stavok) + '\n' + 'step: ' + str(steps) + ' stavka na: ' + str(
+        #                     list_of_win_proverki_1[2])+ '\n')
                 # else:
                 #      file_obj_log.write('     propusk iz za prevyshenie porog 54'+ '\n')
                 # else:
@@ -586,15 +705,23 @@ for i in range(742,743): #while (ik < 1):
     print(list_of_steps_toWin_1,'list_of_steps_toWin_1')
     print( list_of_winSteps_and_steps,'list_of_winSteps_and_steps')
     print('summa stavok', sum_of_stavok)
-    print('otdel_podchet_stavok', otdel_podchet_stavok)
-    bonus = sum_of_stavok - otdel_podchet_stavok
+    print('chislo_levyh_stavok',chislo_levyh_stavok)
+    #print('otdel_podchet_stavok', otdel_podchet_stavok)
+    bonus = sum_of_stavok - otdel_podchet_stavok ####???
    # print('summa pribuli', sum_of_win)
     print('kollichestvo vyigrushey',sum_of_win/35)
-    print('real pribul',sum_of_win - sum_of_stavok+bonus)
-    prybyl_rel = sum_of_win - sum_of_stavok+bonus
-
-    pribyl = podchet_balansa(list_of_steps_toWin_1)
-    print('pribyl: ',podchet_balansa(list_of_steps_toWin_1))
+    print('real pribul',sum_of_win - (sum_of_stavok))
+    prybyl_rel = sum_of_win - (sum_of_stavok)
+    print('list_of_win_proverki_1[0]: ', list_of_win_proverki_1[0])
+    if list_of_win_proverki_1[0]> 36:
+        uchet_intervala =36
+    else:
+        uchet_intervala = list_of_win_proverki_1[0]
+    print('posledniy interval iz shagov', uchet_intervala)
+    pribyl = podchet_balansa(list_of_steps_toWin_1)-uchet_intervala
+    pribyl_0 = podchet_balansa(list_of_steps_toWin_1)
+    print('pribyl: ',pribyl)
+    print('pribyl_0: ', pribyl_0)
     #print('best: ',best_chisla )
     if (prybyl_rel<0) and (pribyl<0):
          print('raznica mejdu real_prib i prib',math.fabs(prybyl_rel)-math.fabs(pribyl) )
@@ -605,6 +732,12 @@ for i in range(742,743): #while (ik < 1):
     if (prybyl_rel<0) and (pribyl>0):
          print('raznica mejdu real_prib i prib -',pribyl - prybyl_rel  )
     print('kolichestvoVyigrashey: ',kolichestvoVyigrashey)
+    bu = uchet_intervala
+    neuch =  str(bu)
+    neuch2 = neuch2+ int(neuch)
+    print('neuchtenka: ', neuch)
+    print('--------------------------------------------------------')
+    print('steps: ',steps)
     pribyl2 = pribyl2+ pribyl
     real_pribyl = real_pribyl + prybyl_rel
     file_obj_log.close()
@@ -626,3 +759,4 @@ for i in range(742,743): #while (ik < 1):
 print('---------------------------------------')
 print('pribyl2: ', pribyl2)
 print('real_pribyl_all: ', real_pribyl)
+print('neuchtenka: ',neuch2)
