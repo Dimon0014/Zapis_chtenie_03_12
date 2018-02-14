@@ -376,7 +376,7 @@ neuch2 = 0
 i=0
 next_nol = 0
 uchet_intervala =0
-for i in range(690,721): #while (ik < 1): # количество файлов
+for i in range(222,806): #while (ik < 1): # количество файлов
     # ik = ik + 1
     # file_obj = open('200cikl_ochh.txt', 'w')
     # file_obj.close()
@@ -456,7 +456,7 @@ for i in range(690,721): #while (ik < 1): # количество файлов
     tecuchajaStavka =99
     kolichestvoVyigrashey=0
     razreshenie_na_stavku_2 = True
-    
+
     while (steps < len(viborka)):
         key = viborka[steps]
 
@@ -484,7 +484,7 @@ for i in range(690,721): #while (ik < 1): # количество файлов
             sum_of_win = sum_of_win + 35
             list_of_win_proverki_1[7]=list_of_win_proverki_1[7]+1
             razreshenie_na_stavku = False
-        
+
         if winer_1 != 99: # если предсказание не на паузе
             
             # if steps ==137:
@@ -518,7 +518,8 @@ for i in range(690,721): #while (ik < 1): # количество файлов
                 list_of_win_proverki_1[0]=1 # обнуляем количество шагов до выигрыша
                 if list_of_win_proverki_1[0] == 1:
                     buffer_shagov = 0
-                # if (steps > 750)and (list_of_win_proverki_1[0] == 1): ####################################
+                # if (steps > 150)and (list_of_win_proverki_1[0] == 1): #################################### если начинается новый цикл
+                #     print('-------------------------------------------------------------------------------выходим из программы на шаге: ', steps, 'neuch',list_of_win_proverki_1[0])
                 #     break
                # print(dic_ed[(key)] )
             if list_of_win_proverki_1[0] > 54:
@@ -531,7 +532,7 @@ for i in range(690,721): #while (ik < 1): # количество файлов
                 #list_of_win_proverki_1[2] = winer_1
                # list_of_win_proverki_1[2] = winer_1 # назначение нового числа предсказания _ назначение с опаздыванием на один шаг
 
-        list_of200_1 =   pre1_predskazatel_1(key1,list_of200_1,8) # шаг нахождения винера##############################################################
+        list_of200_1 =   pre1_predskazatel_1(key1,list_of200_1,12) # шаг нахождения винера##############################################################№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№
         #if steps > 400:
         list_par_of200_1 = pre2_predskazatel_1(list_of200_1)
         
@@ -637,10 +638,10 @@ for i in range(690,721): #while (ik < 1): # количество файлов
             chislo_levyh_stavok=chislo_levyh_stavok+1
             tecuchajaStavka = tecuchajaStavka
             razreshenie_na_stavku = False
-        
+
         if list_of_win_proverki_1[0] == 54:
             buffer_shagov = 0
-            razreshenie_na_stavku_2 =False
+            # razreshenie_na_stavku_2 =False глобальная не используется сейчас
             if steps>750:
                break
             #list_of_win_proverki_1[2] =winer_1
@@ -681,7 +682,7 @@ for i in range(690,721): #while (ik < 1): # количество файлов
         #     print('количество шагов до выигрыша',list_of_win_proverki_1[0])
         #print('winer_1 ',winer_1 )
         # if winer_1 == 99:
-        #     list_of200_1 = pre1_predskazatel_1(key1, list_of200_1,12)  # шаг нахождения винера##############################################################
+        #     list_of200_1 = pre1_predskazatel_1(key1, list_of200_1,12)  # шаг нахождения винера#####
         #     # if steps > 400:
         #     list_par_of200_1 = pre2_predskazatel_1(list_of200_1)
         #     winer_1 = pre3_predskazatel_1(list_par_of200_1)
@@ -736,8 +737,9 @@ for i in range(690,721): #while (ik < 1): # количество файлов
     neuch =  str(bu)
     neuch2 = neuch2+ int(neuch)
     print('neuchtenka: ', neuch)
-    print('--------------------------------------------------------')
+    print('---------------------------------------------------------------end',naime_file)
     print('steps: ',steps)
+    print('-------------nachalo-nachlo-------------------------------------------------start next of', naime_file)
     pribyl2 = pribyl2+ pribyl
     real_pribyl = real_pribyl + prybyl_rel
     file_obj_log.close()
