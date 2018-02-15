@@ -21,7 +21,7 @@ def lecnica():
             pribyl = (stavka + dobavka) * 36
         
         if i > 65 and i < 80:
-            dobavka = dobavka + 0.06
+            dobavka = dobavka + 0.08
             postavleno = postavleno + stavka + dobavka
             pribyl = (stavka + dobavka) * 36
         
