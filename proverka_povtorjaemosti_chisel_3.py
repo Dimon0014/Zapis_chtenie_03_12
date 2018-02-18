@@ -1159,7 +1159,7 @@ dubl_6_chislo_propuska = -1
 dubl_7_chislo_propuska = -1
 dubl_8_chislo_propuska = -1
 
-for i in range(148,157):  # while (ik < 1):
+for i in range(302,363):  # while (ik < 1):
     ik = ik + 1
     #buf_play_chisla = funct_obnuleniaja_chisla(buf_play_chisla, best_chislo1)
     #buf_play_chisla = funct_obnuleniaja_chisla(buf_play_chisla, best_chislo2)
@@ -1438,6 +1438,8 @@ passiv_of_duble = dubl_list[2]
 print('passiv_of_duble:',passiv_of_duble )
 print('amount of duble:',dubl_list[3] )
 print('result of_duble :',summa_of_duble-passiv_of_duble )
+dubl_list[5].sort()
+dubl_list[5].reverse()
 print('spisok_intervalov :',dubl_list[5] )
 
 summa_of_duble_2 = dubl_list2[1]

@@ -248,7 +248,7 @@ chag = 0
 itog =0
 i =0
 samyy_samyy_big_stavka = 0
-for i in range(222,825):
+for i in range(222,895):
 # while (ik < 100):
     ik = ik + 1
     # # naime_file = 'cikly/400cikl_ochh.txt'
@@ -307,7 +307,7 @@ for i in range(222,825):
     ubyl= 0
     step_of_lecnicu =0.19
     my_razmer_stavki =0.19
-    razmer_stavki = 1
+    razmer_stavki =0.19* 4
     promegutocnuy_balans = 0
     balans =0
     samyy_maly=0
@@ -365,7 +365,9 @@ for i in range(222,825):
             samyy_maly = promegutocnuy_balans
             samyy_maly_step =steps
 
-        if promegutocnuy_balans< -110:
+        if (promegutocnuy_balans<-1) and (steps >186):
+            break
+        if promegutocnuy_balans< -80:
             break
         if promegutocnuy_balans > 0:
             balans = balans + promegutocnuy_balans
