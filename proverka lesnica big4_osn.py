@@ -344,7 +344,7 @@ for i in range(222,895):
             #my_razmer_stavki = my_razmer_stavki + 1+pribavka
             #step_of_lecnicu = step_of_lecnicu + 1
             all_odd = all_odd + 1
-        elif key % 2 == 0:
+        elif (key % 2 == 0) and (key != 0):
             if step_of_lecnicu>1:
               pribyl = pribyl + razmer_stavki - (0.01*step_of_lecnicu+0.01)
             else:
@@ -367,7 +367,7 @@ for i in range(222,895):
 
         if (promegutocnuy_balans<-1) and (steps >186):
             break
-        if promegutocnuy_balans< -80:
+        if promegutocnuy_balans< -110:
             break
         if promegutocnuy_balans > 0:
             balans = balans + promegutocnuy_balans

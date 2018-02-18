@@ -246,8 +246,9 @@ vig = 0
 prg = 0
 chag = 0
 itog =0
-i=0
-for i in range(222,894):
+i =0
+samyy_samyy_big_stavka = 0
+for i in range(222,895):
 # while (ik < 100):
     ik = ik + 1
     # # naime_file = 'cikly/400cikl_ochh.txt'
@@ -265,6 +266,9 @@ for i in range(222,894):
     # naime_file = 'cikly2/'+str(i) + 'cikl_ochh.txt'
     naime_file = str(i) + 'cikl_och.txt'
     # naime_file = 'cikly2/196cikl_ochh.txt'
+    print('------------------------------------------------------------- ')
+    print('------------------------------------------------------------- ')
+    print('------------------------------------------start: ',naime_file,'-------------------------------------------------------- ')
     viborka = []
     file_obj = open(naime_file)
     data_list = file_obj.readlines()
@@ -301,19 +305,17 @@ for i in range(222,894):
     all_even=0
     pribyl =0
     ubyl= 0
-    step_of_lecnicu =0
-    my_razmer_stavki =1
-    razmer_stavki = 1
+    step_of_lecnicu =0.18
+    my_razmer_stavki =0.18
+    razmer_stavki =0.18
     promegutocnuy_balans = 0
     balans =0
     samyy_maly=0
     samyy_maly_step =0
     samyy_big_stavka = 0
     samyy_big_stavka_step = 0
-    samyy_samyy_big_stavka = 0
     raznica =0
     pribavka =0
-    step_to_start=0
     while (steps <len(viborka)):
         key = viborka[steps]
         key1 = key
@@ -323,136 +325,67 @@ for i in range(222,894):
             pribavka = math.fabs(raznica)
         #print('raznica',raznica)
         if key == 0:
-            pribyl = pribyl + razmer_stavki- (razmer_stavki*0.05)
-            if step_to_start > 1:
-                razmer_stavki = razmer_stavki + 1
-            step_to_start = step_to_start + 1
-            # my_razmer_stavki=my_razmer_stavki+raznica
-            # razmer_stavki = razmer_stavki + 1 + pribavka
-            step_of_lecnicu = step_of_lecnicu - 1
-            # if step_of_lecnicu>80:
-            #     razmer_stavki = razmer_stavki * my_razmer_stavki
-            all_even = all_even + 1
+            ubyl = ubyl + razmer_stavki
+            razmer_stavki = razmer_stavki + 0.18   +  my_razmer_stavki
+            step_of_lecnicu = step_of_lecnicu + 1
+            # my_razmer_stavki = my_razmer_stavki + 1+pribavka
+            # step_of_lecnicu = step_of_lecnicu + 1
+            all_odd = all_odd + 1
 
         elif key % 2 != 0:
 
             ubyl = ubyl + razmer_stavki
-            razmer_stavki = 1
-            # if promegutocnuy_balans< -1:
-            #     razmer_stavki =2
-            # if promegutocnuy_balans< -2:
-            #     razmer_stavki =3
-            # if promegutocnuy_balans< -3:
-            #     razmer_stavki =4
-            # if promegutocnuy_balans< -4:
-            #     razmer_stavki =4
-            # if promegutocnuy_balans < -5:
-            #     razmer_stavki = 6
-            # if promegutocnuy_balans < -6:
-            #     razmer_stavki = 7
-            # if promegutocnuy_balans < -7:
-            #     razmer_stavki = 8
-            # if promegutocnuy_balans < -8:
-            #     razmer_stavki = 9
-            # if promegutocnuy_balans< -9:
-            #     razmer_stavki =10
-            # if promegutocnuy_balans< -10:
-            #     razmer_stavki =11
-            # if promegutocnuy_balans< -11:
-            #     razmer_stavki =12
-            # if promegutocnuy_balans< -12:
-            #     razmer_stavki =13
-            # if promegutocnuy_balans < -13:
-            #     razmer_stavki = 14
-            # if promegutocnuy_balans < -14:
-            #     razmer_stavki = 15
-            # if promegutocnuy_balans < -15:
-            #     razmer_stavki = 16
-            # if promegutocnuy_balans < -16:
-            #     razmer_stavki = 17
-            # if promegutocnuy_balans < -17:
-            #     razmer_stavki = 18
-            # if promegutocnuy_balans < -18:
-            #     razmer_stavki = 19
-            # if promegutocnuy_balans < -19:
-            #     razmer_stavki = 20
-            # if promegutocnuy_balans < -20:
-            #     razmer_stavki = 21
-            # if promegutocnuy_balans < -21:
-            #     razmer_stavki = 22
-            # if promegutocnuy_balans < -22:
-            #     razmer_stavki = 23
-            # if promegutocnuy_balans < -23:
-            #     razmer_stavki = 24
-            # if promegutocnuy_balans < -24:
-            #     razmer_stavki = 25
-            # if promegutocnuy_balans < -25:
-            #     razmer_stavki = 26
-            # if promegutocnuy_balans < -26:
-            #     razmer_stavki = 27
-            # if promegutocnuy_balans < -27:
-            #     razmer_stavki = 28
-            # if promegutocnuy_balans < -28:
-            #     razmer_stavki = 29
-            # if promegutocnuy_balans < -29:
-            #     razmer_stavki = 30
-            # if promegutocnuy_balans < -30:
-            #     razmer_stavki = 31
-            # if promegutocnuy_balans < -31:
-            #     razmer_stavki = 32
-            # if promegutocnuy_balans < -32:
-            #     razmer_stavki = 33
-            # if promegutocnuy_balans < -33:
-            #     razmer_stavki = 34
-
-            # step_to_start = 1
-            # my_razmer_stavki = my_razmer_stavki + 1+pribavka
+            razmer_stavki = razmer_stavki + 0.18 +  my_razmer_stavki
+            step_of_lecnicu = step_of_lecnicu + 1
+            #my_razmer_stavki = my_razmer_stavki + 1+pribavka
             #step_of_lecnicu = step_of_lecnicu + 1
             all_odd = all_odd + 1
-        elif (key % 2 == 0) and (key != 0) :
-            pribyl = pribyl + razmer_stavki - (razmer_stavki*0.05)
-            if  step_to_start>1:
-                razmer_stavki = razmer_stavki+1
-            step_to_start = step_to_start+1
+        elif key % 2 == 0:
+            # if step_of_lecnicu>1:
+            #   pribyl = pribyl + razmer_stavki# - (0.01*step_of_lecnicu+0.01)
+            # else:
+            pribyl = pribyl + razmer_stavki# - (0.01 * step_of_lecnicu+0.01)
+            razmer_stavki = razmer_stavki
+            # razmer_stavki = razmer_stavki - 1 + pribavka
             #my_razmer_stavki=my_razmer_stavki+raznica
             # razmer_stavki = razmer_stavki + 1 + pribavka
-            step_of_lecnicu = step_of_lecnicu - 1
+
             # if step_of_lecnicu>80:
-            #     razmer_stavki = razmer_stavki * my_razmer_stavki
+            # razmer_stavki = razmer_stavki * my_razmer_stavki
             all_even =all_even+1
         promegutocnuy_balans = pribyl - ubyl
         # print(steps, ' ubyl:', ubyl)
-        print(steps, ' promegutocnuy_balans:', round(promegutocnuy_balans,2))
+        print(steps, ' promegutocnuy_balans:', round(promegutocnuy_balans, 2))
 
         if samyy_maly>promegutocnuy_balans:
             samyy_maly = promegutocnuy_balans
             samyy_maly_step =steps
 
-        if promegutocnuy_balans>25:
+        if (promegutocnuy_balans<-1) and (steps >186):
             break
-        if promegutocnuy_balans<-45:
+        if promegutocnuy_balans< -100:
             break
-        # if promegutocnuy_balans > 0:
-        #     balans = balans + promegutocnuy_balans
-        #     # promegutocnuy_balans = 0
-        #     step_of_lecnicu = 0
-        #     # razmer_stavki = 1
-        #     ubyl = 0
-        #     pribyl =0
+        if promegutocnuy_balans > 0:
+            balans = balans + promegutocnuy_balans
+            promegutocnuy_balans = 0
+            step_of_lecnicu = 0
+            razmer_stavki = 0.18
+            ubyl = 0
+            pribyl =0
         # print(steps, ' promegutocnuy_balans:', promegutocnuy_balans)
         if samyy_big_stavka<razmer_stavki:
             samyy_big_stavka = razmer_stavki
             samyy_big_stavka_step = steps
         # print('    razmer stavki:', razmer_stavki)
     print('')
-    print('--------------------------------------------------------------------------------------------------------')
+    print('------------------------------------------',naime_file,'--------------------------------------------------------end: ')
     itog_cikla=balans+ promegutocnuy_balans
-    print('Balans:', balans+ promegutocnuy_balans)
+    print('Balans:', round(balans+ promegutocnuy_balans, 2))
     print(' all_odd', all_odd)
     print(' all_even', all_even)
     print(' разница между odd and even',all_odd - all_even)
     print('samyy_maly_step',samyy_maly_step)
-    print('samyy_big_stavka_step',samyy_big_stavka_step,'stavka: ', samyy_big_stavka )
+    print('samyy_big_stavka_step',samyy_big_stavka_step,'stavka: ', round(samyy_big_stavka, 2) )
     itog = itog + itog_cikla
     if samyy_samyy_big_stavka < samyy_big_stavka:
        samyy_samyy_big_stavka = samyy_big_stavka
@@ -468,5 +401,5 @@ for i in range(222,894):
 # print('Проиграл:',prg)
 rasnica=vig-prg
 
-print('---------------------------------itog', itog, 'samyy big stavka: ', samyy_big_stavka)
+print('---------------------------------itog', round(itog, 2), 'samyy samyy big stavka: ',round(samyy_samyy_big_stavka, 2) )
 #print('общтй итог:',rasnica2)
