@@ -315,7 +315,7 @@ for i in range(845, 895):
 	ubyl = 0
 	step_of_lecnicu = 0
 	my_razmer_stavki = 0.18
-	razmer_stavki = 0.20
+	razmer_stavki = 0.22
 	promegutocnuy_balans = 0
 	balans = 0
 	samyy_maly = 0
@@ -340,7 +340,7 @@ for i in range(845, 895):
 				step_to_start = step_to_start - 1
 			pribyl = pribyl + my_razmer_stavki * step_to_start
 			if step_to_start > 1:
-				razmer_stavki = razmer_stavki + 0.20
+				razmer_stavki = razmer_stavki + 0.22
 			step_to_start = step_to_start + 1
 			# my_razmer_stavki=my_razmer_stavki+raznica
 			# razmer_stavki = razmer_stavki + 1 + pribavka
@@ -348,13 +348,13 @@ for i in range(845, 895):
 			# if step_of_lecnicu>80:
 			#     razmer_stavki = razmer_stavki * my_razmer_stavki
 			all_even = all_even + 1
-		if key == 35:
+		elif key == 35:
 			# print('pered pribylu - razmer stavki: ',razmer_stavki, 'razmer step_to_start', step_to_start)
 			if step_to_start > 1:
 				step_to_start = step_to_start - 1
 			pribyl = pribyl + my_razmer_stavki * step_to_start
 			if step_to_start > 1:
-				razmer_stavki = razmer_stavki + 0.20
+				razmer_stavki = razmer_stavki + 0.22
 			step_to_start = step_to_start + 1
 			# my_razmer_stavki=my_razmer_stavki+raznica
 			# razmer_stavki = razmer_stavki + 1 + pribavka
@@ -362,12 +362,41 @@ for i in range(845, 895):
 			# if step_of_lecnicu>80:
 			#     razmer_stavki = razmer_stavki * my_razmer_stavki
 			all_even = all_even + 1
-		elif (key == 1) or (key == 3) or (key == 5) or (key == 7) or (key == 9) or (key == 11)or (key == 13)\
-				or (key == 15) or (key == 17) or (key == 19) or (key == 21)or (key == 23) or (key == 25)\
+		elif key == 1:
+			# print('pered pribylu - razmer stavki: ',razmer_stavki, 'razmer step_to_start', step_to_start)
+			if step_to_start > 1:
+				step_to_start = step_to_start - 1
+			pribyl = pribyl + my_razmer_stavki * step_to_start
+			if step_to_start > 1:
+				razmer_stavki = razmer_stavki + 0.22
+			step_to_start = step_to_start + 1
+			# my_razmer_stavki=my_razmer_stavki+raznica
+			# razmer_stavki = razmer_stavki + 1 + pribavka
+			step_of_lecnicu = step_of_lecnicu - 1
+			# if step_of_lecnicu>80:
+			#     razmer_stavki = razmer_stavki * my_razmer_stavki
+			all_even = all_even + 1
+		elif key == 19:
+			# print('pered pribylu - razmer stavki: ',razmer_stavki, 'razmer step_to_start', step_to_start)
+			if step_to_start > 1:
+				step_to_start = step_to_start - 1
+			pribyl = pribyl + my_razmer_stavki * step_to_start
+			if step_to_start > 1:
+				razmer_stavki = razmer_stavki + 0.22
+			step_to_start = step_to_start + 1
+			# my_razmer_stavki=my_razmer_stavki+raznica
+			# razmer_stavki = razmer_stavki + 1 + pribavka
+			step_of_lecnicu = step_of_lecnicu - 1
+			# if step_of_lecnicu>80:
+			#     razmer_stavki = razmer_stavki * my_razmer_stavki
+			all_even = all_even + 1
+		
+		elif  (key == 3) or (key == 5) or (key == 7) or (key == 9) or (key == 11)or (key == 13)\
+				or (key == 15) or (key == 17) or (key == 21)or (key == 23) or (key == 25)\
 				or (key == 27) or (key == 29) or (key == 31)or (key == 33):
 			# print('pered ubuly - razmer stavki: ', razmer_stavki, 'razmer step_to_start', step_to_start)
 			ubyl = ubyl + razmer_stavki
-			razmer_stavki = 0.20
+			razmer_stavki = 0.22
 			step_to_start = 1
 			# if promegutocnuy_balans< -1:
 			#     razmer_stavki =2
@@ -441,12 +470,12 @@ for i in range(845, 895):
 			# step_of_lecnicu = step_of_lecnicu + 1
 			all_odd = all_odd + 1
 		elif (key % 2 == 0) and (key != 0):
-			print('pered pribylu - razmer stavki: ', razmer_stavki, 'razmer step_to_start', step_to_start)
+			# print('pered pribylu - razmer stavki: ', razmer_stavki, 'razmer step_to_start', step_to_start)
 			if step_to_start > 1:
 				step_to_start = step_to_start - 1
 			pribyl = pribyl + my_razmer_stavki * step_to_start
 			if step_to_start > 1:
-				razmer_stavki = razmer_stavki + 0.20
+				razmer_stavki = razmer_stavki + 0.22
 			step_to_start = step_to_start + 1
 			# my_razmer_stavki=my_razmer_stavki+raznica
 			# razmer_stavki = razmer_stavki + 1 + pribavka
