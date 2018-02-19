@@ -258,7 +258,7 @@ for i in range(222,895):
     # for i in range(200):
     #     chislo = random.randint(0, 36)  # генерируем число
     #     file_obj.write(str(chislo) + '\n')
-	#
+    #
     # file_obj.close()
 
     # naime_file = '148cikl_och.txt'
@@ -302,8 +302,8 @@ for i in range(222,895):
     pribyl =0
     ubyl= 0
     step_of_lecnicu =0
-    my_razmer_stavki =0.19
-    razmer_stavki = 0.19
+    my_razmer_stavki =0.18
+    razmer_stavki = 0.18
     promegutocnuy_balans = 0
     balans =0
     samyy_maly=0
@@ -323,24 +323,17 @@ for i in range(222,895):
             pribavka = math.fabs(raznica)
         #print('raznica',raznica)
         if key == 0:
-            #print('pered pribylu - razmer stavki: ', razmer_stavki, 'razmer step_to_start', step_to_start)
-            if step_to_start>1:
-                step_to_start =step_to_start-1
-            pribyl = pribyl + (razmer_stavki - 0.01) * step_to_start
-            if step_to_start > 1:
-                razmer_stavki = razmer_stavki + 0.19
-            step_to_start = step_to_start + 1
-            # my_razmer_stavki=my_razmer_stavki+raznica
-            # razmer_stavki = razmer_stavki + 1 + pribavka
-            step_of_lecnicu = step_of_lecnicu - 1
-            # if step_of_lecnicu>80:
-            #     razmer_stavki = razmer_stavki * my_razmer_stavki
-            all_even = all_even + 1
+            # print('pered ubuly - razmer stavki: ', razmer_stavki, 'razmer step_to_start', step_to_start)
+            ubyl = ubyl + razmer_stavki
+            razmer_stavki = 0.18
+            step_to_start = 1
+        
+            all_odd = all_odd + 1
 
         elif key % 2 != 0:
             # print('pered ubuly - razmer stavki: ', razmer_stavki, 'razmer step_to_start', step_to_start)
             ubyl = ubyl + razmer_stavki
-            razmer_stavki = 0.19
+            razmer_stavki = 0.18
             step_to_start =1
             # if promegutocnuy_balans< -1:
             #     razmer_stavki =2
@@ -417,9 +410,9 @@ for i in range(222,895):
             #print('pered pribylu - razmer stavki: ',razmer_stavki, 'razmer step_to_start', step_to_start)
             if step_to_start>1:
                 step_to_start =step_to_start-1
-            pribyl = pribyl  + (razmer_stavki - 0.01) * step_to_start
+            pribyl = pribyl  + my_razmer_stavki * step_to_start
             if step_to_start > 1:
-                razmer_stavki = razmer_stavki + 0.19
+                razmer_stavki = razmer_stavki + 0.18
             step_to_start = step_to_start + 1
             # my_razmer_stavki=my_razmer_stavki+raznica
             # razmer_stavki = razmer_stavki + 1 + pribavka
@@ -435,10 +428,10 @@ for i in range(222,895):
             samyy_maly = promegutocnuy_balans
             samyy_maly_step =steps
 
-        # if promegutocnuy_balans>5:
-        #     break
-        # if promegutocnuy_balans<-45:
-        #     break
+        if promegutocnuy_balans>0:
+            break
+        if promegutocnuy_balans<-0.2:
+            break
         # if promegutocnuy_balans > 0:
         #     balans = balans + promegutocnuy_balans
         #     # promegutocnuy_balans = 0
