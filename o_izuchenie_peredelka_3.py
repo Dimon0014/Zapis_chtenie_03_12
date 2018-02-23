@@ -368,7 +368,10 @@ nol =0
 pribyl2 =0
 i=0
 next_nol = 0
-for i in range(728,746): #while (ik < 1):
+list_of_119 =[]
+list_of_bigger_36=0
+list_of_smoller_36 =0
+for i in range(939,958): #while (ik < 1):
     ik = ik + 1
     # file_obj = open('100_xodov.txt', 'w')
     # file_obj.close()
@@ -466,17 +469,18 @@ for i in range(728,746): #while (ik < 1):
                 list_of_winSteps_and_steps.append(steps)
                 list_of_win_proverki_1[0]=1 # обнуляем количество шагов до выигрыша
                # print(dic_ed[(key)] )
-            if list_of_win_proverki_1[0] > 54:
+            if list_of_win_proverki_1[0] > 125:
                 #print('list_of_win_proverki_1[2]',list_of_win_proverki_1[2] )
-                list_of_steps_toWin_1.append(60)
-
+                list_of_steps_toWin_1.append(200)
+                list_of_119.append(naime_file)
+                list_of_119.append(steps)
                 list_of_win_proverki_1[0] = 1
                 list_of_win_proverki_1[1] = 0
                 winer_1 = 99
                 #list_of_win_proverki_1[2] = winer_1
                # list_of_win_proverki_1[2] = winer_1 # назначение нового числа предсказания _ назначение с опаздыванием на один шаг
 
-        list_of200_1 =   pre1_predskazatel_1(key1,list_of200_1,8) # шаг нахождения винера##############################################################
+        list_of200_1 =   pre1_predskazatel_1(key1,list_of200_1,3) # шаг нахождения винера##############################################################
         #if steps > 400:
         list_par_of200_1 = pre2_predskazatel_1(list_of200_1)
         winer_1 =  pre3_predskazatel_1(list_par_of200_1)
@@ -523,6 +527,13 @@ for i in range(728,746): #while (ik < 1):
     print('pribyl: ',podchet_balansa(list_of_steps_toWin_1))
     print('best: ',best_chisla )
     pribyl2 = pribyl2+ pribyl
+    i =0
+    for i in range(len(list_of_steps_toWin_1)):
+        if list_of_steps_toWin_1[i]<37:
+
+            list_of_smoller_36 = list_of_smoller_36+1
+        else:
+            list_of_bigger_36 = list_of_bigger_36+1
     # print('2222222222222222222222222222222222222222222222222222222222222222222222222222222222')
     # keyer = len(list_of200_2)
     # print(list_par_of200_2[key])
@@ -538,4 +549,6 @@ for i in range(728,746): #while (ik < 1):
     #  print(i,': ',dic_ed[(i)])
     #rasnica=vig-prg
     #print("разница:",rasnica)
+print('list_of_smoller_36: ',list_of_smoller_36, 'list_of_bigger_36: ', list_of_bigger_36 )
 print('pribyl2: ', pribyl2)
+print('list_of_119',list_of_119 )

@@ -258,7 +258,7 @@ prg = 0
 chag = 0
 itog = 0
 i = 0
-for i in range(222, 895):
+for i in range(921, 922):
     # while (ik < 100):
     ik = ik + 1
     # naime_file = '400cikl_ochh.txt'
@@ -314,7 +314,8 @@ for i in range(222, 895):
     ubyl = 0
     step_of_lecnicu = 0
     my_razmer_stavki = 0.18
-    razmer_stavki = 0.19
+    razmer_stavki = 0.18
+    CONSTANT_of_stavka =0.18
     promegutocnuy_balans = 0
     balans = 0
     samyy_maly = 0
@@ -333,25 +334,84 @@ for i in range(222, 895):
         if raznica < 0:
             pribavka = math.fabs(raznica)
         # print('raznica',raznica)
-        if key == 0:
-            # print('pered pribylu - razmer stavki: ',razmer_stavki, 'razmer step_to_start', step_to_start)
-            if step_to_start>1:
-                step_to_start =step_to_start-1
-            pribyl = pribyl + my_razmer_stavki * step_to_start
-            if step_to_start > 1:
-                razmer_stavki = razmer_stavki + 0.19
-            step_to_start = step_to_start + 1
-            # my_razmer_stavki=my_razmer_stavki+raznica
-            # razmer_stavki = razmer_stavki + 1 + pribavka
-            step_of_lecnicu = step_of_lecnicu - 1
-            # if step_of_lecnicu>80:
-            #     razmer_stavki = razmer_stavki * my_razmer_stavki
-            all_even = all_even + 1
-        
-        elif key % 2 != 0:
+        # if (key == 3) or (key == 5) or (key == 7) or (key == 9) or (key == 11) or (key == 13) \
+        #         or (key == 15) or (key == 17) or (key == 21) or (key == 23) or (key == 25) \
+        #         or (key == 27) or (key == 29) or (key == 31) or (key == 33):
+        #         print(steps,' na minus ---------------')
+        # else:
+        #         print(steps,' na plus ++++++++++++++++', )
+        # if key == 0:
+        #     # print('pered pribylu - razmer stavki: ',razmer_stavki, 'razmer step_to_start', step_to_start)
+        #     # if step_to_start==2:
+        #     #     step_to_start =step_to_start-1
+        #     if step_to_start>1:
+        #       pribyl = pribyl + my_razmer_stavki * (step_to_start-1)
+        #     else:
+        #       pribyl = pribyl + my_razmer_stavki
+        #     if step_to_start > 1:
+        #         razmer_stavki = razmer_stavki + CONSTANT_of_stavka
+        #     step_to_start = step_to_start + 1
+        #     # my_razmer_stavki=my_razmer_stavki+raznica
+        #     # razmer_stavki = razmer_stavki + 1 + pribavka
+        #     step_of_lecnicu = step_of_lecnicu - 1
+        #     # if step_of_lecnicu>80:
+        #     #     razmer_stavki = razmer_stavki * my_razmer_stavki
+        #     all_even = all_even + 1
+        # elif key == 35:
+        #     print('pered pribylu - razmer stavki: ',razmer_stavki, 'razmer step_to_start', step_to_start)
+        #     if step_to_start>1:
+        #       pribyl = pribyl + my_razmer_stavki * (step_to_start-1)
+        #       print('pered pribylu - razmer stavki: ', razmer_stavki, 'razmer step_to_start', step_to_start, 'chto pribavilos: ',my_razmer_stavki * (step_to_start-1) )
+        #     else:
+        #       pribyl = pribyl + my_razmer_stavki
+        #     # pribyl = pribyl + my_razmer_stavki * step_to_start
+        #     if step_to_start > 1:
+        #         razmer_stavki = razmer_stavki + CONSTANT_of_stavka
+        #     step_to_start = step_to_start + 1
+        #     # my_razmer_stavki=my_razmer_stavki+raznica
+        #     # razmer_stavki = razmer_stavki + 1 + pribavka
+        #     step_of_lecnicu = step_of_lecnicu - 1
+        #     # if step_of_lecnicu>80:
+        #     #     razmer_stavki = razmer_stavki * my_razmer_stavki
+        #     all_even = all_even + 1
+        # elif key == 1:
+        #     print('pered pribylu - razmer stavki: ',razmer_stavki, 'razmer step_to_start', step_to_start)
+        #     if step_to_start>1:
+        #       pribyl = pribyl + my_razmer_stavki * (step_to_start-1)
+        #     else:
+        #       pribyl = pribyl + my_razmer_stavki
+        #     # pribyl = pribyl + my_razmer_stavki * step_to_start
+        #     if step_to_start > 1:
+        #         razmer_stavki = razmer_stavki + CONSTANT_of_stavka
+        #     step_to_start = step_to_start + 1
+        #     # my_razmer_stavki=my_razmer_stavki+raznica
+        #     # razmer_stavki = razmer_stavki + 1 + pribavka
+        #     step_of_lecnicu = step_of_lecnicu - 1
+        #     # if step_of_lecnicu>80:
+        #     #     razmer_stavki = razmer_stavki * my_razmer_stavki
+        #     all_even = all_even + 1
+        # elif key == 19:
+        #     # print('pered pribylu - razmer stavki: ',razmer_stavki, 'razmer step_to_start', step_to_start)
+        #     if step_to_start > 1:
+        #         pribyl = pribyl + my_razmer_stavki * (step_to_start - 1)
+        #     else:
+        #         pribyl = pribyl + my_razmer_stavki
+        #     # pribyl = pribyl + my_razmer_stavki * step_to_start
+        #     if step_to_start > 1:
+        #         razmer_stavki = razmer_stavki + CONSTANT_of_stavka
+        #     step_to_start = step_to_start + 1
+        #     # my_razmer_stavki=my_razmer_stavki+raznica
+        #     # razmer_stavki = razmer_stavki + 1 + pribavka
+        #     step_of_lecnicu = step_of_lecnicu - 1
+        #     # if step_of_lecnicu>80:
+        #     #     razmer_stavki = razmer_stavki * my_razmer_stavki
+        #     all_even = all_even + 1
+        if  (key == 0) or(key == 1) or(key == 3) or (key == 5) or (key == 7) or (key == 9) or (key == 11) or (key == 13) \
+                or (key == 15) or (key == 17) or (key == 19) or (key == 21) or (key == 23) or (key == 25) \
+                or (key == 27) or (key == 29) or (key == 31) or (key == 33)or (key == 35):
             # print('pered ubuly - razmer stavki: ', razmer_stavki, 'razmer step_to_start', step_to_start)
             ubyl = ubyl + razmer_stavki
-            razmer_stavki = 0.19
+            razmer_stavki = CONSTANT_of_stavka
             step_to_start = 1
             # if promegutocnuy_balans< -1:
             #     razmer_stavki =2
@@ -426,11 +486,14 @@ for i in range(222, 895):
             all_odd = all_odd + 1
         elif (key % 2 == 0) and (key != 0):
             print('pered pribylu - razmer stavki: ',razmer_stavki, 'razmer step_to_start', step_to_start)
+            # if step_to_start==2:
+            #     step_to_start =step_to_start-1
             if step_to_start>1:
-                step_to_start =step_to_start-1
-            pribyl = pribyl + my_razmer_stavki * step_to_start
+              pribyl = pribyl + my_razmer_stavki * (step_to_start-1)
+            else:
+              pribyl = pribyl + my_razmer_stavki
             if step_to_start > 1:
-                razmer_stavki = razmer_stavki + 0.19
+                razmer_stavki = razmer_stavki + CONSTANT_of_stavka
             step_to_start = step_to_start + 1
             # my_razmer_stavki=my_razmer_stavki+raznica
             # razmer_stavki = razmer_stavki + 1 + pribavka
@@ -440,16 +503,17 @@ for i in range(222, 895):
             all_even = all_even + 1
         promegutocnuy_balans = pribyl - ubyl
         # print(steps, ' ubyl:', ubyl)
+
         print(steps, ' promegutocnuy_balans:', round(promegutocnuy_balans, 2))
         
         if samyy_maly > promegutocnuy_balans:
             samyy_maly = promegutocnuy_balans
             samyy_maly_step = steps
         
-        if promegutocnuy_balans>2:
-            break
-        if promegutocnuy_balans<-5.1:
-            break
+        # if promegutocnuy_balans>2:
+        #     break
+        # if promegutocnuy_balans<-1:
+        #     break
         # if promegutocnuy_balans > 0:
         #     balans = balans + promegutocnuy_balans
         #     # promegutocnuy_balans = 0
@@ -474,7 +538,7 @@ for i in range(222, 895):
     itog = itog + itog_cikla
     if samyy_samyy_big_stavka < samyy_big_stavka:
         samyy_samyy_big_stavka = samyy_big_stavka
-    if promegutocnuy_balans>10:
+    if promegutocnuy_balans<0:
         spisok_minus_balansov.append(naime_file)
         spisok_minus_balansov.append(round(promegutocnuy_balans,2))
     # if rasnica> 100:

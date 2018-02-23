@@ -231,15 +231,72 @@ def nahogd_big_interv(slovar):
     return rezult
 
 
+# def poslednieChisla(list, key):
+#     list[0]=list[1]
+#     list[1] = list[2]
+#     list[2] = list[3]
+#     list[3] = list[4]
+#     list[4] = list[5]
+#     list[5] = list[6]
+#     list[6] = list[7]
+#     list[7] = list[8]
+#     list[8] = list[9]
+#     list[9] = list[10]
+#     list[10] = list[11]
+#     list[11] = list[12]
+#     list[12] = list[13]
+#     list[13] = list[14]
+#     list[14] = list[15]
+#     list[15] = list[16]
+#     list[16] = list[17]
+#     list[17] = list[18]
+#     list[18] = list[19]
+#     list[19] = list[20]
+#     list[20] = list[21]
+#     list[21] = list[22]
+#     list[22] = list[23]
+#     list[23] = list[24]
+#     list[24] = list[25]
+#     list[25] = list[26]
+#     list[26] = list[27]
+#     list[27] = list[28]
+#     list[29] = list[30]
+#     list[30] = list[31]
+#     list[31] = list[32]
+#     list[32] = list[33]
+#     list[33] = list[34]
+#     list[34] = list[35]
+#     list[35] = list[36]
+#     list[36] = key
+#     return list
+def dedupe(spisok):
+    seen = set()
+    i =0
+    for i in range(len(spisok)):
+        if spisok[i] not in seen:
+            yield spisok[i]
+            seen.add(spisok[i])
+    return seen
+def neIgrauchirChisla(spisok):
+    spisok.revers  # проверить без реверса
+
+    list2 = spisok[0:18]
+    return list2
 
 
+def igrauchirChisla(list1):
 
+    list2 = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36]
 
-
-
-
-
-
+    # for item in set(list2).difference(list)
+    # i=0
+    # k =0
+    # for i in range(len(list2)):
+    #     for k in range(len(list)):
+    #         if list[k] == list2[i]:
+    #               list2.remove(list2[i])
+    list3 = list(set(list2)-set(list1))
+    return list3
 rasnica2 =0
 ik = 0
 vig = 0
@@ -247,12 +304,30 @@ prg = 0
 chag = 0
 itog =0
 i =0
+def dedupe(items):
+    spisok =[]
+    seen = set()
+    for item in items:
+        if item not in seen:
+            yield item
+            seen.add(item)
+    # i =0
+    # for i in range(len(seen)):
+    #   spisok.append(seen[i])
+    # return spisok
 samyy_samyy_big_stavka = 0
-for i in range(222,922):
+a = [1, 5, 2, 1, 9, 1, 5, 10]
+list2 = list(dedupe(a))
+print('ЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕ')
+print('ЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕ')
+print('ЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕ')
+print("-----------------------------------------------------------------------------------------ЭТО ЛИСТ",list2)
+
+for i in range(222,825):
 # while (ik < 100):
     ik = ik + 1
-    # # naime_file = 'cikly/400cikl_ochh.txt'
-    # naime_file = 'cikly2/'+str(ik) + 'cikl_ochh.txt'
+    # naime_file = 'cikly/400cikl_ochh.txt'
+    # naime_file = 'cikly2/'+str(i) + 'cikl_ochh.txt'
     # file_obj = open(naime_file, 'w')
     # file_obj.close()
     # file_obj = open(naime_file, 'a')
@@ -262,13 +337,12 @@ for i in range(222,922):
     #
     # file_obj.close()
 
-    # naime_file = '148cikl_och.txt'
+    # naime_file = '700cikl_och.txt'
     # naime_file = 'cikly2/'+str(i) + 'cikl_ochh.txt'
-    naime_file = str(i) + 'cikl_och.txt'
+    naime_file = ''+str(i) + 'cikl_och.txt'
     # naime_file = 'cikly2/196cikl_ochh.txt'
-    print('------------------------------------------------------------- ')
-    print('------------------------------------------------------------- ')
-    print('------------------------------------------start: ',naime_file,'-------------------------------------------------------- ')
+
+
     viborka = []
     file_obj = open(naime_file)
     data_list = file_obj.readlines()
@@ -305,92 +379,127 @@ for i in range(222,922):
     all_even=0
     pribyl =0
     ubyl= 0
-    step_of_lecnicu =0.19
-    my_razmer_stavki =0.19
-    razmer_stavki =0.19* 4
+    step_of_lecnicu =0
+    # my_razmer_stavki =0.19
+    my_razmer_stavki = 0.18
+    razmer_stavki = 0.22
     promegutocnuy_balans = 0
     balans =0
     samyy_maly=0
     samyy_maly_step =0
     samyy_big_stavka = 0
     samyy_big_stavka_step = 0
+
     raznica =0
     pribavka =0
+    posledn_chisla =[]
+    ne_chisla = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    ig_chisla = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     while (steps <len(viborka)):
         key = viborka[steps]
         key1 = key
         steps = steps + 1
-        raznica = all_odd - all_even
-        if raznica <0:
-            pribavka = math.fabs(raznica)
-        #print('raznica',raznica)
-        if key == 0:
 
-            if step_of_lecnicu>1:
-              pribyl = pribyl + razmer_stavki - (0.01*step_of_lecnicu+0.01)
-            else:
-              pribyl = pribyl + razmer_stavki - (0.01 * step_of_lecnicu+0.01)
-            razmer_stavki = razmer_stavki
-            # razmer_stavki = razmer_stavki - 1 + pribavka
-            # razmer_stavki=razmer_stavki+1+pribavka
-            # my_razmer_stavki = my_razmer_stavki + 1
-            #step_of_lecnicu=step_of_lecnicu+1
-            all_even = all_even + 1
 
-        elif key % 2 != 0:
+        if steps >24: # чтоб сформировались первые лучшие числа
+            raznica = all_odd - all_even
+            # if raznica <0:
+            #     pribavka = math.fabs(raznica)
 
-            ubyl = ubyl + razmer_stavki
-            razmer_stavki = razmer_stavki + 0.19 #+ (pribavka * my_razmer_stavki)
-            step_of_lecnicu = step_of_lecnicu + 1
-            #my_razmer_stavki = my_razmer_stavki + 1+pribavka
-            #step_of_lecnicu = step_of_lecnicu + 1
-            all_odd = all_odd + 1
-        elif (key % 2 == 0) and (key != 0):
-            if step_of_lecnicu>1:
-              pribyl = pribyl + razmer_stavki - (0.01*step_of_lecnicu+0.01)
-            else:
-              pribyl = pribyl + razmer_stavki - (0.01 * step_of_lecnicu+0.01)
-            razmer_stavki = razmer_stavki
-            # razmer_stavki = razmer_stavki - 1 + pribavka
-            #my_razmer_stavki=my_razmer_stavki+raznica
-            # razmer_stavki = razmer_stavki + 1 + pribavka
 
-            # if step_of_lecnicu>80:
-            # razmer_stavki = razmer_stavki * my_razmer_stavki
-            all_even =all_even+1
-        promegutocnuy_balans = pribyl - ubyl
-        # print(steps, ' ubyl:', ubyl)
-        print(steps, ' promegutocnuy_balans:', round(promegutocnuy_balans, 2))
+            #print('raznica',raznica)
+            # print('key1:', key)
+            # print('neigrauhie_cisla', ne_chisla)
+            # print('igrauchie_cisla00',ig_chisla )
 
-        if samyy_maly>promegutocnuy_balans:
-            samyy_maly = promegutocnuy_balans
-            samyy_maly_step =steps
 
-        if (promegutocnuy_balans<-1) and (steps >186):
-            break
-        if promegutocnuy_balans< -110:
-            break
-        if promegutocnuy_balans > 0:
-            balans = balans + promegutocnuy_balans
-            promegutocnuy_balans = 0
-            step_of_lecnicu = 0
-            razmer_stavki = 0.19
-            ubyl = 0
-            pribyl =0
-        # print(steps, ' promegutocnuy_balans:', promegutocnuy_balans)
-        if samyy_big_stavka<razmer_stavki:
-            samyy_big_stavka = razmer_stavki
-            samyy_big_stavka_step = steps
-        # print('    razmer stavki:', razmer_stavki)
+            i = 0
+            for i in range(len(ne_chisla)):
+                 if key1 == ne_chisla[i]:
+                     pribyl = pribyl + razmer_stavki
+                     # razmer_stavki = razmer_stavki - 1 + pribavka
+                     # razmer_stavki=razmer_stavki+1+pribavka
+                     # my_razmer_stavki = my_razmer_stavki + 1
+                     # step_of_lecnicu=step_of_lecnicu+1
+                     all_even = all_even + 1
+                     break
+            i = 0
+            for i in range(len(ig_chisla)):
+                 if key1 ==ig_chisla[i]:
+
+
+                     ubyl = ubyl + razmer_stavki
+                     razmer_stavki = razmer_stavki + 0.19 + (pribavka * my_razmer_stavki)
+                     # my_razmer_stavki = my_razmer_stavki + 1+pribavka
+                     # step_of_lecnicu = step_of_lecnicu + 1
+                     all_odd = all_odd + 1
+                     break
+            promegutocnuy_balans = pribyl - ubyl
+            # print(steps, ' ubyl:', ubyl)
+            # print(steps, ' promegutocnuy_balans:', promegutocnuy_balans)
+
+            if samyy_maly>promegutocnuy_balans:
+                samyy_maly = promegutocnuy_balans
+                samyy_maly_step =steps
+
+            if promegutocnuy_balans< -100:
+                break
+            if promegutocnuy_balans > 0:
+                balans = balans + promegutocnuy_balans
+                promegutocnuy_balans = 0
+                step_of_lecnicu = 0
+                razmer_stavki = 0.22
+                ubyl = 0
+                pribyl =0
+            # print(steps, ' promegutocnuy_balans:', promegutocnuy_balans)
+            if samyy_big_stavka<razmer_stavki:
+                samyy_big_stavka = razmer_stavki
+                samyy_big_stavka_step = steps
+            # print('    razmer stavki:', razmer_stavki)
+        posledn_chisla.reverse()
+        posledn_chisla.append(key)# = poslednieChisla(posledn_chisla, key1)
+        # print('ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss poslednie chisla',posledn_chisla)
+        if steps> 24:
+            #neIgrauchirChisla
+
+            posledn_chisla.reverse()
+            # print('ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss poslednie chisla', posledn_chisla)
+            # list(dedupe(a))
+            b = list(dedupe(posledn_chisla))
+            ne_chisla = b[0:22]
+            #print('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww ne_chisla: ', ne_chisla)
+            ig_chisla =  igrauchirChisla(ne_chisla)
+
+        # print('igrauchie_chisla',ig_chisla )
+        # print('key1:', key)
+        # print('igrauhie_cisla', igrauhie_cisla[0])
+        # print('              ', igrauhie_cisla[1])
+        # print('              ', igrauhie_cisla[2])
+        # print('              ', igrauhie_cisla[3])
+        # print('              ', igrauhie_cisla[4])
+        # print('              ', igrauhie_cisla[5])
+        # print('              ', igrauhie_cisla[6])
+        # print('              ', igrauhie_cisla[7])
+        # print('              ', igrauhie_cisla[8])
+        # print('              ', igrauhie_cisla[9])
+        # print('              ', igrauhie_cisla[10])
+        # print('              ', igrauhie_cisla[11])
+        # print('              ', igrauhie_cisla[12])
+        # print('              ', igrauhie_cisla[13])
+        # print('              ', igrauhie_cisla[14])
+        # print('              ', igrauhie_cisla[15])
+        # print('              ', igrauhie_cisla[16])
+        # print('              ', igrauhie_cisla[17])
+        # print('              ', igrauhie_cisla[18])
     print('')
-    print('------------------------------------------',naime_file,'--------------------------------------------------------end: ')
+    print('--------------------------------------------------------------------------------------------------------')
     itog_cikla=balans+ promegutocnuy_balans
-    print('Balans:', round(balans+ promegutocnuy_balans, 2))
+    print('Balans:', balans+ promegutocnuy_balans)
     print(' all_odd', all_odd)
     print(' all_even', all_even)
     print(' разница между odd and even',all_odd - all_even)
     print('samyy_maly_step',samyy_maly_step)
-    print('samyy_big_stavka_step',samyy_big_stavka_step,'stavka: ', round(samyy_big_stavka, 2) )
+    print('samyy_big_stavka_step',samyy_big_stavka_step,'stavka: ', samyy_big_stavka )
     itog = itog + itog_cikla
     if samyy_samyy_big_stavka < samyy_big_stavka:
        samyy_samyy_big_stavka = samyy_big_stavka
@@ -406,5 +515,5 @@ for i in range(222,922):
 # print('Проиграл:',prg)
 rasnica=vig-prg
 
-print('---------------------------------itog', round(itog, 2), 'samyy samyy big stavka: ',round(samyy_samyy_big_stavka, 2) )
+print('---------------------------------itog', itog, 'samyy samyy big stavka: ', samyy_samyy_big_stavka)
 #print('общтй итог:',rasnica2)
