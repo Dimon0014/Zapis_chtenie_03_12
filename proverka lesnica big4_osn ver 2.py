@@ -251,7 +251,7 @@ i =0
 samyy_samyy_big_stavka = 0
 list_of_minus =[]
 list_of_stavki =[]
-for i in range(958,989):
+for i in range(1165,1190):
 # while (ik < 100):
     ik = ik + 1
     # # naime_file = 'cikly/400cikl_ochh.txt'
@@ -436,8 +436,8 @@ for i in range(958,989):
             #     break
             # if (steps ==2) and (promegutocnuy_balans<0):
             #     break
-            if (promegutocnuy_balans<-46) and (steps >193):
-                break
+            # if (promegutocnuy_balans<-46) and (steps >193):
+            #     break
             # if promegutocnuy_balans< -400:
             #     break
             if promegutocnuy_balans >= -0.01:
