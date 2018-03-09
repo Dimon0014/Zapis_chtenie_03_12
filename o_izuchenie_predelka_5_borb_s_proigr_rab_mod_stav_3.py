@@ -380,45 +380,131 @@ def podchet_simv(slist):  # подсчет сколько раз встреча�
 def podchet_balansa(spisok):
     pribyl = 0
     for item in spisok:
-        if (item > 0) and (item < 36):
-            pribyl = pribyl + 0.35 - (item*0.01)
+        if item == 1 :
+            pribyl = pribyl + 0.35  # - (item*0.01)
+        if item == 2 :
+            pribyl = pribyl + 0.34  # - (item*0.01)
+        if item == 3 :
+            pribyl = pribyl + 0.33  # - (item*0.01)
+
+        if item == 4:
+            pribyl = pribyl + 0.32  # - (item*0.01)
+
+        if item == 5:
+            pribyl = pribyl + 0.31  # - (item*0.01)
+
+        if item == 6:
+            pribyl = pribyl + 0.30  # - (item*0.01)
+        ########################################################## +0.06
+        if item == 7:
+            pribyl = pribyl + 0.64  # - (item*0.01)
+
+        if item == 8:
+            pribyl = pribyl + 0.62  # - (item*0.01)
+        if item == 9:
+            pribyl = pribyl + 0.60  # - (item*0.01)
+        if item == 10:
+            pribyl = pribyl + 0.58  # - (item*0.01)
+        if item == 11:
+            pribyl = pribyl + 0.56  # - (item*0.01)
+        if item == 11:
+            pribyl = pribyl + 0.54  # - (item*0.01)
+        if item == 12:
+            pribyl = pribyl + 0.52  # - (item*0.01)
+        if item == 13:
+            pribyl = pribyl + 0.50  # - (item*0.01)
+        if item == 14:
+            pribyl = pribyl + 0.48  # - (item*0.01)
+        if item == 15:
+            pribyl = pribyl + 0.46  # - (item*0.01)
+        if item == 16:
+            pribyl = pribyl + 0.44  # - (item*0.01)
+        if item == 17:
+            pribyl = pribyl + 0.42  # - (item*0.01)
+        if item == 18:
+            pribyl = pribyl + 0.40  # - (item*0.01)
+        if item == 19:
+            pribyl = pribyl + 0.38  # - (item*0.01)
+        if item == 20:
+            pribyl = pribyl + 0.36  # - (item*0.01)
+        if item == 21:
+            pribyl = pribyl + 0.34  # - (item*0.01)
+        if item == 22:
+            pribyl = pribyl + 0.32  # - (item*0.01)
+        if item == 23:
+            pribyl = pribyl + 0.30  # - (item*0.01)
+        ###########################################################      +0.36 =0.42
+        if item == 24:
+            pribyl = pribyl + 0.66  # - (item*0.01)
+
+        if item == 25:
+            pribyl = pribyl + 0.63  # - (item*0.01)
+        if item == 26:
+            pribyl = pribyl + 0.60  # - (item*0.01)
+        if item == 27:
+            pribyl = pribyl + 0.57  # - (item*0.01)
+        if item == 28:
+            pribyl = pribyl + 0.54  # - (item*0.01)
+        if item == 29:
+            pribyl = pribyl + 0.51  # - (item*0.01)
+        if item == 30:
+            pribyl = pribyl + 0.48  # - (item*0.01)
+        if item == 31:
+            pribyl = pribyl + 0.45  # - (item*0.01)
+        if item == 32:
+            pribyl = pribyl + 0.42  # - (item*0.01)
+        if item == 33:
+            pribyl = pribyl + 0.39  # - (item*0.01)
+        if item == 34:
+            pribyl = pribyl + 0.36  # - (item*0.01)
+        if item == 35:
+            pribyl = pribyl + 0.33  # - (item*0.01)
+        if item == 36:
+            pribyl = pribyl + 0.30  # - (item*0.01)
+        # if (item > 0) and (item < 37):
+        #     pribyl = pribyl + 0.35 #- (item*0.01)
+
+
+
+
+
         # if (item < 55) and (item >36):
         #    pribyl = pribyl + ((72-36) - (item-36)*2)
-        if (item > 35)  and (item < 54):
-            pribyl = pribyl + 0.35*2 - (item * 0.01)*2
-
-        if (item  > 53) and (item  < 66):
-            pribyl = pribyl + 0.35 * 3 - (item * 0.01) * 3
-
-        if (item > 65) and (item < 75):
-            pribyl = pribyl + 0.35 * 4 - (item * 0.01) * 4
-        if (item > 74) and (item < 82):
-            pribyl = pribyl + 0.35 * 5 - (item * 0.01) * 5
-
-        if (item > 81) and (item < 88):
-            pribyl = pribyl + 0.35 * 6 - (item * 0.01) * 6
-        if (item > 87) and (item < 93):
-            pribyl = pribyl + 0.35 * 7 - (item * 0.01) * 7
-        if (item > 92) and (item < 97):
-            pribyl = pribyl + 0.35 * 8 - (item * 0.01) * 8
-        if (item > 96) and (item < 101):
-            pribyl = pribyl + 0.35 * 9 - (item * 0.01) * 9
-        if (item > 100) and (item < 105):
-            pribyl = pribyl + 0.35 * 10 - (item * 0.01) * 10
-
-        if (item > 104) and (item < 108):
-            pribyl = pribyl + 0.35 * 11 - (item * 0.01) * 11
-        if (item > 107) and (item < 111):
-            pribyl = pribyl + 0.35 * 12 - (item * 0.01) * 12
-
-        if (item > 110) and (item < 114):
-            pribyl = pribyl + 0.35 * 13 - (item * 0.01) * 13
-        if (item > 113) and (item < 116):
-            pribyl = pribyl + 0.35 * 14 - (item * 0.01) * 14
-        if (item > 115) and (item < 119):
-            pribyl = pribyl + 0.35 * 15 - (item * 0.01) * 15
-        if item == 119:
-            pribyl = pribyl -5.54
+        # if (item > 35)  and (item < 54):
+        #     pribyl = pribyl + 0.35*2 - (item * 0.01)*2
+        #
+        # if (item  > 53) and (item  < 66):
+        #     pribyl = pribyl + 0.35 * 3 - (item * 0.01) * 3
+        #
+        # if (item > 65) and (item < 75):
+        #     pribyl = pribyl + 0.35 * 4 - (item * 0.01) * 4
+        # if (item > 74) and (item < 82):
+        #     pribyl = pribyl + 0.35 * 5 - (item * 0.01) * 5
+        #
+        # if (item > 81) and (item < 88):
+        #     pribyl = pribyl + 0.35 * 6 - (item * 0.01) * 6
+        # if (item > 87) and (item < 93):
+        #     pribyl = pribyl + 0.35 * 7 - (item * 0.01) * 7
+        # if (item > 92) and (item < 97):
+        #     pribyl = pribyl + 0.35 * 8 - (item * 0.01) * 8
+        # if (item > 96) and (item < 101):
+        #     pribyl = pribyl + 0.35 * 9 - (item * 0.01) * 9
+        # if (item > 100) and (item < 105):
+        #     pribyl = pribyl + 0.35 * 10 - (item * 0.01) * 10
+        #
+        # if (item > 104) and (item < 108):
+        #     pribyl = pribyl + 0.35 * 11 - (item * 0.01) * 11
+        # if (item > 107) and (item < 111):
+        #     pribyl = pribyl + 0.35 * 12 - (item * 0.01) * 12
+        #
+        # if (item > 110) and (item < 114):
+        #     pribyl = pribyl + 0.35 * 13 - (item * 0.01) * 13
+        # if (item > 113) and (item < 116):
+        #     pribyl = pribyl + 0.35 * 14 - (item * 0.01) * 14
+        # if (item > 115) and (item < 119):
+        #     pribyl = pribyl + 0.35 * 15 - (item * 0.01) * 15
+        if item == 37:
+            pribyl = pribyl -0.81
     return pribyl
 
 
@@ -435,7 +521,7 @@ neuch2 = 0
 i = 0
 next_nol = 0
 uchet_intervala = 0
-for i in range(222, 1286):  # while (ik < 1): # количество файлов
+for i in range(1200, 1286):  # while (ik < 1): # количество файлов
     # ik = ik + 1
     # file_obj = open('200cikl_ochh.txt', 'w')
     # file_obj.close()
@@ -632,9 +718,9 @@ for i in range(222, 1286):  # while (ik < 1): # количество файло�
                     #     print('-------------------------------------------------------------------------------выходим из программы на шаге: ', steps, 'neuch',list_of_win_proverki_1[0])
                     #     break
                     # print(dic_ed[(key)] )
-            if list_of_win_proverki_1[0] > 118:
+            if list_of_win_proverki_1[0] > 36:
                 # print('list_of_win_proverki_1[2]',list_of_win_proverki_1[2] )
-                list_of_steps_toWin_1.append(119)
+                list_of_steps_toWin_1.append(37)
                 stavka = 0.01
                 list_of_win_proverki_1[0] = 1
                 list_of_win_proverki_1[1] = 0
@@ -898,6 +984,11 @@ for i in range(222, 1286):  # while (ik < 1): # количество файло�
         dob_next_seen_1(dic_ed, key, steps)  # создание\ обновление словаря едениц ###############
         interval = key01step(key1, dic_ed)  # последний интервал выпавшего числа ##############
         add_step_to_all_1(dic_ed)  # добавление шагов всем еденицам #############################
+        if (steps>140) and (list_of_win_proverki_1[0] == 1):
+            break
+        if list_of_steps_toWin_1:
+          if list_of_steps_toWin_1[0]==37:
+            break
     ################################################################################################
     # проверочный - dictEd = {(36): [23, [1, 2], 33]
     # print('последний интервал выпавшего числа:',interval)  # проверка функции возращающей последний интервал выпавшего числа
@@ -920,6 +1011,82 @@ for i in range(222, 1286):  # while (ik < 1): # количество файло�
     # print('real pribul', sum_of_win - (sum_of_stavok))
     # prybyl_rel = sum_of_win - (sum_of_stavok)
     print('list_of_win_proverki_1[0]: ', list_of_win_proverki_1[0])
+
+ #    if list_of_win_proverki_1[0] == 1:
+ #        uchet_intervala = 0.01
+ #    elif list_of_win_proverki_1[0] == 2:
+ #        uchet_intervala = 0.02
+ #    elif list_of_win_proverki_1[0] == 3:
+ #        uchet_intervala = 0.03
+ #    elif list_of_win_proverki_1[0] == 4:
+ #        uchet_intervala = 0.04
+ #    elif list_of_win_proverki_1[0] == 5:
+ #        uchet_intervala = 0.05
+ #    elif list_of_win_proverki_1[0] == 6:
+ #        uchet_intervala = 0.06
+ # ###################################################
+ #    elif list_of_win_proverki_1[0] == 7:
+ #        uchet_intervala = 0.08
+ #    elif list_of_win_proverki_1[0] == 8:
+ #        uchet_intervala = 0.10
+ #    elif list_of_win_proverki_1[0] == 9:
+ #        uchet_intervala = 0.12
+ #    elif list_of_win_proverki_1[0] == 10:
+ #        uchet_intervala = 0.14
+ #    elif list_of_win_proverki_1[0] == 11:
+ #        uchet_intervala = 0.16
+ #    elif list_of_win_proverki_1[0] == 12:
+ #        uchet_intervala = 0.18
+ #    elif list_of_win_proverki_1[0] == 13:
+ #        uchet_intervala = 0.20
+ #    elif list_of_win_proverki_1[0] == 14:
+ #        uchet_intervala = 0.22
+ #    elif list_of_win_proverki_1[0] == 15:
+ #        uchet_intervala = 0.24
+ #    elif list_of_win_proverki_1[0] == 16:
+ #        uchet_intervala = 0.26
+ #    elif list_of_win_proverki_1[0] == 17:
+ #        uchet_intervala = 0.28
+ #    elif list_of_win_proverki_1[0] == 18:
+ #        uchet_intervala = 0.30
+ #    elif list_of_win_proverki_1[0] == 19:
+ #        uchet_intervala = 0.32
+ #    elif list_of_win_proverki_1[0] == 20:
+ #        uchet_intervala = 0.34
+ #    elif list_of_win_proverki_1[0] == 21:
+ #        uchet_intervala = 0.36
+ #    elif list_of_win_proverki_1[0] == 22:
+ #        uchet_intervala = 0.38
+ #    elif list_of_win_proverki_1[0] == 23:
+ #        uchet_intervala = 0.40
+ #
+ #    elif list_of_win_proverki_1[0] == 24:
+ #        uchet_intervala = 0.43
+ #    elif list_of_win_proverki_1[0] == 25:
+ #        uchet_intervala = 0.46
+ #    elif list_of_win_proverki_1[0] == 26:
+ #        uchet_intervala = 0.49
+ #    elif list_of_win_proverki_1[0] == 27:
+ #        uchet_intervala = 0.52
+ #    elif list_of_win_proverki_1[0] == 28:
+ #        uchet_intervala = 0.55
+ #    elif list_of_win_proverki_1[0] == 29:
+ #        uchet_intervala = 0.58
+ #    elif list_of_win_proverki_1[0] == 30:
+ #        uchet_intervala = 0.61
+ #    elif list_of_win_proverki_1[0] == 31:
+ #        uchet_intervala = 0.64
+ #    elif list_of_win_proverki_1[0] == 32:
+ #        uchet_intervala = 0.67
+ #    elif list_of_win_proverki_1[0] == 33:
+ #        uchet_intervala = 0.70
+ #    elif list_of_win_proverki_1[0] == 34:
+ #        uchet_intervala = 0.73
+ #    elif list_of_win_proverki_1[0] == 35:
+ #        uchet_intervala = 0.77
+ #    elif list_of_win_proverki_1[0] == 36:
+ #        uchet_intervala = 0.80
+
     # if list_of_win_proverki_1[0] > 118:
     #     uchet_intervala = 5.39
     # else:
@@ -967,4 +1134,3 @@ for i in range(222, 1286):  # while (ik < 1): # количество файло�
 print('---------------------------------------')
 print('pribyl2: ', pribyl2)
 # print('real_pribyl_all: ', real_pribyl)
-print('neuchtenka: ', neuch2)

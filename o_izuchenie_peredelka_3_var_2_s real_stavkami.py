@@ -401,7 +401,7 @@ nol =0
 pribyl2 =0
 i=0
 next_nol = 0
-for i in range(1165,1190): #while (ik < 1):
+for i in range(1190,1235): #while (ik < 1):
     ik = ik + 1
     # file_obj = open('100_xodov.txt', 'w')
     # file_obj.close()

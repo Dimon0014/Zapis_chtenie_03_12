@@ -252,7 +252,7 @@ spisok_preryv_193 =[]
 samyy_samyy_big_stavka = 0
 list_of_minus =[]
 list_of_stavki =[]
-for i in range(222,958):
+for i in range(1255,1286):
 # while (ik < 100):
     ik = ik + 1
     # # naime_file = 'cikly/400cikl_ochh.txt'

@@ -251,7 +251,7 @@ i =0
 samyy_samyy_big_stavka = 0
 list_of_minus =[]
 list_of_stavki =[]
-for i in range(1165,1190):
+for i in range(1190,1235):
 # while (ik < 100):
     ik = ik + 1
     # # naime_file = 'cikly/400cikl_ochh.txt'
