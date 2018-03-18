@@ -252,7 +252,7 @@ spisok_preryv_193 =[]
 samyy_samyy_big_stavka = 0
 list_of_minus =[]
 list_of_stavki =[]
-for i in range(1255,1286):
+for i in range(1000,1468):
 # while (ik < 100):
     ik = ik + 1
     # # naime_file = 'cikly/400cikl_ochh.txt'
@@ -349,7 +349,7 @@ for i in range(1255,1286):
                 print(steps,' na plus ++++++++++++++++', )
 
         raznica = all_odd - all_even
-        if  (raznica > 8) or razreshau:
+        if  (raznica > 9) or razreshau:
             razreshau = True
             if raznica >=0:
                 pribavka = math.fabs(raznica)
